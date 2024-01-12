@@ -1,0 +1,21 @@
+N_pixels: 32
+Angles: 120
+Eta: 0.001000
+Seed: 1
+M (before deletion): 5400
+N (before deletion): 1024
+M: 4886
+N: 1024
+Density: 0.031207
+norm(A*x-b_error): 0.258736
+norm(A*x_ls-b_error): 0.229446
+norm(A*x_ls_pos-b_error): 0.248089
+norm(A*x_ls_box-b_error): 0.251536
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 0.119578
+norm(A*x_ls_pos-b): 0.089712
+norm(A*x_ls_box-b): 0.094565
+norm(x-x_ls): 0.046695
+norm(x-x_ls_pos): 0.011460
+norm(x-x_ls_box): 0.011238
+norm(error): 0.272268

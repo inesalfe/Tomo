@@ -1,0 +1,14 @@
+N_pixels: 32
+Angles: 120
+M (before deletion): 5400
+N (before deletion): 1024
+M: 3112
+N: 484
+Density: 0.048979
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 0.000000
+norm(A*x_ls_pos-b): 0.011400
+norm(A*x_ls_box-b): 0.013575
+norm(x-x_ls): 0.000000
+norm(x-x_ls_pos): 0.002504
+norm(x-x_ls_box): 0.002699
