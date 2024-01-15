@@ -3,6 +3,7 @@
 #include <math.h>
 #include <omp.h>
 #include <random>
+#include <algorithm>
 using namespace std;
 
 int main (int argc, char *argv[]) {
@@ -36,13 +37,13 @@ int main (int argc, char *argv[]) {
 	else if (argc == 7 && matrix_type.compare("ct_gaussian") == 0) {
 		int seed = atoi(argv[6]);
 		filename_A = "../data/ct_gaussian/A_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
-		filename_b = "../data/ct_gaussian/b_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
+		filename_b = "../data/ct_gaussian/b_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_x = "../data/ct_gaussian/x_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 	}
 	else if (argc == 7 && matrix_type.compare("ct_poisson") == 0) {
 		int seed = atoi(argv[6]);
 		filename_A = "../data/ct_poisson/A_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
-		filename_b = "../data/ct_poisson/b_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
+		filename_b = "../data/ct_poisson/b_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_x = "../data/ct_poisson/x_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 	}
 	else {
@@ -91,7 +92,6 @@ int main (int argc, char *argv[]) {
 	long long avg_it = 0;
 
 	bool solution_found;
-	double dot_p;
 
 	for(int run = 0; run < n_runs; run++) {
 		for (int i = 0; i < N; i++) {
@@ -99,14 +99,12 @@ int main (int argc, char *argv[]) {
 		}
 		it = 0;
 		solution_found = false;
+		shuffle(begin(samp_line), end(samp_line), rng);
 		start = omp_get_wtime();
 		while(!solution_found) {
 			it++;
 			line = samp_line[it%M];
-			dot_p = 0;
-			for (int i = 0; i < N; i++)
-				dot_p += A[line][i]*x_k[i];
-			scale = (b[line]-dot_p)/sqrNorm_line[line];
+			scale = (b[line]-dotProduct(A[line], x_k, N))/sqrNorm_line[line];
 			for (int i = 0; i < N; i++) {
 				x_k[i] += scale * A[line][i];
 			}

@@ -48,13 +48,13 @@ int main (int argc, char *argv[]) {
 	else if (argc == 10 && matrix_type.compare("ct_gaussian") == 0) {
 		int seed = atoi(argv[9]);
 		filename_A = "../data/ct_gaussian/A_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
-		filename_b = "../data/ct_gaussian/b_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
+		filename_b = "../data/ct_gaussian/b_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_x = "../data/ct_gaussian/x_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 	}
 	else if (argc == 10 && matrix_type.compare("ct_poisson") == 0) {
 		int seed = atoi(argv[9]);
 		filename_A = "../data/ct_poisson/A_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
-		filename_b = "../data/ct_poisson/b_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
+		filename_b = "../data/ct_poisson/b_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_x = "../data/ct_poisson/x_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 	}
 	else {
@@ -100,10 +100,12 @@ int main (int argc, char *argv[]) {
 	double stop;
 	double duration = 0;
 
-	vector<double> error;
-	vector<double> res;
-	vector<int> error_it;
-	vector<int> res_it;
+	int storage_size = ceil(max_it_stop/step_save);
+	int storage_counter;
+	vector<double> error_vals(storage_size, 0);
+	vector<double> res_vals(storage_size, 0);
+	vector<int> error_it(storage_size);
+	vector<int> res_it(storage_size);
 	double* res_vec = new double[M];
 	double sqr_norm_res;
 
@@ -144,17 +146,18 @@ int main (int argc, char *argv[]) {
 				}
 				block_begin += block_size;
 			}
-			if (it%step_save == 0) {
-				error_it.push_back(it);
-				error.push_back(sqrt(sqrNormDiff(x_k, x, N)));
+			if (it%step_save == 1) {
+				error_it[storage_counter] = it;
+				error_vals[storage_counter] += sqrt(sqrNormDiff(x_k, x, N));
 				for (int i = 0; i < M; i++) {
 					res_vec[i] = b[i] - dotProduct(A[i], x_k, N);
 				}
 				sqr_norm_res = 0;
 				for (int i = 0; i < M; i++)
 					sqr_norm_res += res_vec[i]*res_vec[i];
-				res_it.push_back(it);
-				res.push_back(sqrt(sqr_norm_res));
+				res_it[storage_counter] = it;
+				res_vals[storage_counter] += sqrt(sqr_norm_res);
+				storage_counter++;
 			}
 		}
 		stop = omp_get_wtime();
@@ -179,15 +182,15 @@ int main (int argc, char *argv[]) {
 
 	cout << sqrNormDiff(x_sol, x, N) << " " << duration_total << endl;
 
-	string filename_error = "errors/omp/SRKABWOR_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(threads) + ".txt";
-	string filename_res = "errors/omp/SRKABWOR_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(threads) + ".txt";
+	string filename_error = "errors/omp_dense/SRKABWOR_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(threads) + ".txt";
+	string filename_res = "errors/omp_dense/SRKABWOR_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(threads) + ".txt";
 
 	ofstream file_error(filename_error);
 	ofstream file_res(filename_res);
 	if (file_error.is_open() && file_res.is_open()) {
-		for (int i = 0; i < error.size(); i++) {
-			file_error << error_it[i] << " " << error[i] << endl;
-			file_res << res_it[i] << " " << res[i] << endl;
+		for (int i = 0; i < error_vals.size(); i++) {
+			file_error << error_it[i] << " " << error_vals[i]/n_runs << endl;
+			file_res << res_it[i] << " " << res_vals[i]/n_runs << endl;
 		}
 		file_error.close();
 		file_res.close();
