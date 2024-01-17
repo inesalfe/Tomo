@@ -9,6 +9,18 @@
 #include <sstream>
 using namespace std;
 
+/*
+
+./bin/RK_box_ineq_csr_max_it_data.exe ct 1 3112 484 500000 1000
+./bin/RK_box_ineq_csr_max_it_data.exe ct_gaussian 1 4886 1024 500000 1000 1
+./bin/RK_box_ineq_csr_max_it_data.exe ct_poisson 1 4886 1024 500000 1000 1
+
+./bin/RK_box_ineq_csr_max_it_data.exe ct 5 3112 484 500000 1000
+./bin/RK_box_ineq_csr_max_it_data.exe ct_gaussian 5 4886 1024 500000 1000 1
+./bin/RK_box_ineq_csr_max_it_data.exe ct_poisson 5 4886 1024 500000 1000 1
+
+*/
+
 int main (int argc, char *argv[]) {
 
 	if(argc != 7 && argc != 8) {
@@ -191,8 +203,18 @@ int main (int argc, char *argv[]) {
 
 	cout << sqrNormDiff(x_sol, x, N) << " " << duration_total << endl;
 
-	string filename_error = "errors/seq_sparse/RK_box_ineq_error_" + to_string(M) + "_" + to_string(N) + ".txt";
-	string filename_res = "errors/seq_sparse/RK_box_ineq_res_" + to_string(M) + "_" + to_string(N) + ".txt";
+	string filename_error = "errors/seq_sparse/" + matrix_type + "/RK_box_ineq_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(max_it_stop);
+	string filename_res = "errors/seq_sparse/" + matrix_type + "/RK_box_ineq_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(max_it_stop);
+
+	if (argc == 8) {
+		int seed = atoi(argv[7]);
+		filename_error += "_" + to_string(seed) + ".txt";
+		filename_res += "_" + to_string(seed) + ".txt";
+	}
+	else {
+		filename_error += ".txt";
+		filename_res += ".txt";		
+	}
 
 	ofstream file_error(filename_error);
 	ofstream file_res(filename_res);

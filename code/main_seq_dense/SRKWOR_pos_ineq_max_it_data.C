@@ -167,8 +167,18 @@ int main (int argc, char *argv[]) {
 
 	cout << sqrNormDiff(x_sol, x, N) << " " << duration_total << endl;
 
-	string filename_error = "errors/seq_dense/SRKWOR_pos_ineq_error_" + to_string(M) + "_" + to_string(N) + ".txt";
-	string filename_res = "errors/seq_dense/SRKWOR_pos_ineq_res_" + to_string(M) + "_" + to_string(N) + ".txt";
+	string filename_error = "errors/seq_dense/" + matrix_type + "/SRKWOR_pos_ineq_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(max_it_stop);
+	string filename_res = "errors/seq_dense/" + matrix_type + "/SRKWOR_pos_ineq_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(max_it_stop);
+
+	if (argc == 8) {
+		int seed = atoi(argv[7]);
+		filename_error += "_" + to_string(seed) + ".txt";
+		filename_res += "_" + to_string(seed) + ".txt";
+	}
+	else {
+		filename_error += ".txt";
+		filename_res += ".txt";		
+	}
 
 	ofstream file_error(filename_error);
 	ofstream file_res(filename_res);
