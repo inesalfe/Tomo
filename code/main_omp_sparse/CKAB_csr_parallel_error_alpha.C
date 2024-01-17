@@ -126,18 +126,21 @@ int main (int argc, char *argv[]) {
 		}
 		it = 0;
 		solution_found = false;
-		int block_begin = block_size*t_id;
 		start = omp_get_wtime();
 		#pragma omp parallel private(line, scale, t_id, x_k_thread) firstprivate(it)
 		{
 			x_k_thread = new double[N];
 			t_id = omp_get_thread_num();
+			int block_begin = block_size*t_id;
 			mt19937 generator(run*num_threads+t_id+1);
 			while(!solution_found) {
 				it++;
 				#pragma omp barrier
 				line = block_begin%M;
 				scale = alpha * (b[line]-dotProductCSR(line, row_idx, cols, values, x_k))/sqrNorm_line[line];
+				for (int j = 0; j < N; j++) {
+					x_k_thread[j] = x_k[j];
+				}
 				scaleNewVecLine(line, row_idx, cols, values, scale, x_k, x_k_thread);
 				for (int i = 1; i < block_size; i++) {
 					line = (block_begin+i)%M;

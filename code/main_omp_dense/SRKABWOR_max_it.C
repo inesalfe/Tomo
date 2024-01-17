@@ -104,6 +104,7 @@ int main (int argc, char *argv[]) {
 		}
 		it = 0;
 		block_begin = 0;
+		shuffle(begin(samp_line), end(samp_line), rng);
 		start = omp_get_wtime();
 		while(it < max_it_stop) {
 			it++;

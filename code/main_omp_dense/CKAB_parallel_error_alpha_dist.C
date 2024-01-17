@@ -120,7 +120,6 @@ int main (int argc, char *argv[]) {
 		{
 			x_k_thread = new double[N];
 			t_id = omp_get_thread_num();
-			mt19937 generator(run*num_threads+t_id+1);
 			while(!solution_found) {
 				it++;
 				#pragma omp barrier

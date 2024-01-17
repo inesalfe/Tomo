@@ -109,6 +109,7 @@ int main (int argc, char *argv[]) {
 		it = 0;
 		solution_found = false;
 		block_begin = 0;
+		shuffle(begin(samp_line), end(samp_line), rng);
 		start = omp_get_wtime();
 		while(!solution_found) {
 			it++;

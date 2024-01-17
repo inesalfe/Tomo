@@ -129,6 +129,9 @@ int main (int argc, char *argv[]) {
 			for (int i = 0; i < threads; i++) {
 				line = BLOCK_LOW(i, threads, M) + (it*block_size)%BLOCK_SIZE(i, threads, M);
 				scale = alpha * (b[line]-dotProductCSR(line, row_idx, cols, values, x_prev))/sqrNorm_line[line];
+				for (int j = 0; j < N; j++) {
+					x_k_thread[j] = x_prev[j];
+				}
 				scaleNewVecLine(line, row_idx, cols, values, scale, x_prev, x_k_thread);
 				for (int k = 1; k < block_size-1; k++) {
 					line = BLOCK_LOW(i, threads, M) + (it*block_size + k)%BLOCK_SIZE(i, threads, M);
@@ -139,7 +142,7 @@ int main (int argc, char *argv[]) {
 				scale = alpha * (b[line]-dotProductCSR(line, row_idx, cols, values, x_k_thread))/sqrNorm_line[line];
 				scaleVecLine(line, row_idx, cols, values, scale, x_k_thread);
 				for (int j = 0; j < N; j++) {
-					x_k[j] += x_k_thread[j]/threads;
+					x_k[j] += (x_k_thread[j]-x_prev[j])/threads;
 				}
 			}
 			if (sqrNormDiff(x_k, x, N) < eps)

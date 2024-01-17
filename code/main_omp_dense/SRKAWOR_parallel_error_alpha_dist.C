@@ -112,9 +112,9 @@ int main (int argc, char *argv[]) {
 		for (int i = 0; i < N; i++) {
 			x_k[i] = 0;
 		}
-		shuffle(begin(samp_line), end(samp_line), rng);
 		it = 0;
 		solution_found = false;
+		shuffle(begin(samp_line), end(samp_line), rng);
 		start = omp_get_wtime();
 		#pragma omp parallel private(line, scale, t_id) firstprivate(it)
 		{

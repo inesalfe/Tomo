@@ -139,6 +139,9 @@ int main (int argc, char *argv[]) {
 				#pragma omp barrier
 				line = dist(generator);
 				scale = alpha * (b[line]-dotProductCSR(line, row_idx, cols, values, x_k))/sqrNorm_line[line];
+				for (int j = 0; j < N; j++) {
+					x_k_thread[j] = x_k[j];
+				}
 				scaleNewVecLine(line, row_idx, cols, values, scale, x_k, x_k_thread);
 				for (int i = 0; i < block_size-1; i++) {
 					line = dist(generator);

@@ -53,7 +53,7 @@ int main (int argc, char *argv[]) {
 		filename_x = "../data/ct/x_" + to_string(M) + "_" + to_string(N) + ".bin";
 	}
 	else if (argc == 8 && matrix_type.compare("ct_gaussian") == 0) {
-		int seed = atoi(argv[8]);
+		int seed = atoi(argv[7]);
 		filename_row_idx = "../data/ct_gaussian/row_idx_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_cols = "../data/ct_gaussian/cols_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_values = "../data/ct_gaussian/values_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
@@ -61,7 +61,7 @@ int main (int argc, char *argv[]) {
 		filename_x = "../data/ct_gaussian/x_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 	}
 	else if (argc == 8 && matrix_type.compare("ct_poisson") == 0) {
-		int seed = atoi(argv[8]);
+		int seed = atoi(argv[7]);
 		filename_row_idx = "../data/ct_poisson/row_idx_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_cols = "../data/ct_poisson/cols_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_values = "../data/ct_poisson/values_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
@@ -132,6 +132,9 @@ int main (int argc, char *argv[]) {
 				#pragma omp barrier
 				line = BLOCK_LOW(t_id, num_threads, M) + (it*block_size)%BLOCK_SIZE(t_id, num_threads, M);
 				scale = (b[line]-dotProductCSR(line, row_idx, cols, values, x_k))/sqrNorm_line[line];
+				for (int j = 0; j < N; j++) {
+					x_k_thread[j] = x_k[j];
+				}
 				scaleNewVecLine(line, row_idx, cols, values, scale, x_k, x_k_thread);
 				for (int i = 1; i < block_size; i++) {
 					line = BLOCK_LOW(t_id, num_threads, M) + (it*block_size + i)%BLOCK_SIZE(t_id, num_threads, M);

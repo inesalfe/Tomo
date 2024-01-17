@@ -133,6 +133,9 @@ int main (int argc, char *argv[]) {
 				#pragma omp barrier
 				line = BLOCK_LOW(t_id, num_threads, M) + (it*block_size)%BLOCK_SIZE(t_id, num_threads, M);
 				scale = alpha * (b[line]-dotProductCSR(line, row_idx, cols, values, x_k))/sqrNorm_line[line];
+				for (int j = 0; j < N; j++) {
+					x_k_thread[j] = x_k[j];
+				}
 				scaleNewVecLine(line, row_idx, cols, values, scale, x_k, x_k_thread);
 				for (int i = 1; i < block_size; i++) {
 					line = BLOCK_LOW(t_id, num_threads, M) + (it*block_size + i)%BLOCK_SIZE(t_id, num_threads, M);

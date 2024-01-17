@@ -45,13 +45,13 @@ int main (int argc, char *argv[]) {
 		filename_x = "../data/ct/x_" + to_string(M) + "_" + to_string(N) + ".bin";
 	}
 	else if (argc == 8 && matrix_type.compare("ct_gaussian") == 0) {
-		int seed = atoi(argv[8]);
+		int seed = atoi(argv[7]);
 		filename_A = "../data/ct_gaussian/A_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_b = "../data/ct_gaussian/b_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_x = "../data/ct_gaussian/x_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 	}
 	else if (argc == 8 && matrix_type.compare("ct_poisson") == 0) {
-		int seed = atoi(argv[8]);
+		int seed = atoi(argv[7]);
 		filename_A = "../data/ct_poisson/A_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_b = "../data/ct_poisson/b_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_x = "../data/ct_poisson/x_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
@@ -112,6 +112,7 @@ int main (int argc, char *argv[]) {
 			x_k[i] = 0;
 		}
 		it = 0;
+		shuffle(begin(samp_line), end(samp_line), rng);
 		start = omp_get_wtime();
 		#pragma omp parallel private(line, scale, t_id, x_k_thread) firstprivate(it)
 		{

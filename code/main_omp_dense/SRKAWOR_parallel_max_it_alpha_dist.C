@@ -106,13 +106,12 @@ int main (int argc, char *argv[]) {
 		for (int i = 0; i < N; i++) {
 			x_k[i] = 0;
 		}
-		shuffle(begin(samp_line), end(samp_line), rng);
 		it = 0;
+		shuffle(begin(samp_line), end(samp_line), rng);
 		start = omp_get_wtime();
 		#pragma omp parallel private(line, scale, t_id) firstprivate(it)
 		{
 			t_id = omp_get_thread_num();
-			mt19937 generator(run*num_threads+t_id+1);
 			while(it < max_it_stop) {
 				it++;
 				#pragma omp barrier
