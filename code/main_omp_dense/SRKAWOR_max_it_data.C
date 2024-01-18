@@ -108,6 +108,7 @@ int main (int argc, char *argv[]) {
 		}
 		it = 0;
 		shuffle(begin(samp_line), end(samp_line), rng);
+		storage_counter = 0;
 		start = omp_get_wtime();
 		while(it < max_it_stop) {
 			it++;
@@ -157,8 +158,18 @@ int main (int argc, char *argv[]) {
 
 	cout << sqrNormDiff(x_sol, x, N) << " " << duration_total << endl;
 
-	string filename_error = "errors/omp_dense/SRKAWOR_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(it_per_thread) + ".txt";
-	string filename_res = "errors/omp_dense/SRKAWOR_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(it_per_thread) + ".txt";
+	string filename_error = "errors/omp_dense/" + matrix_type + "/SRKAWOR_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(it_per_thread) + "_" + to_string(max_it_stop);
+	string filename_res = "errors/omp_dense/" + matrix_type + "/SRKAWOR_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(it_per_thread) + "_" + to_string(max_it_stop);
+
+	if (argc == 9) {
+		int seed = atoi(argv[8]);
+		filename_error += "_" + to_string(seed) + ".txt";
+		filename_res += "_" + to_string(seed) + ".txt";
+	}
+	else {
+		filename_error += ".txt";
+		filename_res += ".txt";		
+	}
 
 	ofstream file_error(filename_error);
 	ofstream file_res(filename_res);

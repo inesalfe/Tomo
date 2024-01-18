@@ -74,9 +74,6 @@ int main (int argc, char *argv[]) {
 		}
 	}
 
-	discrete_distribution<> dist(sqrNorm_line.begin(), sqrNorm_line.end());
-	vector<mt19937> gen(it_per_thread);
-
 	double* x_k = new double[N];
 	double* x_prev = new double[N];
 	x_sol = new double[N];
