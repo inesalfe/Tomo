@@ -5,6 +5,8 @@
 #include <omp.h>
 #include <algorithm>
 #include <random>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 #define BLOCK_LOW(id, p, np) ((id) * (np) / (p))
@@ -187,8 +189,8 @@ int main (int argc, char *argv[]) {
 
 	cout << sqrNormDiff(x_sol, x, N) << " " << duration_total << endl;
 
-	string filename_error = "errors/omp_sparse/" + matrix_type + "/SRKAWOR_csr_alpha_dist_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(threads) + "_" + to_string(max_it_stop);
-	string filename_res = "errors/omp_sparse/" + matrix_type + "/SRKAWOR_csr_alpha_dist_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(threads) + "_" + to_string(max_it_stop);
+	string filename_error = "errors/omp_sparse/" + matrix_type + "/SRKAWOR_csr_alpha_dist_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + to_string(alpha) + "_" + to_string(max_it_stop);
+	string filename_res = "errors/omp_sparse/" + matrix_type + "/SRKAWOR_csr_alpha_dist_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + to_string(alpha) + "_" + to_string(max_it_stop);
 
 	if (argc == 9) {
 		int seed = atoi(argv[8]);

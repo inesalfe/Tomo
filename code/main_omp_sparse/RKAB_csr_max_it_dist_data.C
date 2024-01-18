@@ -5,6 +5,8 @@
 #include <omp.h>
 #include <algorithm>
 #include <random>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 #define BLOCK_LOW(id, p, np) ((id) * (np) / (p))
