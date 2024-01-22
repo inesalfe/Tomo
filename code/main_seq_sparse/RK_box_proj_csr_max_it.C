@@ -112,13 +112,7 @@ int main (int argc, char *argv[]) {
 			it++;
 			line = dist(generator);
 			scale = (b[line]-dotProductCSR(line, row_idx, cols, values, x_k))/sqrNorm_line[line];
-			scaleVecLine(line, row_idx, cols, values, scale, x_k);
-			for (int i = 0; i < N; i++) {
-				if (x_k[i] < 0)
-					x_k[i] = 0;
-				else if (x_k[i] > 1)
-					x_k[i] = 1;
-			}
+			scaleVecLineBoxProj(line, row_idx, cols, values, scale, x_k);
 		}
 		stop = omp_get_wtime();
 		duration += stop - start;

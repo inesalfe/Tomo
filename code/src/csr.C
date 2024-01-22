@@ -37,6 +37,34 @@ void scaleVecLine(int& m, int*& row_idx, int*& cols, double*& values, double& sc
 	return;
 }
 
+void scaleVecLinePosProj(int& m, int*& row_idx, int*& cols, double*& values, double& scale, double*& vector) {
+	int index = row_idx[m];
+	int col;
+	while (index < row_idx[m+1]) {
+		col = cols[index];
+		vector[col] += scale*values[index];
+		if (vector[col] < 0)
+			vector[col] = 0;
+		index++;
+	}
+	return;
+}
+
+void scaleVecLineBoxProj(int& m, int*& row_idx, int*& cols, double*& values, double& scale, double*& vector) {
+	int index = row_idx[m];
+	int col;
+	while (index < row_idx[m+1]) {
+		col = cols[index];
+		vector[col] += scale*values[index];
+		if (vector[col] < 0)
+			vector[col] = 0;
+		else if (vector[col] > 1)
+			vector[col] = 1;
+		index++;
+	}
+	return;
+}
+
 void scaleDivideVecLine(int& m, int div, int*& row_idx, int*& cols, double*& values, double& scale, double*& vector) {
 	int index = row_idx[m];
 	int col;

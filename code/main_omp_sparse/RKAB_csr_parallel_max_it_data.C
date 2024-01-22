@@ -161,6 +161,7 @@ int main (int argc, char *argv[]) {
 				#pragma omp critical
 					for (int i = 0; i < N; i++)
 						x_k[i] += x_k_thread[i]/num_threads;
+				#pragma omp barrier
 				#pragma omp single
 					if (it%step_save == 1) {
 						error_it[storage_counter] = it;

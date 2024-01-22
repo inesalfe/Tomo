@@ -120,11 +120,7 @@ int main (int argc, char *argv[]) {
 			it++;
 			line = samp_line[it%M];
 			scale = (b[line]-dotProductCSR(line, row_idx, cols, values, x_k))/sqrNorm_line[line];
-			scaleVecLine(line, row_idx, cols, values, scale, x_k);
-			for (int i = 0; i < N; i++) {
-				if (x_k[i] < 0)
-					x_k[i] = 0;
-			}
+			scaleVecLinePosProj(line, row_idx, cols, values, scale, x_k);
 			if (sqrNormDiff(x_k, x, N) < eps)
 				solution_found = true;
 		}

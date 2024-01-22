@@ -1,0 +1,91 @@
+#!/bin/bash
+
+# bash bash/seq_sparse/14750_4096_gaussian_SRKWOR.sh > outputs/progress/14750_4096_gaussian_SRKWOR.txt &
+
+./bin/SRKWOR_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 1
+echo "SRKWOR ct_gaussian 10 14750 4096 10000000 10000 1"
+./bin/SRKWOR_box_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 1
+echo "SRKWOR_box_ineq ct_gaussian 10 14750 4096 10000000 10000 1"
+./bin/SRKWOR_box_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 1
+echo "SRKWOR_box_proj ct_gaussian 10 14750 4096 10000000 10000 1"
+./bin/SRKWOR_pos_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 1
+echo "SRKWOR_pos_ineq ct_gaussian 10 14750 4096 10000000 10000 1"
+./bin/SRKWOR_pos_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 1
+echo "SRKWOR_pos_proj ct_gaussian 10 14750 4096 10000000 10000 1"
+
+./bin/SRKWOR_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 1
+echo "SRKWOR ct_gaussian 10 14750 4096 30000000 10000 1"
+./bin/SRKWOR_box_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 1
+echo "SRKWOR_box_ineq ct_gaussian 10 14750 4096 30000000 10000 1"
+./bin/SRKWOR_box_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 1
+echo "SRKWOR_box_proj ct_gaussian 10 14750 4096 30000000 10000 1"
+./bin/SRKWOR_pos_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 1
+echo "SRKWOR_pos_ineq ct_gaussian 10 14750 4096 30000000 10000 1"
+./bin/SRKWOR_pos_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 1
+echo "SRKWOR_pos_proj ct_gaussian 10 14750 4096 30000000 10000 1"
+
+./bin/SRKWOR_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 2
+echo "SRKWOR ct_gaussian 10 14750 4096 10000000 10000 2"
+./bin/SRKWOR_box_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 2
+echo "SRKWOR_box_ineq ct_gaussian 10 14750 4096 10000000 10000 2"
+./bin/SRKWOR_box_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 2
+echo "SRKWOR_box_proj ct_gaussian 10 14750 4096 10000000 10000 2"
+./bin/SRKWOR_pos_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 2
+echo "SRKWOR_pos_ineq ct_gaussian 10 14750 4096 10000000 10000 2"
+./bin/SRKWOR_pos_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 2
+echo "SRKWOR_pos_proj ct_gaussian 10 14750 4096 10000000 10000 2"
+
+./bin/SRKWOR_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 2
+echo "SRKWOR ct_gaussian 10 14750 4096 30000000 10000 2"
+./bin/SRKWOR_box_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 2
+echo "SRKWOR_box_ineq ct_gaussian 10 14750 4096 30000000 10000 2"
+./bin/SRKWOR_box_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 2
+echo "SRKWOR_box_proj ct_gaussian 10 14750 4096 30000000 10000 2"
+./bin/SRKWOR_pos_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 2
+echo "SRKWOR_pos_ineq ct_gaussian 10 14750 4096 30000000 10000 2"
+./bin/SRKWOR_pos_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 2
+echo "SRKWOR_pos_proj ct_gaussian 10 14750 4096 30000000 10000 2"
+
+./bin/SRKWOR_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 3
+echo "SRKWOR ct_gaussian 10 14750 4096 10000000 10000 3"
+./bin/SRKWOR_box_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 3
+echo "SRKWOR_box_ineq ct_gaussian 10 14750 4096 10000000 10000 3"
+./bin/SRKWOR_box_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 3
+echo "SRKWOR_box_proj ct_gaussian 10 14750 4096 10000000 10000 3"
+./bin/SRKWOR_pos_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 3
+echo "SRKWOR_pos_ineq ct_gaussian 10 14750 4096 10000000 10000 3"
+./bin/SRKWOR_pos_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 3
+echo "SRKWOR_pos_proj ct_gaussian 10 14750 4096 10000000 10000 3"
+
+./bin/SRKWOR_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 3
+echo "SRKWOR ct_gaussian 10 14750 4096 30000000 10000 3"
+./bin/SRKWOR_box_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 3
+echo "SRKWOR_box_ineq ct_gaussian 10 14750 4096 30000000 10000 3"
+./bin/SRKWOR_box_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 3
+echo "SRKWOR_box_proj ct_gaussian 10 14750 4096 30000000 10000 3"
+./bin/SRKWOR_pos_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 3
+echo "SRKWOR_pos_ineq ct_gaussian 10 14750 4096 30000000 10000 3"
+./bin/SRKWOR_pos_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 3
+echo "SRKWOR_pos_proj ct_gaussian 10 14750 4096 30000000 10000 3"
+
+./bin/SRKWOR_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 4
+echo "SRKWOR ct_gaussian 10 14750 4096 10000000 10000 4"
+./bin/SRKWOR_box_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 4
+echo "SRKWOR_box_ineq ct_gaussian 10 14750 4096 10000000 10000 4"
+./bin/SRKWOR_box_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 4
+echo "SRKWOR_box_proj ct_gaussian 10 14750 4096 10000000 10000 4"
+./bin/SRKWOR_pos_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 4
+echo "SRKWOR_pos_ineq ct_gaussian 10 14750 4096 10000000 10000 4"
+./bin/SRKWOR_pos_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 10000000 10000 4
+echo "SRKWOR_pos_proj ct_gaussian 10 14750 4096 10000000 10000 4"
+
+./bin/SRKWOR_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 4
+echo "SRKWOR ct_gaussian 10 14750 4096 30000000 10000 4"
+./bin/SRKWOR_box_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 4
+echo "SRKWOR_box_ineq ct_gaussian 10 14750 4096 30000000 10000 4"
+./bin/SRKWOR_box_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 4
+echo "SRKWOR_box_proj ct_gaussian 10 14750 4096 30000000 10000 4"
+./bin/SRKWOR_pos_ineq_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 4
+echo "SRKWOR_pos_ineq ct_gaussian 10 14750 4096 30000000 10000 4"
+./bin/SRKWOR_pos_proj_csr_max_it_data.exe ct_gaussian 10 14750 4096 30000000 10000 4
+echo "SRKWOR_pos_proj ct_gaussian 10 14750 4096 30000000 10000 4"

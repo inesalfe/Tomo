@@ -140,6 +140,8 @@ int main (int argc, char *argv[]) {
 	cout << "norm(x-x_ls_pos): " << sqrt(sqrNormDiff(x, x_ls_pos, N)) << endl;
 	cout << "norm(x-x_ls_box): " << sqrt(sqrNormDiff(x, x_ls_box, N)) << endl;
 
+	cout << "norm(b): " << sqrt(sqrNorm(b, M)) << endl;
+
 	delete[] res;
 
 	delete[] row_idx;

@@ -149,6 +149,7 @@ int main (int argc, char *argv[]) {
 				scale = (b[line]-dotProductCSR(line, row_idx, cols, values, x_prev))/sqrNorm_line[line];
 				#pragma omp critical
 					scaleVecLine(line, row_idx, cols, values, scale, x_k);
+				#pragma omp barrier
 				#pragma omp single
 					if (it%step_save == 1) {
 						error_it[storage_counter] = it;

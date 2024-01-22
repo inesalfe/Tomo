@@ -43,23 +43,23 @@ int main (int argc, char *argv[]) {
 	string filename_values;
 	string filename_b;
 	string filename_x;
-	if (argc == 7 && matrix_type.compare("ct") == 0) {
+	if (argc == 8 && matrix_type.compare("ct") == 0) {
 		filename_row_idx = "../data/ct/row_idx_" + to_string(M) + "_" + to_string(N) + ".bin";
 		filename_cols = "../data/ct/cols_" + to_string(M) + "_" + to_string(N) + ".bin";
 		filename_values = "../data/ct/values_" + to_string(M) + "_" + to_string(N) + ".bin";
 		filename_b = "../data/ct/b_" + to_string(M) + "_" + to_string(N) + ".bin";
 		filename_x = "../data/ct/x_" + to_string(M) + "_" + to_string(N) + ".bin";
 	}
-	else if (argc == 8 && matrix_type.compare("ct_gaussian") == 0) {
-		int seed = atoi(argv[7]);
+	else if (argc == 9 && matrix_type.compare("ct_gaussian") == 0) {
+		int seed = atoi(argv[8]);
 		filename_row_idx = "../data/ct_gaussian/row_idx_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_cols = "../data/ct_gaussian/cols_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_values = "../data/ct_gaussian/values_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_b = "../data/ct_gaussian/b_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_x = "../data/ct_gaussian/x_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 	}
-	else if (argc == 8 && matrix_type.compare("ct_poisson") == 0) {
-		int seed = atoi(argv[7]);
+	else if (argc == 9 && matrix_type.compare("ct_poisson") == 0) {
+		int seed = atoi(argv[8]);
 		filename_row_idx = "../data/ct_poisson/row_idx_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_cols = "../data/ct_poisson/cols_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_values = "../data/ct_poisson/values_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
@@ -179,8 +179,8 @@ int main (int argc, char *argv[]) {
 
 	cout << sqrNormDiff(x_sol, x, N) << " " << duration_total << endl;
 
-	string filename_error = "errors/omp_sparse/" + matrix_type + "/RKA_dist_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(it_per_thread) + "_" + to_string(max_it_stop);
-	string filename_res = "errors/omp_sparse/" + matrix_type + "/RKA_dist_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(it_per_thread) + "_" + to_string(max_it_stop);
+	string filename_error = "errors/omp_sparse/" + matrix_type + "/RKA_csr_dist_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(it_per_thread) + "_" + to_string(max_it_stop);
+	string filename_res = "errors/omp_sparse/" + matrix_type + "/RKA_csr_dist_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(it_per_thread) + "_" + to_string(max_it_stop);
 
 	if (argc == 9) {
 		int seed = atoi(argv[8]);

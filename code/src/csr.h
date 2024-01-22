@@ -29,6 +29,10 @@ double dotProductCSR(int& m, int*& row_idx, int*& cols, double*& values, double*
 
 void scaleVecLine(int& m, int*& row_idx, int*& cols, double*& values, double& scale, double*& vector);
 
+void scaleVecLinePosProj(int& m, int*& row_idx, int*& cols, double*& values, double& scale, double*& vector);
+
+void scaleVecLineBoxProj(int& m, int*& row_idx, int*& cols, double*& values, double& scale, double*& vector);
+
 void scaleDivideVecLine(int& m, int div, int*& row_idx, int*& cols, double*& values, double& scale, double*& vector);
 
 void scaleVecLinePartial(int& m, int i, int j, int*& row_idx, int*& cols, double*& values, double& scale, double*& vector);

@@ -146,6 +146,7 @@ int main (int argc, char *argv[]) {
 				scale = alpha * (b[line]-dotProductCSR(line, row_idx, cols, values, x_prev))/sqrNorm_line[line];
 				#pragma omp critical
 					scaleVecLine(line, row_idx, cols, values, scale, x_k);
+				#pragma omp barrier
 				#pragma omp single
 					if (it%step_save == 1) {
 						error_it[storage_counter] = it;
@@ -184,8 +185,14 @@ int main (int argc, char *argv[]) {
 
 	cout << sqrNormDiff(x_sol, x, N) << " " << duration_total << endl;
 
-	string filename_error = "errors/omp_sparse/" + matrix_type + "/RKA_csr_alpha_dist_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + to_string(alpha) + "_" + to_string(max_it_stop);
-	string filename_res = "errors/omp_sparse/" + matrix_type + "/RKA_csr_alpha_dist_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + to_string(alpha) + "_" + to_string(max_it_stop);
+	string str_alpha = to_string(alpha);
+	int offset = 1;
+	if (str_alpha.find_last_not_of('0') == str_alpha.find('.'))
+		offset = 0;
+	str_alpha.erase(str_alpha.find_last_not_of('0') + offset, string::npos);
+
+	string filename_error = "errors/omp_sparse/" + matrix_type + "/RKA_csr_alpha_dist_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + str_alpha + "_" + to_string(max_it_stop);
+	string filename_res = "errors/omp_sparse/" + matrix_type + "/RKA_csr_alpha_dist_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + str_alpha + "_" + to_string(max_it_stop);
 
 	if (argc == 9) {
 		int seed = atoi(argv[8]);

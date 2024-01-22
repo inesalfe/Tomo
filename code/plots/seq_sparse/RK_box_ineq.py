@@ -7,7 +7,7 @@ import matplotlib.font_manager
 import sys
 
 # python3 plots/seq_sparse/RK_box_ineq.py ct 3112 484 500000
-# python3 plots/seq_sparse/RK_box_ineq.py ct_gaussian 4886 1024 500000 1
+# python3 plots/seq_sparse/RK_box_ineq.py ct_gaussian 4886 1024 10000000 1
 # python3 plots/seq_sparse/RK_box_ineq.py ct_poisson 4886 1024 500000 1
 
 if (len(sys.argv) != 5 and len(sys.argv) != 6):
