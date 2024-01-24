@@ -152,7 +152,7 @@ function save_sparse_ct_poisson(N_pixels,theta,seed,intensity)
     colorbar
     caxis manual
     caxis([min_pixel max_pixel])
-    filename_fig = "ct_gaussian/x_" + int2str(M) + "_" + int2str(N) + "_" + int2str(seed) + ".png";
+    filename_fig = "ct_poisson/x_" + int2str(M) + "_" + int2str(N) + "_" + int2str(seed) + ".png";
     saveas(figure_init,filename_fig);
     
     figure_ls = figure(2);
@@ -160,7 +160,7 @@ function save_sparse_ct_poisson(N_pixels,theta,seed,intensity)
     colorbar
     caxis manual
     caxis([min_pixel max_pixel])
-    filename_fig = "ct_gaussian/x_ls_" + int2str(M) + "_" + int2str(N) + "_" + int2str(seed) + ".png";
+    filename_fig = "ct_poisson/x_ls_" + int2str(M) + "_" + int2str(N) + "_" + int2str(seed) + ".png";
     saveas(figure_ls,filename_fig);
 
     figure_ls_pos = figure(3);
@@ -168,7 +168,7 @@ function save_sparse_ct_poisson(N_pixels,theta,seed,intensity)
     colorbar
     caxis manual
     caxis([min_pixel max_pixel])
-    filename_fig = "ct_gaussian/x_ls_pos_" + int2str(M) + "_" + int2str(N) + "_" + int2str(seed) + ".png";
+    filename_fig = "ct_poisson/x_ls_pos_" + int2str(M) + "_" + int2str(N) + "_" + int2str(seed) + ".png";
     saveas(figure_ls_pos,filename_fig);
 
     figure_ls_box = figure(4);
@@ -176,7 +176,7 @@ function save_sparse_ct_poisson(N_pixels,theta,seed,intensity)
     colorbar
     caxis manual
     caxis([min_pixel max_pixel])
-    filename_fig = "ct_gaussian/x_ls_box_" + int2str(M) + "_" + int2str(N) + "_" + int2str(seed) + ".png";
+    filename_fig = "ct_poisson/x_ls_box_" + int2str(M) + "_" + int2str(N) + "_" + int2str(seed) + ".png";
     saveas(figure_ls_box,filename_fig);
 
     % Save

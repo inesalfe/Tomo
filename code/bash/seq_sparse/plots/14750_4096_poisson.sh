@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# bash bash/seq_sparse/plots/14750_4096_gaussian.sh
+# bash bash/seq_sparse/plots/14750_4096_poisson.sh >> outputs/seq_sparse/14750_4096_poisson.txt
 
 python3 plots/seq_sparse/CK.py ct_poisson 14750 4096 10000000 1
 python3 plots/seq_sparse/CK_box_ineq.py ct_poisson 14750 4096 10000000 1
