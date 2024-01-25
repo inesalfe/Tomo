@@ -20,5 +20,6 @@ save_dense_ct_gaussian(N,theta,seed,eta);
 save_sparse_ct_gaussian(N,theta,seed,eta);
 
 intensity = 1E14;
-save_dense_ct_poisson(N,theta,seed,intensity);
-save_sparse_ct_poisson(N,theta,seed,intensity);
+eta = 0.001;
+save_dense_ct_poisson(N,theta,seed,intensity,eta);
+save_sparse_ct_poisson(N,theta,seed,intensity,eta);

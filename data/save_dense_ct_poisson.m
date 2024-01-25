@@ -41,6 +41,13 @@ function save_dense_ct_poisson(N_pixels,theta,seed,intensity)
         b_error(i) = -log(rand/init_inten);
     end
 
+    prev_norm = norm(error);
+    desired_norm = eta*norm(b);
+    for i=1:M
+        error(i) = error(i)*desired_norm/prev_norm;
+        b_error(i) = error(i) + b(i);
+    end
+    
     % Indices of columns to be deleted
 
     is_pixel_zero = zeros(N,1);
