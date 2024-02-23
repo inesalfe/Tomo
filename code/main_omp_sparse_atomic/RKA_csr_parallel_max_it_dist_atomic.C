@@ -107,7 +107,9 @@ int main (int argc, char *argv[]) {
 
 	double start; 
 	double stop;
-	double duration = 0;
+	double duration;
+	double total_duration = 0;
+	vector<double> durations;
 
 	int t_id;
 	int index;
@@ -142,16 +144,25 @@ int main (int argc, char *argv[]) {
 			}
 		}
 		stop = omp_get_wtime();
-		duration += stop - start;
+		duration = stop - start;
+		total_duration += duration;
+		durations.push_back(duration);
 		for (int i = 0; i < N; i++) {
 			x_sol[i] += x_k[i];
 		}
 	}
-	cout << M << " " << N << " " << duration << " " << max_it_stop << " ";
+	cout << M << " " << N << " " << total_duration << " " << max_it_stop << " ";
 
 	for (int i = 0; i < N; i++) {
 		x_sol[i] /= n_runs;
 	}
+	double time_variance = 0;
+	total_duration /= n_runs;
+	for (int i = 0; i < n_runs; i++) {
+		time_variance += (durations[i]-total_duration)*(durations[i]-total_duration);
+	}
+	time_variance /= n_runs;
+	time_variance = sqrt(time_variance);
 
 	double* res = new double[M];
 	for (int i = 0; i < M; i++)
@@ -162,7 +173,7 @@ int main (int argc, char *argv[]) {
 	double stop_total = omp_get_wtime();
 	double duration_total = stop_total - start_total;
 
-	cout << sqrNormDiff(x_sol, x, N) << " " << duration_total << endl;
+	cout << sqrNormDiff(x_sol, x, N) << " " << duration_total << " " << time_variance << endl;
 
 	delete[] x_k;
 	delete[] x_prev;

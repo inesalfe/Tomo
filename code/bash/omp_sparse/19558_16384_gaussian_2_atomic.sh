@@ -2,34 +2,121 @@
 
 # bash bash/omp_sparse/19558_16384_gaussian_2_atomic.sh &
 
+n=16384
+m=19558
+T=(1 2 4 8 16 32 64)
+
+echo "--- Remove Old Files ---"
+
 rm outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
 
-# --- CT ---
+echo "--- CT GAUSSIAN ---"
 
-export OMP_NUM_THREADS=2
-./bin/CKA_csr_parallel_max_it.exe ct 2 3112 484 4673450 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/CKA_csr_parallel_max_it_atomic.exe ct 2 3112 484 4673450 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/CKA_csr_parallel_max_it_alpha.exe ct 2 3112 484 1.5 4492954 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/CKA_csr_parallel_max_it_alpha_atomic.exe ct 2 3112 484 1.5 4492954 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/CKA_csr_parallel_max_it_alpha_dist.exe ct 2 3112 484 1.5 4251966 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/CKA_csr_parallel_max_it_alpha_dist_atomic.exe ct 2 3112 484 1.5 4251966 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/CKA_csr_parallel_max_it_dist.exe ct 2 3112 484 4383663 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/CKA_csr_parallel_max_it_dist_atomic.exe ct 2 3112 484 4383663 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
+I=(2440001 3820001 5040001 5660001 5650001 5950001 5630001)
 
-./bin/RKA_csr_parallel_max_it.exe ct 2 3112 484 1478092 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/RKA_csr_parallel_max_it_atomic.exe ct 2 3112 484 1478092 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/RKA_csr_parallel_max_it_alpha.exe ct 2 3112 484 1.5 985391 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/RKA_csr_parallel_max_it_alpha_atomic.exe ct 2 3112 484 1.5 985391 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/RKA_csr_parallel_max_it_alpha_dist.exe ct 2 3112 484 1.5 981113 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/RKA_csr_parallel_max_it_alpha_dist_atomic.exe ct 2 3112 484 1.5 981113 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/RKA_csr_parallel_max_it_dist.exe ct 2 3112 484 1474043 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/RKA_csr_parallel_max_it_dist_atomic.exe ct 2 3112 484 1474043 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
+for (( i=0; i<7; i++ )) do
+	t=${T[i]}
+	it=${I[i]}
+	export OMP_NUM_THREADS=$t
+	./bin/CKA_csr_parallel_max_it.exe ct_gaussian 10 $m $n $it 2 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
+	./bin/CKA_csr_parallel_max_it_atomic.exe ct_gaussian 10 $m $n $it 2 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
+done
 
-./bin/SRKAWOR_csr_parallel_max_it.exe ct 2 3112 484 1422700 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/SRKAWOR_csr_parallel_max_it_atomic.exe ct 2 3112 484 1422700 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/SRKAWOR_csr_parallel_max_it_alpha.exe ct 2 3112 484 1.5 930721 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/SRKAWOR_csr_parallel_max_it_alpha_atomic.exe ct 2 3112 484 1.5 930721 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/SRKAWOR_csr_parallel_max_it_alpha_dist.exe ct 2 3112 484 1.5 937192 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/SRKAWOR_csr_parallel_max_it_alpha_dist_atomic.exe ct 2 3112 484 1.5 937192 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/SRKAWOR_csr_parallel_max_it_dist.exe ct 2 3112 484 1435471 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
-./bin/SRKAWOR_csr_parallel_max_it_dist_atomic.exe ct 2 3112 484 1435471 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
+I=(2440001 3680001 5580001 5810001 5800001 5810001 5910001)
+
+for (( i=0; i<7; i++ )) do
+	t=${T[i]}
+	it=${I[i]}
+	export OMP_NUM_THREADS=$t
+	./bin/CKA_csr_parallel_max_it_dist.exe ct_gaussian 10 $m $n $it 2 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
+	./bin/CKA_csr_parallel_max_it_dist_atomic.exe ct_gaussian 10 $m $n $it 2 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
+done
+
+I=(7750001 7930001 7860001 7740001 7740001 7830001 7740001)
+
+for (( i=0; i<7; i++ )) do
+	t=${T[i]}
+	it=${I[i]}
+	export OMP_NUM_THREADS=$t
+	./bin/RKA_csr_parallel_max_it.exe ct_gaussian 10 $m $n $it 2 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
+	./bin/RKA_csr_parallel_max_it_atomic.exe ct_gaussian 10 $m $n $it 2 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
+done
+
+I=(7750001 7740001 7790001 7870001 7780001 7730001 7750001)
+
+for (( i=0; i<7; i++ )) do
+	t=${T[i]}
+	it=${I[i]}
+	export OMP_NUM_THREADS=$t
+	./bin/RKA_csr_parallel_max_it_dist.exe ct_gaussian 10 $m $n $it 2 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
+	./bin/RKA_csr_parallel_max_it_dist_atomic.exe ct_gaussian 10 $m $n $it 2 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
+done
+
+I=(1050001 2920001 4130001 4830001 5680001 5550001 5900001)
+
+for (( i=0; i<7; i++ )) do
+	t=${T[i]}
+	it=${I[i]}
+	export OMP_NUM_THREADS=$t
+	./bin/SRKAWOR_csr_parallel_max_it.exe ct_gaussian 10 $m $n $it 2 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
+	./bin/SRKAWOR_csr_parallel_max_it_atomic.exe ct_gaussian 10 $m $n $it 2 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
+done
+
+I=(1050001 2820001 4780001 5300001 5790001 5730001 5790001)
+
+for (( i=0; i<7; i++ )) do
+	t=${T[i]}
+	it=${I[i]}
+	export OMP_NUM_THREADS=$t
+	./bin/SRKAWOR_csr_parallel_max_it_dist.exe ct_gaussian 10 $m $n $it 2 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
+	./bin/SRKAWOR_csr_parallel_max_it_dist_atomic.exe ct_gaussian 10 $m $n $it 2 >> outputs/omp_sparse/19558_16384_gaussian_2_atomic.txt
+done
+
+# # python3 plots/omp_sparse/CKA.py ct_gaussian 19558 16384 30000000 2
+# 2440001 3.63971
+# 3820001 3.31181
+# 5040001 3.2154
+# 5660001 3.17729
+# 5650001 3.16028
+# 5950001 3.16156
+# 5630001 3.16616
+# # python3 plots/omp_sparse/CKA_dist.py ct_gaussian 19558 16384 30000000 2
+# 2440001 3.63971
+# 3680001 3.39179
+# 5580001 3.20058
+# 5810001 3.2375
+# 5800001 3.17162
+# 5810001 3.16498
+# 5910001 3.17164
+# # python3 plots/omp_sparse/RKA.py ct_gaussian 19558 16384 30000000 2
+# 7750001 3.01955
+# 7930001 3.0125
+# 7860001 3.01014
+# 7740001 3.00943
+# 7740001 3.00946
+# 7830001 3.00932
+# 7740001 3.00918
+# # python3 plots/omp_sparse/RKA_dist.py ct_gaussian 19558 16384 30000000 2
+# 7750001 3.01955
+# 7740001 3.01245
+# 7790001 3.01095
+# 7870001 3.01119
+# 7780001 3.00992
+# 7730001 3.00912
+# 7750001 3.00953
+# # python3 plots/omp_sparse/SRKAWOR.py ct_gaussian 19558 16384 30000000 2
+# 1050001 4.03815
+# 2920001 3.48694
+# 4130001 3.30024
+# 4830001 3.22444
+# 5680001 3.19136
+# 5550001 3.17894
+# 5900001 3.17511
+# # python3 plots/omp_sparse/SRKAWOR_dist.py ct_gaussian 19558 16384 30000000 2
+# 1050001 4.03815
+# 2820001 3.46727
+# 4780001 3.27479
+# 5300001 3.22112
+# 5790001 3.17678
+# 5730001 3.1709
+# 5790001 3.17307
