@@ -6,29 +6,29 @@ from matplotlib.pyplot import gca
 import matplotlib.font_manager
 import sys
 
-# ./bin/CKAB_csr_max_it_data.exe ct 2 3112 484 1 200 10000 10
-# ./bin/CKAB_csr_max_it_data.exe ct 2 3112 484 2 200 10000 10
-# ./bin/CKAB_csr_max_it_data.exe ct 2 3112 484 4 200 10000 10
-# ./bin/CKAB_csr_max_it_data.exe ct 2 3112 484 8 200 10000 10
-# ./bin/CKAB_csr_max_it_data.exe ct 2 3112 484 16 200 10000 10
-# ./bin/CKAB_csr_max_it_data.exe ct 2 3112 484 32 200 10000 10
-# ./bin/CKAB_csr_max_it_data.exe ct 2 3112 484 64 200 10000 10
+# ./bin/CKAB_max_it_data.exe ct 2 3112 484 1 200 10000 10
+# ./bin/CKAB_max_it_data.exe ct 2 3112 484 2 200 10000 10
+# ./bin/CKAB_max_it_data.exe ct 2 3112 484 4 200 10000 10
+# ./bin/CKAB_max_it_data.exe ct 2 3112 484 8 200 10000 10
+# ./bin/CKAB_max_it_data.exe ct 2 3112 484 16 200 10000 10
+# ./bin/CKAB_max_it_data.exe ct 2 3112 484 32 200 10000 10
+# ./bin/CKAB_max_it_data.exe ct 2 3112 484 64 200 10000 10
 
-# ./bin/CKAB_csr_max_it_data.exe ct_gaussian 2 4886 1024 1 500 100000 100 1
-# ./bin/CKAB_csr_max_it_data.exe ct_gaussian 2 4886 1024 2 500 100000 100 1
-# ./bin/CKAB_csr_max_it_data.exe ct_gaussian 2 4886 1024 4 500 100000 100 1
-# ./bin/CKAB_csr_max_it_data.exe ct_gaussian 2 4886 1024 8 500 100000 100 1
-# ./bin/CKAB_csr_max_it_data.exe ct_gaussian 2 4886 1024 16 500 100000 100 1
-# ./bin/CKAB_csr_max_it_data.exe ct_gaussian 2 4886 1024 32 500 100000 100 1
-# ./bin/CKAB_csr_max_it_data.exe ct_gaussian 2 4886 1024 64 500 100000 100 1
+# ./bin/CKAB_max_it_data.exe ct_gaussian 2 4886 1024 1 500 100000 100 1
+# ./bin/CKAB_max_it_data.exe ct_gaussian 2 4886 1024 2 500 100000 100 1
+# ./bin/CKAB_max_it_data.exe ct_gaussian 2 4886 1024 4 500 100000 100 1
+# ./bin/CKAB_max_it_data.exe ct_gaussian 2 4886 1024 8 500 100000 100 1
+# ./bin/CKAB_max_it_data.exe ct_gaussian 2 4886 1024 16 500 100000 100 1
+# ./bin/CKAB_max_it_data.exe ct_gaussian 2 4886 1024 32 500 100000 100 1
+# ./bin/CKAB_max_it_data.exe ct_gaussian 2 4886 1024 64 500 100000 100 1
 
-# ./bin/CKAB_csr_max_it_data.exe ct_poisson 2 4886 1024 1 500 100000 100 1
-# ./bin/CKAB_csr_max_it_data.exe ct_poisson 2 4886 1024 2 500 100000 100 1
-# ./bin/CKAB_csr_max_it_data.exe ct_poisson 2 4886 1024 4 500 100000 100 1
-# ./bin/CKAB_csr_max_it_data.exe ct_poisson 2 4886 1024 8 500 100000 100 1
-# ./bin/CKAB_csr_max_it_data.exe ct_poisson 2 4886 1024 16 500 100000 100 1
-# ./bin/CKAB_csr_max_it_data.exe ct_poisson 2 4886 1024 32 500 100000 100 1
-# ./bin/CKAB_csr_max_it_data.exe ct_poisson 2 4886 1024 64 500 100000 100 1
+# ./bin/CKAB_max_it_data.exe ct_poisson 2 4886 1024 1 500 100000 100 1
+# ./bin/CKAB_max_it_data.exe ct_poisson 2 4886 1024 2 500 100000 100 1
+# ./bin/CKAB_max_it_data.exe ct_poisson 2 4886 1024 4 500 100000 100 1
+# ./bin/CKAB_max_it_data.exe ct_poisson 2 4886 1024 8 500 100000 100 1
+# ./bin/CKAB_max_it_data.exe ct_poisson 2 4886 1024 16 500 100000 100 1
+# ./bin/CKAB_max_it_data.exe ct_poisson 2 4886 1024 32 500 100000 100 1
+# ./bin/CKAB_max_it_data.exe ct_poisson 2 4886 1024 64 500 100000 100 1
 
 # python3 plots/omp_sparse/CKAB.py ct 3112 484 200 10000
 # python3 plots/omp_sparse/CKAB.py ct_gaussian 4886 1024 500 100000 1
@@ -47,60 +47,60 @@ max_it = int(sys.argv[5])
 if (data_set == "ct"):
 	error_folder = "errors/omp_sparse/ct/"
 	output_foler = "/"
-	filename_error_1 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_1_" + str(block_size) + "_" + str(max_it) + ".txt"
-	filename_res_1 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_1_" + str(block_size) + "_" + str(max_it) + ".txt"
-	filename_error_2 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_2_" + str(block_size) + "_" + str(max_it) + ".txt"
-	filename_res_2 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_2_" + str(block_size) + "_" + str(max_it) + ".txt"
-	filename_error_4 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_4_" + str(block_size) + "_" + str(max_it) + ".txt"
-	filename_res_4 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_4_" + str(block_size) + "_" + str(max_it) + ".txt"
-	filename_error_8 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_8_" + str(block_size) + "_" + str(max_it) + ".txt"
-	filename_res_8 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_8_" + str(block_size) + "_" + str(max_it) + ".txt"
-	filename_error_16 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_16_" + str(block_size) + "_" + str(max_it) + ".txt"
-	filename_res_16 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_16_" + str(block_size) + "_" + str(max_it) + ".txt"
-	filename_error_32 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_32_" + str(block_size) + "_" + str(max_it) + ".txt"
-	filename_res_32 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_32_" + str(block_size) + "_" + str(max_it) + ".txt"
-	filename_error_64 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_64_" + str(block_size) + "_" + str(max_it) + ".txt"
-	filename_res_64 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_64_" + str(block_size) + "_" + str(max_it) + ".txt"
+	filename_error_1 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_1_" + str(block_size) + "_" + str(max_it) + ".txt"
+	filename_res_1 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_1_" + str(block_size) + "_" + str(max_it) + ".txt"
+	filename_error_2 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_2_" + str(block_size) + "_" + str(max_it) + ".txt"
+	filename_res_2 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_2_" + str(block_size) + "_" + str(max_it) + ".txt"
+	filename_error_4 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_4_" + str(block_size) + "_" + str(max_it) + ".txt"
+	filename_res_4 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_4_" + str(block_size) + "_" + str(max_it) + ".txt"
+	filename_error_8 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_8_" + str(block_size) + "_" + str(max_it) + ".txt"
+	filename_res_8 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_8_" + str(block_size) + "_" + str(max_it) + ".txt"
+	filename_error_16 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_16_" + str(block_size) + "_" + str(max_it) + ".txt"
+	filename_res_16 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_16_" + str(block_size) + "_" + str(max_it) + ".txt"
+	filename_error_32 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_32_" + str(block_size) + "_" + str(max_it) + ".txt"
+	filename_res_32 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_32_" + str(block_size) + "_" + str(max_it) + ".txt"
+	filename_error_64 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_64_" + str(block_size) + "_" + str(max_it) + ".txt"
+	filename_res_64 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_64_" + str(block_size) + "_" + str(max_it) + ".txt"
 	filename_fig_error = "CKAB_error_" + str(M) + "_" + str(N) + "_" + str(block_size) + "_" + str(max_it) + ".txt"
 	filename_fig_res = "CKAB_res_" + str(M) + "_" + str(N) + "_" + str(block_size) + "_" + str(max_it) + ".txt"
 elif (data_set == "ct_gaussian"):
 	seed = int(sys.argv[6])
 	error_folder = "errors/omp_sparse/ct_gaussian/"
 	output_foler = "_gaussian/"
-	filename_error_1 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_1_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_1 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_1_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_2 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_2_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_2 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_2_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_4 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_4_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_4 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_4_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_8 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_8_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_8 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_8_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_16 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_16_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_16 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_16_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_32 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_32_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_32 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_32_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_64 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_64_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_64 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_64_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_1 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_1_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_1 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_1_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_2 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_2_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_2 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_2_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_4 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_4_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_4 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_4_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_8 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_8_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_8 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_8_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_16 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_16_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_16 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_16_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_32 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_32_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_32 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_32_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_64 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_64_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_64 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_64_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig_error = "CKAB_error_" + str(M) + "_" + str(N) + "_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig_res = "CKAB_res_" + str(M) + "_" + str(N) + "_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 elif (data_set == "ct_poisson"):
 	seed = int(sys.argv[6])
 	error_folder = "errors/omp_sparse/ct_poisson/"
 	output_foler = "_poisson/"
-	filename_error_1 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_1_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_1 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_1_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_2 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_2_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_2 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_2_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_4 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_4_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_4 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_4_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_8 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_8_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_8 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_8_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_16 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_16_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_16 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_16_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_32 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_32_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_32 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_32_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_64 = error_folder + "CKAB_csr_error_" + str(M) + "_" + str(N) + "_64_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_64 = error_folder + "CKAB_csr_res_" + str(M) + "_" + str(N) + "_64_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_1 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_1_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_1 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_1_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_2 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_2_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_2 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_2_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_4 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_4_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_4 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_4_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_8 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_8_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_8 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_8_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_16 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_16_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_16 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_16_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_32 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_32_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_32 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_32_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_64 = error_folder + "CKAB_error_" + str(M) + "_" + str(N) + "_64_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_64 = error_folder + "CKAB_res_" + str(M) + "_" + str(N) + "_64_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig_error = "CKAB_error_" + str(M) + "_" + str(N) + "_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig_res = "CKAB_res_" + str(M) + "_" + str(N) + "_" + str(block_size) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 else:

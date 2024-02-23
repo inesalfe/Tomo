@@ -6,33 +6,7 @@ from matplotlib.pyplot import gca
 import matplotlib.font_manager
 import sys
 
-# ./bin/CKA_csr_max_it_data.exe ct 2 3112 484 1 100000 100
-# ./bin/CKA_csr_max_it_data.exe ct 2 3112 484 2 100000 100
-# ./bin/CKA_csr_max_it_data.exe ct 2 3112 484 4 100000 100
-# ./bin/CKA_csr_max_it_data.exe ct 2 3112 484 8 100000 100
-# ./bin/CKA_csr_max_it_data.exe ct 2 3112 484 16 100000 100
-# ./bin/CKA_csr_max_it_data.exe ct 2 3112 484 32 100000 100
-# ./bin/CKA_csr_max_it_data.exe ct 2 3112 484 64 100000 100
-
-# ./bin/CKA_csr_max_it_data.exe ct_gaussian 2 4886 1024 1 3000000 5000 1
-# ./bin/CKA_csr_max_it_data.exe ct_gaussian 2 4886 1024 2 3000000 5000 1
-# ./bin/CKA_csr_max_it_data.exe ct_gaussian 2 4886 1024 4 3000000 5000 1
-# ./bin/CKA_csr_max_it_data.exe ct_gaussian 2 4886 1024 8 3000000 5000 1
-# ./bin/CKA_csr_max_it_data.exe ct_gaussian 2 4886 1024 16 3000000 5000 1
-# ./bin/CKA_csr_max_it_data.exe ct_gaussian 2 4886 1024 32 3000000 5000 1
-# ./bin/CKA_csr_max_it_data.exe ct_gaussian 2 4886 1024 64 3000000 5000 1
-
-# ./bin/CKA_csr_max_it_data.exe ct_poisson 2 4886 1024 1 10000000 10000 1
-# ./bin/CKA_csr_max_it_data.exe ct_poisson 2 4886 1024 2 10000000 10000 1
-# ./bin/CKA_csr_max_it_data.exe ct_poisson 2 4886 1024 4 10000000 10000 1
-# ./bin/CKA_csr_max_it_data.exe ct_poisson 2 4886 1024 8 10000000 10000 1
-# ./bin/CKA_csr_max_it_data.exe ct_poisson 2 4886 1024 16 10000000 10000 1
-# ./bin/CKA_csr_max_it_data.exe ct_poisson 2 4886 1024 32 10000000 10000 1
-# ./bin/CKA_csr_max_it_data.exe ct_poisson 2 4886 1024 64 10000000 10000 1
-
-# python3 plots/omp_sparse/CKA.py ct 3112 484 100000
-# python3 plots/omp_sparse/CKA.py ct_gaussian 4886 1024 3000000 1
-# python3 plots/omp_sparse/CKA.py ct_poisson 4886 1024 10000000 1
+# python3 plots/omp_sparse/CKA.py ct_gaussian 19558 16384 30000000 2
 
 if (len(sys.argv) != 5 and len(sys.argv) != 6):
 	print("Incorrect number of arguments.")
@@ -46,60 +20,60 @@ max_it = int(sys.argv[4])
 if (data_set == "ct"):
 	error_folder = "errors/omp_sparse/ct/"
 	output_foler = "/"
-	filename_error_1 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_1_" + str(max_it) + ".txt"
-	filename_res_1 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_1_" + str(max_it) + ".txt"
-	filename_error_2 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_2_" + str(max_it) + ".txt"
-	filename_res_2 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_2_" + str(max_it) + ".txt"
-	filename_error_4 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_4_" + str(max_it) + ".txt"
-	filename_res_4 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_4_" + str(max_it) + ".txt"
-	filename_error_8 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_8_" + str(max_it) + ".txt"
-	filename_res_8 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_8_" + str(max_it) + ".txt"
-	filename_error_16 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_16_" + str(max_it) + ".txt"
-	filename_res_16 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_16_" + str(max_it) + ".txt"
-	filename_error_32 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_32_" + str(max_it) + ".txt"
-	filename_res_32 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_32_" + str(max_it) + ".txt"
-	filename_error_64 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + ".txt"
-	filename_res_64 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + ".txt"
+	filename_error_1 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_1_" + str(max_it) + ".txt"
+	filename_res_1 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_1_" + str(max_it) + ".txt"
+	filename_error_2 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_2_" + str(max_it) + ".txt"
+	filename_res_2 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_2_" + str(max_it) + ".txt"
+	filename_error_4 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_4_" + str(max_it) + ".txt"
+	filename_res_4 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_4_" + str(max_it) + ".txt"
+	filename_error_8 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_8_" + str(max_it) + ".txt"
+	filename_res_8 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_8_" + str(max_it) + ".txt"
+	filename_error_16 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_16_" + str(max_it) + ".txt"
+	filename_res_16 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_16_" + str(max_it) + ".txt"
+	filename_error_32 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_32_" + str(max_it) + ".txt"
+	filename_res_32 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_32_" + str(max_it) + ".txt"
+	filename_error_64 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + ".txt"
+	filename_res_64 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + ".txt"
 	filename_fig_error = "CKA_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + ".txt"
 	filename_fig_res = "CKA_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + ".txt"
 elif (data_set == "ct_gaussian"):
 	seed = int(sys.argv[5])
 	error_folder = "errors/omp_sparse/ct_gaussian/"
 	output_foler = "_gaussian/"
-	filename_error_1 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_1_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_1 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_1_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_2 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_2_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_2 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_2_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_4 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_4_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_4 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_4_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_8 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_8_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_8 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_8_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_16 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_16_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_16 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_16_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_32 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_32_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_32 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_32_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_64 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_64 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_1 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_1_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_1 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_1_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_2 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_2_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_2 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_2_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_4 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_4_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_4 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_4_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_8 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_8_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_8 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_8_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_16 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_16_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_16 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_16_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_32 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_32_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_32 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_32_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_64 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_64 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig_error = "CKA_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig_res = "CKA_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 elif (data_set == "ct_poisson"):
 	seed = int(sys.argv[5])
 	error_folder = "errors/omp_sparse/ct_poisson/"
 	output_foler = "_poisson/"
-	filename_error_1 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_1_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_1 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_1_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_2 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_2_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_2 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_2_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_4 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_4_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_4 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_4_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_8 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_8_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_8 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_8_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_16 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_16_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_16 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_16_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_32 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_32_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_32 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_32_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_64 = error_folder + "CKA_csr_error_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_64 = error_folder + "CKA_csr_res_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_1 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_1_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_1 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_1_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_2 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_2_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_2 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_2_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_4 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_4_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_4 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_4_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_8 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_8_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_8 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_8_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_16 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_16_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_16 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_16_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_32 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_32_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_32 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_32_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_64 = error_folder + "CKA_error_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_64 = error_folder + "CKA_res_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig_error = "CKA_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig_res = "CKA_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 else:

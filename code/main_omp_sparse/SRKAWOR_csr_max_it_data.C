@@ -171,8 +171,8 @@ int main (int argc, char *argv[]) {
 
 	cout << sqrNormDiff(x_sol, x, N) << " " << duration_total << endl;
 
-	string filename_error = "errors/omp_sparse/" + matrix_type + "/SRKAWOR_csr_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(it_per_thread) + "_" + to_string(max_it_stop);
-	string filename_res = "errors/omp_sparse/" + matrix_type + "/SRKAWOR_csr_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(it_per_thread) + "_" + to_string(max_it_stop);
+	string filename_error = "errors/omp_sparse/" + matrix_type + "/SRKAWOR_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(it_per_thread) + "_" + to_string(max_it_stop);
+	string filename_res = "errors/omp_sparse/" + matrix_type + "/SRKAWOR_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(it_per_thread) + "_" + to_string(max_it_stop);
 
 	if (argc == 9) {
 		int seed = atoi(argv[8]);

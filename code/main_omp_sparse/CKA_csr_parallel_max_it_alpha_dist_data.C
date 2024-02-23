@@ -190,8 +190,8 @@ int main (int argc, char *argv[]) {
 		offset = 0;
 	str_alpha.erase(str_alpha.find_last_not_of('0') + offset, string::npos);
 
-	string filename_error = "errors/omp_sparse/" + matrix_type + "/CKA_csr_alpha_dist_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + str_alpha + "_" + to_string(max_it_stop);
-	string filename_res = "errors/omp_sparse/" + matrix_type + "/CKA_csr_alpha_dist_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + str_alpha + "_" + to_string(max_it_stop);
+	string filename_error = "errors/omp_sparse/" + matrix_type + "/CKA_alpha_dist_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + str_alpha + "_" + to_string(max_it_stop);
+	string filename_res = "errors/omp_sparse/" + matrix_type + "/CKA_alpha_dist_res_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + str_alpha + "_" + to_string(max_it_stop);
 
 	if (argc == 9) {
 		int seed = atoi(argv[8]);
