@@ -34,8 +34,8 @@ if (data_set == "ct"):
 	filename_res_32 = error_folder + "SRKAWOR_dist_res_" + str(M) + "_" + str(N) + "_32_" + str(max_it) + ".txt"
 	filename_error_64 = error_folder + "SRKAWOR_dist_error_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + ".txt"
 	filename_res_64 = error_folder + "SRKAWOR_dist_res_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + ".txt"
-	filename_fig_error = "SRKAWOR_dist_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + ".txt"
-	filename_fig_res = "SRKAWOR_dist_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + ".txt"
+	filename_fig_error = "SRKAWOR_dist_error_" + str(M) + "_" + str(N) + "_" + str(max_it)
+	filename_fig_res = "SRKAWOR_dist_res_" + str(M) + "_" + str(N) + "_" + str(max_it)
 elif (data_set == "ct_gaussian"):
 	seed = int(sys.argv[5])
 	error_folder = "errors/omp_sparse/ct_gaussian/"
@@ -54,8 +54,8 @@ elif (data_set == "ct_gaussian"):
 	filename_res_32 = error_folder + "SRKAWOR_dist_res_" + str(M) + "_" + str(N) + "_32_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_error_64 = error_folder + "SRKAWOR_dist_error_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_res_64 = error_folder + "SRKAWOR_dist_res_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_fig_error = "SRKAWOR_dist_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_fig_res = "SRKAWOR_dist_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_fig_error = "SRKAWOR_dist_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
+	filename_fig_res = "SRKAWOR_dist_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
 elif (data_set == "ct_poisson"):
 	seed = int(sys.argv[5])
 	error_folder = "errors/omp_sparse/ct_poisson/"
@@ -74,8 +74,8 @@ elif (data_set == "ct_poisson"):
 	filename_res_32 = error_folder + "SRKAWOR_dist_res_" + str(M) + "_" + str(N) + "_32_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_error_64 = error_folder + "SRKAWOR_dist_error_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_res_64 = error_folder + "SRKAWOR_dist_res_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_fig_error = "SRKAWOR_dist_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_fig_res = "SRKAWOR_dist_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_fig_error = "SRKAWOR_dist_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
+	filename_fig_res = "SRKAWOR_dist_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
 else:
 	print("Error opening data files.")
 	exit()
