@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# bash bash/seq_sparse/14750_4096_gaussian_2_sol.sh &
+
+export OMP_NUM_THREADS=1
+
+./bin/RK_csr_max_it_sol.exe ct_gaussian 10 14750 4096 2590001 2
+./bin/CK_csr_max_it_sol.exe ct_gaussian 10 14750 4096 1700001 2
+./bin/SRKWOR_csr_max_it_sol.exe ct_gaussian 10 14750 4096 920001 2
+./bin/RK_pos_proj_csr_max_it_sol.exe ct_gaussian 10 14750 4096 22840001 2
+./bin/CK_pos_proj_csr_max_it_sol.exe ct_gaussian 10 14750 4096 6580001 2
+./bin/SRKWOR_pos_proj_csr_max_it_sol.exe ct_gaussian 10 14750 4096 10900001 2
+./bin/RK_box_proj_csr_max_it_sol.exe ct_gaussian 10 14750 4096 22840001 2
+./bin/CK_box_proj_csr_max_it_sol.exe ct_gaussian 10 14750 4096 6580001 2
+./bin/SRKWOR_box_proj_csr_max_it_sol.exe ct_gaussian 10 14750 4096 10310001 2
+
+# 14750 4096 29.9566 2590001 2.6373 0.0429218 30.0613
+# 14750 4096 3.36349 1700001 12.9734 0.217215 3.44661
+# 14750 4096 3.04589 920001 3.9459 0.077297 3.11131
+# 14750 4096 215.875 22840001 3.70872 0.00975026 215.984
+# 14750 4096 28.8468 6580001 6.01897 0.0172879 28.9319
+# 14750 4096 54.9128 10900001 4.00458 0.0124189 55.0456
+# 14750 4096 233.247 22840001 3.74587 0.00951769 233.332
+# 14750 4096 36.8315 6580001 6.08548 0.0167131 36.9086
+# 14750 4096 52.6708 10310001 4.0168 0.011462 52.74
+
+# 17.2848
