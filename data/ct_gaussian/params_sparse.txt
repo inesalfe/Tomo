@@ -1,0 +1,252 @@
+N_pixels: 128
+Angles: 120
+Eta: 0.001000
+Seed: 1
+M (before deletion): 21720
+N (before deletion): 16384
+M: 19558
+N: 16384
+Density: 0.007808
+norm(A*x-b_error): 2.092413
+norm(A*x_ls-b_error): 0.840552
+norm(A*x_ls_pos-b_error): 1.793132
+norm(A*x_ls_box-b_error): 1.910878
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 1.916165
+norm(A*x_ls_pos-b): 1.427765
+norm(A*x_ls_box-b): 1.511403
+norm(x-x_ls): 6.311306
+norm(x-x_ls_pos): 0.528537
+norm(x-x_ls_box): 0.388768
+norm(error): 2.200605
+N_pixels: 128
+Angles: 120
+Eta: 0.002000
+Seed: 2
+M (before deletion): 21720
+N (before deletion): 16384
+M: 19558
+N: 16384
+Density: 0.007808
+norm(A*x-b_error): 4.177980
+norm(A*x_ls-b_error): 1.668842
+norm(A*x_ls_pos-b_error): 3.316463
+norm(A*x_ls_box-b_error): 3.380613
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 3.830210
+norm(A*x_ls_pos-b): 2.583352
+norm(A*x_ls_box-b): 2.503732
+norm(x-x_ls): 12.717674
+norm(x-x_ls_pos): 0.969006
+norm(x-x_ls_box): 0.889625
+norm(error): 4.404094
+N_pixels: 128
+Angles: 120
+Eta: 0.004000
+Seed: 3
+M (before deletion): 21720
+N (before deletion): 16384
+M: 19558
+N: 16384
+Density: 0.007808
+norm(A*x-b_error): 8.343248
+norm(A*x_ls-b_error): 3.380237
+norm(A*x_ls_pos-b_error): 6.650596
+norm(A*x_ls_box-b_error): 6.695693
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 7.627830
+norm(A*x_ls_pos-b): 5.222599
+norm(A*x_ls_box-b): 5.070266
+norm(x-x_ls): 26.616212
+norm(x-x_ls_pos): 1.851063
+norm(x-x_ls_box): 1.575323
+norm(error): 8.799499
+N_pixels: 128
+Angles: 120
+Eta: 0.008000
+Seed: 4
+M (before deletion): 21720
+N (before deletion): 16384
+M: 19558
+N: 16384
+Density: 0.007808
+norm(A*x-b_error): 16.939363
+norm(A*x_ls-b_error): 6.915174
+norm(A*x_ls_pos-b_error): 13.267262
+norm(A*x_ls_box-b_error): 13.466334
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 15.463582
+norm(A*x_ls_pos-b): 10.530176
+norm(A*x_ls_box-b): 10.281165
+norm(x-x_ls): 48.983930
+norm(x-x_ls_pos): 4.058110
+norm(x-x_ls_box): 3.466447
+norm(error): 17.829187
+N_pixels: 128
+Angles: 181
+Eta: 0.001000
+Seed: 1
+M (before deletion): 32761
+N (before deletion): 16384
+M: 29498
+N: 16384
+Density: 0.007803
+norm(A*x-b_error): 2.569529
+norm(A*x_ls-b_error): 1.703431
+norm(A*x_ls_pos-b_error): 2.360015
+norm(A*x_ls_box-b_error): 2.450791
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 1.923747
+norm(A*x_ls_pos-b): 1.480577
+norm(A*x_ls_box-b): 1.566711
+norm(x-x_ls): 0.746240
+norm(x-x_ls_pos): 0.198241
+norm(x-x_ls_box): 0.190310
+norm(error): 2.703874
+N_pixels: 128
+Angles: 181
+Eta: 0.002000
+Seed: 2
+M (before deletion): 32761
+N (before deletion): 16384
+M: 29498
+N: 16384
+Density: 0.007803
+norm(A*x-b_error): 5.117124
+norm(A*x_ls-b_error): 3.427093
+norm(A*x_ls_pos-b_error): 4.416250
+norm(A*x_ls_box-b_error): 4.671123
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 3.800000
+norm(A*x_ls_pos-b): 2.608026
+norm(A*x_ls_box-b): 2.776401
+norm(x-x_ls): 1.680624
+norm(x-x_ls_pos): 0.361152
+norm(x-x_ls_box): 0.347195
+norm(error): 5.400376
+N_pixels: 128
+Angles: 181
+Eta: 0.004000
+Seed: 3
+M (before deletion): 32761
+N (before deletion): 16384
+M: 29498
+N: 16384
+Density: 0.007803
+norm(A*x-b_error): 10.300031
+norm(A*x_ls-b_error): 6.893646
+norm(A*x_ls_pos-b_error): 8.879712
+norm(A*x_ls_box-b_error): 8.953205
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 7.652992
+norm(A*x_ls_pos-b): 5.224198
+norm(A*x_ls_box-b): 5.112921
+norm(x-x_ls): 2.971644
+norm(x-x_ls_pos): 0.745315
+norm(x-x_ls_box): 0.696968
+norm(error): 10.826212
+N_pixels: 128
+Angles: 181
+Eta: 0.008000
+Seed: 4
+M (before deletion): 32761
+N (before deletion): 16384
+M: 29498
+N: 16384
+Density: 0.007803
+norm(A*x-b_error): 20.637768
+norm(A*x_ls-b_error): 13.702063
+norm(A*x_ls_pos-b_error): 17.743632
+norm(A*x_ls_box-b_error): 17.891792
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 15.432788
+norm(A*x_ls_pos-b): 10.555415
+norm(A*x_ls_box-b): 10.329909
+norm(x-x_ls): 7.014322
+norm(x-x_ls_pos): 1.442602
+norm(x-x_ls_box): 1.367955
+norm(error): 21.790678
+N_pixels: 64
+Angles: 181
+Eta: 0.001000
+Seed: 1
+M (before deletion): 16471
+N (before deletion): 4096
+M: 14750
+N: 4096
+Density: 0.015603
+norm(A*x-b_error): 0.911291
+norm(A*x_ls-b_error): 0.775786
+norm(A*x_ls_pos-b_error): 0.877343
+norm(A*x_ls_box-b_error): 0.932008
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 0.478128
+norm(A*x_ls_pos-b): 0.392814
+norm(A*x_ls_box-b): 0.493951
+norm(x-x_ls): 0.191318
+norm(x-x_ls_pos): 0.042722
+norm(x-x_ls_box): 0.045352
+norm(error): 0.963742
+N_pixels: 64
+Angles: 181
+Eta: 0.002000
+Seed: 2
+M (before deletion): 16471
+N (before deletion): 4096
+M: 14750
+N: 4096
+Density: 0.015603
+norm(A*x-b_error): 1.826533
+norm(A*x_ls-b_error): 1.555203
+norm(A*x_ls_pos-b_error): 1.723725
+norm(A*x_ls_box-b_error): 1.724742
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 0.957895
+norm(A*x_ls_pos-b): 0.681731
+norm(A*x_ls_box-b): 0.669094
+norm(x-x_ls): 0.416497
+norm(x-x_ls_pos): 0.083415
+norm(x-x_ls_box): 0.080708
+norm(error): 1.928629
+N_pixels: 64
+Angles: 181
+Eta: 0.004000
+Seed: 3
+M (before deletion): 16471
+N (before deletion): 4096
+M: 14750
+N: 4096
+Density: 0.015603
+norm(A*x-b_error): 3.665851
+norm(A*x_ls-b_error): 3.120743
+norm(A*x_ls_pos-b_error): 3.425365
+norm(A*x_ls_box-b_error): 3.430142
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 1.923390
+norm(A*x_ls_pos-b): 1.336694
+norm(A*x_ls_box-b): 1.321233
+norm(x-x_ls): 0.633302
+norm(x-x_ls_pos): 0.166714
+norm(x-x_ls_box): 0.164083
+norm(error): 3.868284
+N_pixels: 64
+Angles: 181
+Eta: 0.008000
+Seed: 4
+M (before deletion): 16471
+N (before deletion): 4096
+M: 14750
+N: 4096
+Density: 0.015603
+norm(A*x-b_error): 7.378801
+norm(A*x_ls-b_error): 6.241209
+norm(A*x_ls_pos-b_error): 6.860430
+norm(A*x_ls_box-b_error): 6.878766
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 3.936244
+norm(A*x_ls_pos-b): 2.727803
+norm(A*x_ls_box-b): 2.677741
+norm(x-x_ls): 1.067317
+norm(x-x_ls_pos): 0.329791
+norm(x-x_ls_box): 0.321692
+norm(error): 7.766506

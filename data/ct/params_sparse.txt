@@ -1,0 +1,42 @@
+N_pixels: 128
+Angles: 120
+M (before deletion): 21720
+N (before deletion): 16384
+M: 12462
+N: 8072
+Density: 0.012257
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 0.000000
+norm(A*x_ls_pos-b): 0.293066
+norm(A*x_ls_box-b): 0.308710
+norm(x-x_ls): 0.000000
+norm(x-x_ls_pos): 0.163882
+norm(x-x_ls_box): 0.107500
+N_pixels: 128
+Angles: 181
+M (before deletion): 32761
+N (before deletion): 16384
+M: 18766
+N: 8048
+Density: 0.012262
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 0.000000
+norm(A*x_ls_pos-b): 0.149678
+norm(A*x_ls_box-b): 0.215668
+norm(x-x_ls): 0.000000
+norm(x-x_ls_pos): 0.029178
+norm(x-x_ls_box): 0.036157
+N_pixels: 64
+Angles: 181
+M (before deletion): 16471
+N (before deletion): 4096
+M: 9416
+N: 1996
+Density: 0.024424
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 0.000000
+norm(A*x_ls_pos-b): 0.030595
+norm(A*x_ls_box-b): 0.049468
+norm(x-x_ls): 0.000000
+norm(x-x_ls_pos): 0.005836
+norm(x-x_ls_box): 0.008214

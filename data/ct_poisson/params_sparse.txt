@@ -1,0 +1,90 @@
+N_pixels: 128
+Angles: 120
+I_0: 10000000000000.000000
+Seed: 1
+M (before deletion): 21720
+N (before deletion): 16384
+M: 19558
+N: 16384
+Density: 0.007808
+norm(A*x-b_error): 17.565040
+norm(A*x_ls-b_error): 4.276029
+norm(A*x_ls_pos-b_error): 7.899939
+norm(A*x_ls_box-b_error): 8.280880
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 17.036623
+norm(A*x_ls_pos-b): 15.702301
+norm(A*x_ls_box-b): 15.502253
+norm(x-x_ls): 32.379690
+norm(x-x_ls_pos): 3.428135
+norm(x-x_ls_box): 2.635810
+norm(error): 17.565040
+N_pixels: 128
+Angles: 120
+I_0: 40000000000000.000000
+Seed: 2
+M (before deletion): 21720
+N (before deletion): 16384
+M: 19558
+N: 16384
+Density: 0.007808
+norm(A*x-b_error): 8.782520
+norm(A*x_ls-b_error): 2.551592
+norm(A*x_ls_pos-b_error): 5.142204
+norm(A*x_ls_box-b_error): 5.507375
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 8.403693
+norm(A*x_ls_pos-b): 7.154337
+norm(A*x_ls_box-b): 6.882569
+norm(x-x_ls): 21.510903
+norm(x-x_ls_pos): 2.047936
+norm(x-x_ls_box): 1.192612
+norm(error): 8.782520
+N_pixels: 128
+Angles: 120
+I_0: 80000000000000.000000
+Seed: 3
+M (before deletion): 21720
+N (before deletion): 16384
+M: 19558
+N: 16384
+Density: 0.007808
+norm(A*x-b_error): 4.391260
+norm(A*x_ls-b_error): 1.424514
+norm(A*x_ls_pos-b_error): 2.941383
+norm(A*x_ls_box-b_error): 3.326995
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 4.153791
+norm(A*x_ls_pos-b): 3.505813
+norm(A*x_ls_box-b): 3.345172
+norm(x-x_ls): 12.499049
+norm(x-x_ls_pos): 1.138998
+norm(x-x_ls_box): 0.604428
+norm(error): 4.391260
+N_pixels: 128
+Angles: 120
+I_0: 100000000000000.000000
+Seed: 4
+M (before deletion): 21720
+N (before deletion): 16384
+M: 19558
+N: 16384
+Density: 0.007808
+norm(A*x-b_error): 2.195630
+norm(A*x_ls-b_error): 0.741299
+norm(A*x_ls_pos-b_error): 1.559134
+norm(A*x_ls_box-b_error): 1.663734
+norm(A*x-b): 0.000000
+norm(A*x_ls-b): 2.066710
+norm(A*x_ls_pos-b): 1.793620
+norm(A*x_ls_box-b): 1.581558
+norm(x-x_ls): 6.518717
+norm(x-x_ls_pos): 0.514319
+norm(x-x_ls_box): 0.337404
+norm(error): 2.195630
+N_pixels: 128
+Angles: 181
+I_0: 10000000000000.000000
+Seed: 1
+M (before deletion): 32761
+N (before deletion): 16384
