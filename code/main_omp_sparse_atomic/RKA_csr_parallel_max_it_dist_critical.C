@@ -5,6 +5,7 @@
 #include <omp.h>
 #include <algorithm>
 #include <random>
+#include <fstream>
 using namespace std;
 
 #define BLOCK_LOW(id, p, np) ((id) * (np) / (p))
@@ -101,6 +102,8 @@ int main (int argc, char *argv[]) {
 	for (int i = 0; i < N; i++) {
 		x_sol[i] = 0;
 	}
+	double* errors_x = new double[n_runs];
+	double total_error = 0;
 	double scale;
 	int line;
 	long long it;
@@ -143,6 +146,8 @@ int main (int argc, char *argv[]) {
 		for (int i = 0; i < N; i++) {
 			x_sol[i] += x_k[i];
 		}
+		errors_x[run] = sqrNormDiff(x_k, x, N);
+		total_error += errors_x[run];
 	}
 	cout << M << " " << N << " " << total_duration << " " << max_it_stop << " ";
 
@@ -163,10 +168,44 @@ int main (int argc, char *argv[]) {
 	cout << sqrNorm(res, M) << " ";
 	delete[] res;
 
+	double error_variance = 0;
+	total_error /= n_runs;
+	for (int i = 0; i < n_runs; i++) {
+		error_variance += (errors_x[i]-total_error)*(errors_x[i]-total_error);
+	}
+	error_variance /= n_runs;
+	error_variance = sqrt(error_variance);
+
+	double rel_error = sqrt(sqrNormDiff(x_sol, x, N));
+	rel_error /= sqrt(sqrNorm(x, N));
+	rel_error *= 100;
+
 	double stop_total = omp_get_wtime();
 	double duration_total = stop_total - start_total;
 
-	cout << sqrNormDiff(x_sol, x, N) << " " << duration_total << " " << time_variance << endl;
+	cout << sqrNormDiff(x_sol, x, N) << " " << error_variance << " " << rel_error << " " << duration_total << " " << time_variance << endl;
+
+	string filename_sol = "outputs/omp_sparse/" + matrix_type + "/RKA_dist_critical_sol_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + to_string(max_it_stop);
+
+	if (argc == 7) {
+		int seed = atoi(argv[6]);
+		filename_sol += "_" + to_string(seed) + ".txt";
+	}
+	else {
+		filename_sol += ".txt";
+	}
+
+	ofstream file_sol(filename_sol);
+	if (file_sol.is_open()) {
+		for (int i = 0; i < N; i++) {
+			file_sol << x_sol[i] << endl;
+		}
+		file_sol.close();
+	}
+	else {
+		cout << "ERROR: Invalid input file for solution output file." << endl;
+		exit(1);
+	}
 
 	delete[] x_k;
 	delete[] x_prev;
@@ -177,6 +216,7 @@ int main (int argc, char *argv[]) {
 	delete[] b;
 	delete[] x;
 	delete[] x_sol;
+	delete[] errors_x;
 
 	return 0;
 }
