@@ -8,6 +8,8 @@ import sys
 
 # python3 plots/omp_sparse/CKA_dist.py ct_gaussian 19558 16384 30000000 2
 
+# python3 plots/omp_sparse/CKA_dist.py ct_gaussian 19558 16384 30000000 3
+
 if (len(sys.argv) != 5 and len(sys.argv) != 6):
 	print("Incorrect number of arguments.")
 	exit()
@@ -296,6 +298,21 @@ plt.plot(it_res_8, res_8, color='magenta', label=r'$q = 8$')
 plt.plot(it_res_16, res_16, color='purple', label=r'$q = 16$')
 plt.plot(it_res_32, res_32, color='blue', label=r'$q = 32$')
 plt.plot(it_res_64, res_64, color='black', label=r'$q = 64$')
+
+# print(it_res_1[res_1.index(min(res_1))], end=' ')
+# print(min(res_1))
+# print(it_res_2[res_2.index(min(res_2))], end=' ')
+# print(min(res_2))
+# print(it_res_4[res_4.index(min(res_4))], end=' ')
+# print(min(res_4))
+# print(it_res_8[res_8.index(min(res_8))], end=' ')
+# print(min(res_8))
+# print(it_res_16[res_16.index(min(res_16))], end=' ')
+# print(min(res_16))
+# print(it_res_32[res_32.index(min(res_32))], end=' ')
+# print(min(res_32))
+# print(it_res_64[res_64.index(min(res_64))], end=' ')
+# print(min(res_64))
 
 plt.grid()
 plt.yscale('log')

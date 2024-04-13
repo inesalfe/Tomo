@@ -8,6 +8,8 @@ import sys
 
 # python3 plots/omp_sparse/SRKAWOR_dist.py ct_gaussian 19558 16384 30000000 2
 
+# python3 plots/omp_sparse/SRKAWOR_dist.py ct_gaussian 19558 16384 30000000 3
+
 if (len(sys.argv) != 5 and len(sys.argv) != 6):
 	print("Incorrect number of arguments.")
 	exit()

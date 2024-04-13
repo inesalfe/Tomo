@@ -9,11 +9,25 @@ import sys
 # python3 plots/omp_sparse/CKA_dist_no_sync.py ct_gaussian 19558 16384 2 2
 # python3 plots/omp_sparse/CKA_dist_no_sync.py ct_gaussian 19558 16384 4 2
 
+# Old
+
 # 4050000 3.2993787293973997 10.8859
 # 4050000 3.298166157124289 10.877899999999999
 
 # 4400000 3.256977126109424 10.6079
 # 4850000 3.3566352199784832 11.267000000000001
+
+# New
+
+# 4000000 3.3103927259465755 10.958699999999999 0.0
+# 8200000 3.2928255344005093 10.842699999999999
+# 4550000 3.3041943042139637 10.9177 0.0248001
+# 3600000 3.1703469841643517 10.0511
+
+# 4900000 3.3498955207588192 11.2218 0.0
+# 300000 6.046387351137867 36.5588
+# 4650000 3.35189498642186 11.2352 0.0375222
+# 250000 6.18617005909149 38.2687
 
 if (len(sys.argv) != 5 and len(sys.argv) != 6):
 	print("Incorrect number of arguments.")
@@ -52,12 +66,14 @@ try:
 	it = []
 	error = []
 	residual = []
+	error_std = []
 	for i in range(file_size):
 		it.append(int(lines[i].split()[3]))
 		error.append(float(lines[i].split()[5]))
 		error[i] = np.sqrt(error[i])
 		residual.append(float(lines[i].split()[4]))
 		residual[i] = np.sqrt(residual[i])
+		error_std.append(float(lines[i].split()[6]))
 except IOError as e:
 	print("Error opening data files.")
 	exit()
@@ -88,9 +104,16 @@ ax2.set_yscale('log')
 ax2.plot(it[:200], error[:200], color='red', label=r'$\|x^{(k)}-\overline{x}\|$')
 
 ax2.scatter(it[error.index(min(error[:200]))], min(error[:200]), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|$')
-print(it[error.index(min(error[:200]))], end=' ')
-print(min(error[:200]), end=' ')
-print((min(error[:200])*(min(error[:200]))))
+it_min_error_idx = error.index(min(error[:200]))
+print(it[it_min_error_idx], end=' ')
+print(error[it_min_error_idx], end=' ')
+print(error[it_min_error_idx]*error[it_min_error_idx], end=' ')
+print(error_std[it_min_error_idx])
+
+it_min_res_idx = residual.index(min(residual[:200]))
+print(it[it_min_res_idx], end=' ')
+print(residual[it_min_res_idx], end=' ')
+print(residual[it_min_res_idx]*residual[it_min_res_idx])
 
 lines, labels = ax1.get_legend_handles_labels()
 lines2, labels2 = ax2.get_legend_handles_labels()
@@ -116,9 +139,16 @@ ax4.set_yscale('log')
 ax4.plot(it[200:], error[200:], color='red', label=r'$\|x^{(k)}-\overline{x}\|$')
 
 ax4.scatter(it[error.index(min(error[200:]))], min(error[200:]), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|$')
-print(it[error.index(min(error[200:]))], end=' ')
-print(min(error[200:]), end=' ')
-print((min(error[200:])*(min(error[200:]))))
+it_min_error_idx = error.index(min(error[200:]))
+print(it[it_min_error_idx], end=' ')
+print(error[it_min_error_idx], end=' ')
+print(error[it_min_error_idx]*error[it_min_error_idx], end=' ')
+print(error_std[it_min_error_idx])
+
+it_min_res_idx = residual.index(min(residual[200:]))
+print(it[it_min_res_idx], end=' ')
+print(residual[it_min_res_idx], end=' ')
+print(residual[it_min_res_idx]*residual[it_min_res_idx])
 
 lines, labels = ax3.get_legend_handles_labels()
 lines2, labels2 = ax4.get_legend_handles_labels()
