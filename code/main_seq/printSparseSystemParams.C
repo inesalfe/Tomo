@@ -6,6 +6,8 @@
 #include <random>
 using namespace std;
 
+// ./bin/printSparseSystemParams.exe ct_gaussian 19558 16384 2
+
 int main (int argc, char *argv[]) {
 
 	if(argc != 4 && argc != 5) {
@@ -141,6 +143,8 @@ int main (int argc, char *argv[]) {
 	cout << "norm(x-x_ls_box): " << sqrt(sqrNormDiff(x, x_ls_box, N)) << endl;
 
 	cout << "norm(b): " << sqrt(sqrNorm(b, M)) << endl;
+
+	cout << "norm(x): " << sqrt(sqrNorm(x, N)) << endl;
 
 	delete[] res;
 
