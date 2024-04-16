@@ -5,6 +5,7 @@
 # rm outputs/omp_sparse/19558_16384_gaussian_2_alpha.txt
 
 # scp -J inesaf@maxwell.inesc-id.pt inesaf@ulam:/home/inesaf/Documents/Tomo/code/errors/omp_sparse/ct_gaussian/*alpha* errors/omp_sparse/ct_gaussian/
+# scp -J inesaf@maxwell.inesc-id.pt inesaf@ulam:/home/inesaf/Documents/Tomo/code/errors/seq_sparse/ct_gaussian/*alpha* errors/seq_sparse/ct_gaussian/
 
 # ./bin/CKA_csr_max_it_alpha_data.exe ct_gaussian 10 19558 16384 4 0.5 30000000 10000 2 >> outputs/omp_sparse/19558_16384_gaussian_2_alpha.txt &
 # ./bin/CKA_csr_max_it_alpha_data.exe ct_gaussian 10 19558 16384 4 1 30000000 10000 2 >> outputs/omp_sparse/19558_16384_gaussian_2_alpha.txt &

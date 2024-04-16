@@ -59,7 +59,7 @@ int main (int argc, char *argv[]) {
 		filename_x = "../data/ct/x_" + to_string(M) + "_" + to_string(N) + ".bin";
 	}
 	else if (argc == 9 && matrix_type.compare("ct_gaussian") == 0) {
-		int seed = atoi(argv[9]);
+		int seed = atoi(argv[8]);
 		filename_row_idx = "../data/ct_gaussian/row_idx_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_cols = "../data/ct_gaussian/cols_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_values = "../data/ct_gaussian/values_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
@@ -67,7 +67,7 @@ int main (int argc, char *argv[]) {
 		filename_x = "../data/ct_gaussian/x_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 	}
 	else if (argc == 9 && matrix_type.compare("ct_poisson") == 0) {
-		int seed = atoi(argv[9]);
+		int seed = atoi(argv[8]);
 		filename_row_idx = "../data/ct_poisson/row_idx_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_cols = "../data/ct_poisson/cols_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_values = "../data/ct_poisson/values_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
@@ -183,7 +183,7 @@ int main (int argc, char *argv[]) {
 	string filename_res = "errors/seq_sparse/" + matrix_type + "/CK_alpha_res_" + to_string(M) + "_" + to_string(N) + "_" + str_alpha + "_" + to_string(max_it_stop);
 
 	if (argc == 9) {
-		int seed = atoi(argv[9]);
+		int seed = atoi(argv[8]);
 		filename_error += "_" + to_string(seed) + ".txt";
 		filename_res += "_" + to_string(seed) + ".txt";
 	}

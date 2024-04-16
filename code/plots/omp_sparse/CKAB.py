@@ -6,33 +6,7 @@ from matplotlib.pyplot import gca
 import matplotlib.font_manager
 import sys
 
-# ./bin/CKAB_max_it_data.exe ct 2 3112 484 1 200 10000 10
-# ./bin/CKAB_max_it_data.exe ct 2 3112 484 2 200 10000 10
-# ./bin/CKAB_max_it_data.exe ct 2 3112 484 4 200 10000 10
-# ./bin/CKAB_max_it_data.exe ct 2 3112 484 8 200 10000 10
-# ./bin/CKAB_max_it_data.exe ct 2 3112 484 16 200 10000 10
-# ./bin/CKAB_max_it_data.exe ct 2 3112 484 32 200 10000 10
-# ./bin/CKAB_max_it_data.exe ct 2 3112 484 64 200 10000 10
-
-# ./bin/CKAB_max_it_data.exe ct_gaussian 2 4886 1024 1 500 100000 100 1
-# ./bin/CKAB_max_it_data.exe ct_gaussian 2 4886 1024 2 500 100000 100 1
-# ./bin/CKAB_max_it_data.exe ct_gaussian 2 4886 1024 4 500 100000 100 1
-# ./bin/CKAB_max_it_data.exe ct_gaussian 2 4886 1024 8 500 100000 100 1
-# ./bin/CKAB_max_it_data.exe ct_gaussian 2 4886 1024 16 500 100000 100 1
-# ./bin/CKAB_max_it_data.exe ct_gaussian 2 4886 1024 32 500 100000 100 1
-# ./bin/CKAB_max_it_data.exe ct_gaussian 2 4886 1024 64 500 100000 100 1
-
-# ./bin/CKAB_max_it_data.exe ct_poisson 2 4886 1024 1 500 100000 100 1
-# ./bin/CKAB_max_it_data.exe ct_poisson 2 4886 1024 2 500 100000 100 1
-# ./bin/CKAB_max_it_data.exe ct_poisson 2 4886 1024 4 500 100000 100 1
-# ./bin/CKAB_max_it_data.exe ct_poisson 2 4886 1024 8 500 100000 100 1
-# ./bin/CKAB_max_it_data.exe ct_poisson 2 4886 1024 16 500 100000 100 1
-# ./bin/CKAB_max_it_data.exe ct_poisson 2 4886 1024 32 500 100000 100 1
-# ./bin/CKAB_max_it_data.exe ct_poisson 2 4886 1024 64 500 100000 100 1
-
-# python3 plots/omp_sparse/CKAB.py ct 3112 484 200 10000
-# python3 plots/omp_sparse/CKAB.py ct_gaussian 4886 1024 500 100000 1
-# python3 plots/omp_sparse/CKAB.py ct_poisson 4886 1024 500 100000 1
+# python3 plots/omp_sparse/CKAB.py ct_gaussian 19558 16384 15000 30000 2
 
 if (len(sys.argv) != 6 and len(sys.argv) != 7):
 	print("Incorrect number of arguments.")
