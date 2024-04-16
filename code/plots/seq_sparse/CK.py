@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib
-matplotlib.use('Agg')
+# matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import gca
 import matplotlib.font_manager
@@ -9,6 +9,11 @@ import sys
 # python3 plots/seq_sparse/CK.py ct 3112 484 500000
 # python3 plots/seq_sparse/CK.py ct_gaussian 4886 1024 1000000 1
 # python3 plots/seq_sparse/CK.py ct_poisson 4886 1024 500000 1
+
+# python3 plots/seq_sparse/CK.py ct_gaussian 117372 262144 500000000 2
+# python3 plots/seq_sparse/CK.py ct_gaussian 234664 262144 200000000 2
+# python3 plots/seq_sparse/CK.py ct_gaussian 469368 262144 500000000 2
+# python3 plots/seq_sparse/CK.py ct_gaussian 938720 262144 1000000000 2
 
 if (len(sys.argv) != 5 and len(sys.argv) != 6):
 	print("Incorrect number of arguments.")
@@ -106,7 +111,7 @@ lines, labels = ax1.get_legend_handles_labels()
 lines2, labels2 = ax2.get_legend_handles_labels()
 ax2.legend(lines + lines2, labels + labels2, loc='best')
 
-# plt.show()
+plt.show()
 fig.savefig("plots/seq_sparse/pdf"+output_foler+filename_fig+".pdf", bbox_inches='tight')
 fig.savefig("plots/seq_sparse/png"+output_foler+filename_fig+".png", bbox_inches='tight')
-plt.close()
+# plt.close()
