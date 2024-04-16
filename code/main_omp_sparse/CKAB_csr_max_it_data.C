@@ -119,7 +119,7 @@ int main (int argc, char *argv[]) {
 	double* res_vec = new double[M];
 	double sqr_norm_res;
 
-	int block_begin;
+	long long block_begin;
 
 	for(int run = 0; run < n_runs; run++) {
 		for (int i = 0; i < N; i++) {
@@ -155,6 +155,7 @@ int main (int argc, char *argv[]) {
 				block_begin += block_size;
 			}
 			if (it%step_save == 1) {
+				cout << storage_counter << " " << storage_size << endl;
 				error_it[storage_counter] = it;
 				error_vals[storage_counter] += sqrt(sqrNormDiff(x_k, x, N));
 				for (int i = 0; i < M; i++) {

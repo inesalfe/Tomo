@@ -106,7 +106,7 @@ int main (int argc, char *argv[]) {
 	double stop;
 	double duration = 0;
 
-	int block_begin;
+	long long block_begin;
 
 	for(int run = 0; run < n_runs; run++) {
 		for (int i = 0; i < N; i++) {

@@ -124,7 +124,7 @@ int main (int argc, char *argv[]) {
 	double* res_vec = new double[M];
 	double sqr_norm_res;
 
-	int block_begin;
+	long long block_begin;
 
 	for(int run = 0; run < n_runs; run++) {
 		for (int i = 0; i < N; i++) {
