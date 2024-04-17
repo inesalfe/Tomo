@@ -25,6 +25,7 @@ if (data_set == "ct"):
 	filename_error = error_folder + "SRKWOR_box_proj_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + ".txt"
 	filename_res = error_folder + "SRKWOR_box_proj_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + ".txt"
 	filename_fig = "SRKWOR_box_proj_" + str(M) + "_" + str(N) + "_" + str(max_it)
+	filename_fig_errors = "SRKWOR_box_proj_errors_" + str(M) + "_" + str(N) + "_" + str(max_it)
 elif (data_set == "ct_gaussian"):
 	seed = int(sys.argv[5])
 	error_folder = "errors/seq_sparse/ct_gaussian/"
@@ -32,6 +33,7 @@ elif (data_set == "ct_gaussian"):
 	filename_error = error_folder + "SRKWOR_box_proj_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_res = error_folder + "SRKWOR_box_proj_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig = "SRKWOR_box_proj_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
+	filename_fig_errors = "SRKWOR_box_proj_errors" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
 elif (data_set == "ct_poisson"):
 	seed = int(sys.argv[5])
 	error_folder = "errors/seq_sparse/ct_poisson/"
@@ -39,6 +41,7 @@ elif (data_set == "ct_poisson"):
 	filename_error = error_folder + "SRKWOR_box_proj_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_res = error_folder + "SRKWOR_box_proj_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig = "SRKWOR_box_proj_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
+	filename_fig_errors = "SRKWOR_box_proj_errors_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
 else:
 	print("Error opening data files.")
 	exit()
@@ -54,6 +57,8 @@ try:
 		if (curr_it < max_it):
 			it_error.append(int(lines[i].split()[0]))
 			error.append(float(lines[i].split()[1]))
+			error_1.append(float(lines[i].split()[2]))
+			error_inf.append(float(lines[i].split()[3]))
 except IOError as e:
 	print("Error opening data files.")
 	exit()
@@ -110,3 +115,34 @@ ax2.legend(lines + lines2, labels + labels2, loc='best')
 fig.savefig("plots/seq_sparse/pdf"+output_foler+filename_fig+".pdf", bbox_inches='tight')
 fig.savefig("plots/seq_sparse/png"+output_foler+filename_fig+".png", bbox_inches='tight')
 plt.close()
+
+fig, ax1 = plt.subplots(figsize=(10,7))
+
+ax1.plot(it_error, error_1, color='blue', label=r'$\|x^{(k)}-\overline{x}\|$_1')
+ax1.set_ylabel("Residual", color="blue")
+
+ax1.set_xlabel(r'Iterations')
+plt.grid()
+ax2 = ax1.twinx()
+ax2.set_ylabel("Error", color="red")
+ax1.set_yscale('log')
+ax2.set_yscale('log')
+
+ax2.plot(it_error, error_inf, color='red', label=r'$\|x^{(k)}-\overline{x}\|$_{\infty}')
+
+ax1.scatter(it_error[error_1.index(min(error_1))], min(error_1), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|$')
+print(it_error[error_1.index(min(error_1))], end=' ')
+print(min(error_1))
+
+ax2.scatter(it_error[error_inf.index(min(error_inf))], min(error_inf), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|$')
+print(it_error[error_inf.index(min(error_inf))], end=' ')
+print(min(error_inf))
+
+lines, labels = ax1.get_legend_handles_labels()
+lines2, labels2 = ax2.get_legend_handles_labels()
+ax2.legend(lines + lines2, labels + labels2, loc='best')
+
+plt.show()
+fig.savefig("plots/seq_sparse/pdf"+output_foler+filename_fig_errors+".pdf", bbox_inches='tight')
+fig.savefig("plots/seq_sparse/png"+output_foler+filename_fig_errors+".png", bbox_inches='tight')
+# plt.close()

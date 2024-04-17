@@ -25,6 +25,29 @@ double sqrNormDiff(double * vec1, double * vec2, int size) {
 	return norm;
 }
 
+double Norm1Diff(double * vec1, double * vec2, int size) {
+	double norm = 0;
+	double dif = 0;
+	for (int i = 0; i < size; i++) {
+		dif = vec1[i] - vec2[i];
+		norm += abs(dif);
+	}
+	return norm;
+}
+
+double NormInfDiff(double * vec1, double * vec2, int size) {
+	double norm = 0;
+	double dif = 0;
+	double val;
+	for (int i = 0; i < size; i++) {
+		dif = vec1[i] - vec2[i];
+		val = abs(dif);
+		if (val > norm)
+			norm = val;
+	}
+	return norm;
+}
+
 double sqrNormMatrixCol(double ** matrix, int col, int size) {
 	double norm = 0;
 	for (int i = 0; i < size; i++)

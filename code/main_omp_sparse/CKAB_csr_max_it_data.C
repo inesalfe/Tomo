@@ -113,6 +113,8 @@ int main (int argc, char *argv[]) {
 	int storage_size = ceil(max_it_stop/step_save);
 	int storage_counter;
 	vector<double> error_vals(storage_size, 0);
+	vector<double> error_1_vals(storage_size, 0);
+	vector<double> error_inf_vals(storage_size, 0);
 	vector<double> res_vals(storage_size, 0);
 	vector<int> error_it(storage_size);
 	vector<int> res_it(storage_size);
@@ -208,7 +210,7 @@ int main (int argc, char *argv[]) {
 	ofstream file_res(filename_res);
 	if (file_error.is_open() && file_res.is_open()) {
 		for (int i = 0; i < error_vals.size(); i++) {
-			file_error << error_it[i] << " " << error_vals[i]/n_runs << endl;
+			file_error << error_it[i] << " " << error_vals[i]/n_runs << " " << error_1_vals[i]/n_runs << " " << error_inf_vals[i]/n_runs << endl;
 			file_res << res_it[i] << " " << res_vals[i]/n_runs << endl;
 		}
 		file_error.close();

@@ -123,6 +123,8 @@ int main (int argc, char *argv[]) {
 	int storage_size = ceil(min_it_stop/step_save) + max_it_stop - min_it_stop;
 	int storage_counter;
 	vector<double> error_vals(storage_size, 0);
+	vector<double> error_1_vals(storage_size, 0);
+	vector<double> error_inf_vals(storage_size, 0);
 	vector<double> res_vals(storage_size, 0);
 	vector<int> error_it(storage_size);
 	vector<int> res_it(storage_size);

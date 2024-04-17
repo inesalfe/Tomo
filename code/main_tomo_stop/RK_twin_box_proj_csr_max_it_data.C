@@ -111,6 +111,8 @@ int main (int argc, char *argv[]) {
 	int storage_size = ceil(max_it_stop/M/step_save);
 	int storage_counter;
 	vector<double> error_vals(storage_size, 0);
+	vector<double> error_1_vals(storage_size, 0);
+	vector<double> error_inf_vals(storage_size, 0);
 	vector<double> gauge_vals(storage_size, 0);
 	vector<int> error_it(storage_size);
 	vector<int> gauge_it(storage_size);
@@ -140,6 +142,8 @@ int main (int argc, char *argv[]) {
 						x_k[i] = 0.5*(x_down[i]+x_up[i]);
 					error_it[storage_counter] = it;
 					error_vals[storage_counter] += sqrt(sqrNormDiff(x_k, x, N));
+					error_vals[storage_counter] += Norm1Diff(x_k, x, N);
+					error_vals[storage_counter] += NormInfDiff(x_k, x, N);
 					gauge_it[storage_counter] = it;
 					gauge_vals[storage_counter] += sqrt(sqrNormDiff(x_down, x_up, N));
 					storage_counter++;
@@ -186,7 +190,7 @@ int main (int argc, char *argv[]) {
 	ofstream file_gauge(filename_gauge);
 	if (file_error.is_open() && file_gauge.is_open()) {
 		for (int i = 0; i < error_vals.size(); i++) {
-			file_error << error_it[i] << " " << error_vals[i]/n_runs << endl;
+			file_error << error_it[i] << " " << error_vals[i]/n_runs << " " << error_1_vals[i]/n_runs << " " << error_inf_vals[i]/n_runs << endl;
 			file_gauge << gauge_it[i] << " " << gauge_vals[i]/n_runs << endl;
 		}
 		file_error.close();

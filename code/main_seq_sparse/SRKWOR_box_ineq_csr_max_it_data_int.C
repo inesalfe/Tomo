@@ -127,6 +127,8 @@ int main (int argc, char *argv[]) {
 	cout << storage_size << endl;
 	int storage_counter;
 	vector<double> error_vals(storage_size, 0);
+	vector<double> error_1_vals(storage_size, 0);
+	vector<double> error_inf_vals(storage_size, 0);
 	vector<double> res_vals(storage_size, 0);
 	vector<int> error_it(storage_size);
 	vector<int> res_it(storage_size);

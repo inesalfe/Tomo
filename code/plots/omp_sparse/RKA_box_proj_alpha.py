@@ -91,11 +91,13 @@ if (data_set == "ct"):
 	filename_res_4 = error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_4) + "_" + str(max_it) + ".txt"
 	filename_error_5 = error_folder + "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_5) + "_" + str(max_it) + ".txt"
 	filename_res_5 = error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_5) + "_" + str(max_it) + ".txt"
-	filename_error_6= error_folder + "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_6) + "_" + str(max_it) + ".txt"
-	filename_res_6= error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_6) + "_" + str(max_it) + ".txt"
-	filename_error_7= error_folder + "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_7) + "_" + str(max_it) + ".txt"
-	filename_res_7= error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_7) + "_" + str(max_it) + ".txt"
+	filename_error_6 = error_folder + "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_6) + "_" + str(max_it) + ".txt"
+	filename_res_6 = error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_6) + "_" + str(max_it) + ".txt"
+	filename_error_7 = error_folder + "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_7) + "_" + str(max_it) + ".txt"
+	filename_res_7 = error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_7) + "_" + str(max_it) + ".txt"
 	filename_fig_error = "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(threads)
+	filename_fig_error_1 = "RKA_box_proj_alpha_error_1_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(threads)
+	filename_fig_error_inf = "RKA_box_proj_alpha_error_inf_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(threads)
 	filename_fig_res = "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(threads)
 elif (data_set == "ct_gaussian"):
 	seed = int(sys.argv[6])
@@ -111,11 +113,13 @@ elif (data_set == "ct_gaussian"):
 	filename_res_4 = error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_4) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_error_5 = error_folder + "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_5) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_res_5 = error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_5) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_6= error_folder + "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_6) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_6= error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_6) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_7= error_folder + "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_7) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_7= error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_7) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_6 = error_folder + "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_6) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_6 = error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_6) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_7 = error_folder + "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_7) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_7 = error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_7) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig_error = "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(threads) + "_" + str(seed)
+	filename_fig_error_1 = "RKA_box_proj_alpha_error_1_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(threads) + "_" + str(seed)
+	filename_fig_error_inf = "RKA_box_proj_alpha_error_inf_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(threads) + "_" + str(seed)
 	filename_fig_res = "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(threads) + "_" + str(seed)
 elif (data_set == "ct_poisson"):
 	seed = int(sys.argv[6])
@@ -131,11 +135,13 @@ elif (data_set == "ct_poisson"):
 	filename_res_4 = error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_4) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_error_5 = error_folder + "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_5) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_res_5 = error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_5) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_6= error_folder + "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_6) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_6= error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_6) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_error_7= error_folder + "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_7) + "_" + str(max_it) + "_" + str(seed) + ".txt"
-	filename_res_7= error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_7) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_6 = error_folder + "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_6) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_6 = error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_6) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_error_7 = error_folder + "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_7) + "_" + str(max_it) + "_" + str(seed) + ".txt"
+	filename_res_7 = error_folder + "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(threads) + "_" + str(alpha_7) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig_error = "RKA_box_proj_alpha_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(threads) + "_" + str(seed)
+	filename_fig_error_1 = "RKA_box_proj_alpha_error_1_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(threads) + "_" + str(seed)
+	filename_fig_error_inf = "RKA_box_proj_alpha_error_inf_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(threads) + "_" + str(seed)
 	filename_fig_res = "RKA_box_proj_alpha_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(threads) + "_" + str(seed)
 else:
 	print("Error opening data files.")
@@ -152,6 +158,8 @@ try:
 		if (curr_it < max_it):
 			it_error_1.append(int(lines[i].split()[0]))
 			error_1.append(float(lines[i].split()[1]))
+			error_1_1.append(float(lines[i].split()[2]))
+			error_inf_1.append(float(lines[i].split()[3]))
 	with open(filename_error_2) as f:
 		lines = f.read().splitlines()
 	file_size = len(lines)
@@ -162,6 +170,8 @@ try:
 		if (curr_it < max_it):
 			it_error_2.append(int(lines[i].split()[0]))
 			error_2.append(float(lines[i].split()[1]))
+			error_1_2.append(float(lines[i].split()[2]))
+			error_inf_2.append(float(lines[i].split()[3]))
 	with open(filename_error_3) as f:
 		lines = f.read().splitlines()
 	file_size = len(lines)
@@ -172,6 +182,8 @@ try:
 		if (curr_it < max_it):
 			it_error_3.append(int(lines[i].split()[0]))
 			error_3.append(float(lines[i].split()[1]))
+			error_1_3.append(float(lines[i].split()[2]))
+			error_inf_3.append(float(lines[i].split()[3]))
 	with open(filename_error_4) as f:
 		lines = f.read().splitlines()
 	file_size = len(lines)
@@ -182,6 +194,8 @@ try:
 		if (curr_it < max_it):
 			it_error_4.append(int(lines[i].split()[0]))
 			error_4.append(float(lines[i].split()[1]))
+			error_1_4.append(float(lines[i].split()[2]))
+			error_inf_4.append(float(lines[i].split()[3]))
 	with open(filename_error_5) as f:
 		lines = f.read().splitlines()
 	file_size = len(lines)
@@ -192,26 +206,32 @@ try:
 		if (curr_it < max_it):
 			it_error_5.append(int(lines[i].split()[0]))
 			error_5.append(float(lines[i].split()[1]))
+			error_1_5.append(float(lines[i].split()[2]))
+			error_inf_5.append(float(lines[i].split()[3]))
 	with open(filename_error_6) as f:
 		lines = f.read().splitlines()
 	file_size = len(lines)
-	it_error_6= []
-	error_6= []
+	it_error_6 = []
+	error_6 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
 		if (curr_it < max_it):
 			it_error_6.append(int(lines[i].split()[0]))
 			error_6.append(float(lines[i].split()[1]))
+			error_1_6.append(float(lines[i].split()[2]))
+			error_inf_6.append(float(lines[i].split()[3]))
 	with open(filename_error_7) as f:
 		lines = f.read().splitlines()
 	file_size = len(lines)
-	it_error_7= []
-	error_7= []
+	it_error_7 = []
+	error_7 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
 		if (curr_it < max_it):
 			it_error_7.append(int(lines[i].split()[0]))
 			error_7.append(float(lines[i].split()[1]))
+			error_1_7.append(float(lines[i].split()[2]))
+			error_inf_7.append(float(lines[i].split()[3]))
 except IOError as e:
 	print("Error opening data files.")
 	exit()
@@ -270,8 +290,8 @@ try:
 	with open(filename_res_6) as f:
 		lines = f.read().splitlines()
 	file_size = len(lines)
-	it_res_6= []
-	res_6= []
+	it_res_6 = []
+	res_6 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
 		if (curr_it < max_it):
@@ -280,8 +300,8 @@ try:
 	with open(filename_res_7) as f:
 		lines = f.read().splitlines()
 	file_size = len(lines)
-	it_res_7= []
-	res_7= []
+	it_res_7 = []
+	res_7 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
 		if (curr_it < max_it):
@@ -346,6 +366,98 @@ plt.legend(loc='best')
 plt.show()
 fig.savefig("plots/omp_sparse/pdf"+output_foler+filename_fig_error+".pdf", bbox_inches='tight')
 fig.savefig("plots/omp_sparse/png"+output_foler+filename_fig_error+".png", bbox_inches='tight')
+plt.close()
+
+fig = plt.figure(figsize=(10,7))
+
+plt.plot(it_error_1_1, error_1_1, color='grey', label=r'$%s$'%alpha_1_string)
+plt.plot(it_error_1_2, error_1_2, color='orange', label=r'$%s$'%alpha_2_string)
+plt.plot(it_error_1_3, error_1_3, color='red', label=r'$%s$'%alpha_3_string)
+plt.plot(it_error_1_4, error_1_4, color='magenta', label=r'$%s$'%alpha_4_string)
+plt.plot(it_error_1_5, error_1_5, color='purple', label=r'$%s$'%alpha_5_string)
+plt.plot(it_error_1_6, error_1_6, color='blue', label=r'$%s$'%alpha_6_string)
+plt.plot(it_error_1_7, error_1_7, color='black', label=r'$%s$'%alpha_7_string)
+
+plt.scatter(it_error_1_1[error_1_1.index(min(error_1_1))], min(error_1_1), color='grey')
+plt.scatter(it_error_1_2[error_1_2.index(min(error_1_2))], min(error_1_2), color='orange')
+plt.scatter(it_error_1_3[error_1_3.index(min(error_1_3))], min(error_1_3), color='red')
+plt.scatter(it_error_1_4[error_1_4.index(min(error_1_4))], min(error_1_4), color='magenta')
+plt.scatter(it_error_1_5[error_1_5.index(min(error_1_5))], min(error_1_5), color='purple')
+plt.scatter(it_error_1_6[error_1_6.index(min(error_1_6))], min(error_1_6), color='blue')
+plt.scatter(it_error_1_7[error_1_7.index(min(error_1_7))], min(error_1_7), color='black')
+
+print(it_error_1_1[error_1_1.index(min(error_1_1))], end=' ')
+print(min(error_1_1))
+print(it_error_1_2[error_1_2.index(min(error_1_2))], end=' ')
+print(min(error_1_2))
+print(it_error_1_3[error_1_3.index(min(error_1_3))], end=' ')
+print(min(error_1_3))
+print(it_error_1_4[error_1_4.index(min(error_1_4))], end=' ')
+print(min(error_1_4))
+print(it_error_1_5[error_1_5.index(min(error_1_5))], end=' ')
+print(min(error_1_5))
+print(it_error_1_6[error_1_6.index(min(error_1_6))], end=' ')
+print(min(error_1_6))
+print(it_error_1_7[error_1_7.index(min(error_1_7))], end=' ')
+print(min(error_inf_7))
+
+plt.grid()
+plt.yscale('log')
+
+plt.xlabel(r'Iteration')
+plt.ylabel(r'$\|x^{(k)}-\overline{x}\|_1$')
+
+plt.legend(loc='best')
+
+plt.show()
+fig.savefig("plots/omp_sparse/pdf"+output_foler+filename_fig_error_1+".pdf", bbox_inches='tight')
+fig.savefig("plots/omp_sparse/png"+output_foler+filename_fig_error_1+".png", bbox_inches='tight')
+plt.close()
+
+fig = plt.figure(figsize=(10,7))
+
+plt.plot(it_error_inf_1, error_inf_1, color='grey', label=r'$%s$'%alpha_1_string)
+plt.plot(it_error_inf_2, error_inf_2, color='orange', label=r'$%s$'%alpha_2_string)
+plt.plot(it_error_inf_3, error_inf_3, color='red', label=r'$%s$'%alpha_3_string)
+plt.plot(it_error_inf_4, error_inf_4, color='magenta', label=r'$%s$'%alpha_4_string)
+plt.plot(it_error_inf_5, error_inf_5, color='purple', label=r'$%s$'%alpha_5_string)
+plt.plot(it_error_inf_6, error_inf_6, color='blue', label=r'$%s$'%alpha_6_string)
+plt.plot(it_error_inf_7, error_inf_7, color='black', label=r'$%s$'%alpha_7_string)
+
+plt.scatter(it_error_inf_1[error_inf_1.index(min(error_inf_1))], min(error_inf_1), color='grey')
+plt.scatter(it_error_inf_2[error_inf_2.index(min(error_inf_2))], min(error_inf_2), color='orange')
+plt.scatter(it_error_inf_3[error_inf_3.index(min(error_inf_3))], min(error_inf_3), color='red')
+plt.scatter(it_error_inf_4[error_inf_4.index(min(error_inf_4))], min(error_inf_4), color='magenta')
+plt.scatter(it_error_inf_5[error_inf_5.index(min(error_inf_5))], min(error_inf_5), color='purple')
+plt.scatter(it_error_inf_6[error_inf_6.index(min(error_inf_6))], min(error_inf_6), color='blue')
+plt.scatter(it_error_inf_7[error_inf_7.index(min(error_inf_7))], min(error_inf_7), color='black')
+
+print(it_error_inf_1[error_inf_1.index(min(error_inf_1))], end=' ')
+print(min(error_inf_1))
+print(it_error_inf_2[error_inf_2.index(min(error_inf_2))], end=' ')
+print(min(error_inf_2))
+print(it_error_inf_3[error_inf_3.index(min(error_inf_3))], end=' ')
+print(min(error_inf_3))
+print(it_error_inf_4[error_inf_4.index(min(error_inf_4))], end=' ')
+print(min(error_inf_4))
+print(it_error_inf_5[error_inf_5.index(min(error_inf_5))], end=' ')
+print(min(error_inf_5))
+print(it_error_inf_6[error_inf_6.index(min(error_inf_6))], end=' ')
+print(min(error_inf_6))
+print(it_error_inf_7[error_inf_7.index(min(error_inf_7))], end=' ')
+print(min(error_inf_7))
+
+plt.grid()
+plt.yscale('log')
+
+plt.xlabel(r'Iteration')
+plt.ylabel(r'$\|x^{(k)}-\overline{x}\|_{\infty}$')
+
+plt.legend(loc='best')
+
+plt.show()
+fig.savefig("plots/omp_sparse/pdf"+output_foler+filename_fig_error_inf+".pdf", bbox_inches='tight')
+fig.savefig("plots/omp_sparse/png"+output_foler+filename_fig_error_inf+".png", bbox_inches='tight')
 plt.close()
 
 fig = plt.figure(figsize=(10,7))

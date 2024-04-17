@@ -35,6 +35,8 @@ if (data_set == "ct"):
 	filename_error_64 = error_folder + "RKA_pos_proj_error_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + ".txt"
 	filename_res_64 = error_folder + "RKA_pos_proj_res_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + ".txt"
 	filename_fig_error = "RKA_pos_proj_error_" + str(M) + "_" + str(N) + "_" + str(max_it)
+	filename_fig_error_1 = "RKA_pos_proj_error_1_" + str(M) + "_" + str(N) + "_" + str(max_it)
+	filename_fig_error_inf = "RKA_pos_proj_error_inf_" + str(M) + "_" + str(N) + "_" + str(max_it)
 	filename_fig_res = "RKA_pos_proj_res_" + str(M) + "_" + str(N) + "_" + str(max_it)
 elif (data_set == "ct_gaussian"):
 	seed = int(sys.argv[5])
@@ -55,6 +57,8 @@ elif (data_set == "ct_gaussian"):
 	filename_error_64 = error_folder + "RKA_pos_proj_error_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_res_64 = error_folder + "RKA_pos_proj_res_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig_error = "RKA_pos_proj_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
+	filename_fig_error_1 = "RKA_pos_proj_error_1_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
+	filename_fig_error_inf = "RKA_pos_proj_error_inf_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
 	filename_fig_res = "RKA_pos_proj_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
 elif (data_set == "ct_poisson"):
 	seed = int(sys.argv[5])
@@ -75,6 +79,8 @@ elif (data_set == "ct_poisson"):
 	filename_error_64 = error_folder + "RKA_pos_proj_error_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_res_64 = error_folder + "RKA_pos_proj_res_" + str(M) + "_" + str(N) + "_64_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig_error = "RKA_pos_proj_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
+	filename_fig_error_1 = "RKA_pos_proj_error_1_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
+	filename_fig_error_inf = "RKA_pos_proj_error_inf_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
 	filename_fig_res = "RKA_pos_proj_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
 else:
 	print("Error opening data files.")
@@ -91,6 +97,8 @@ try:
 		if (curr_it < max_it):
 			it_error_1.append(int(lines[i].split()[0]))
 			error_1.append(float(lines[i].split()[1]))
+			error_1_1.append(float(lines[i].split()[2]))
+			error_inf_1.append(float(lines[i].split()[3]))
 	with open(filename_error_2) as f:
 		lines = f.read().splitlines()
 	file_size = len(lines)
@@ -101,6 +109,8 @@ try:
 		if (curr_it < max_it):
 			it_error_2.append(int(lines[i].split()[0]))
 			error_2.append(float(lines[i].split()[1]))
+			error_1_2.append(float(lines[i].split()[2]))
+			error_inf_2.append(float(lines[i].split()[3]))
 	with open(filename_error_4) as f:
 		lines = f.read().splitlines()
 	file_size = len(lines)
@@ -111,6 +121,8 @@ try:
 		if (curr_it < max_it):
 			it_error_4.append(int(lines[i].split()[0]))
 			error_4.append(float(lines[i].split()[1]))
+			error_1_4.append(float(lines[i].split()[2]))
+			error_inf_4.append(float(lines[i].split()[3]))
 	with open(filename_error_8) as f:
 		lines = f.read().splitlines()
 	file_size = len(lines)
@@ -121,6 +133,8 @@ try:
 		if (curr_it < max_it):
 			it_error_8.append(int(lines[i].split()[0]))
 			error_8.append(float(lines[i].split()[1]))
+			error_1_8.append(float(lines[i].split()[2]))
+			error_inf_8.append(float(lines[i].split()[3]))
 	with open(filename_error_16) as f:
 		lines = f.read().splitlines()
 	file_size = len(lines)
@@ -131,6 +145,8 @@ try:
 		if (curr_it < max_it):
 			it_error_16.append(int(lines[i].split()[0]))
 			error_16.append(float(lines[i].split()[1]))
+			error_1_16.append(float(lines[i].split()[2]))
+			error_inf_16.append(float(lines[i].split()[3]))
 	with open(filename_error_32) as f:
 		lines = f.read().splitlines()
 	file_size = len(lines)
@@ -141,6 +157,8 @@ try:
 		if (curr_it < max_it):
 			it_error_32.append(int(lines[i].split()[0]))
 			error_32.append(float(lines[i].split()[1]))
+			error_1_32.append(float(lines[i].split()[2]))
+			error_inf_32.append(float(lines[i].split()[3]))
 	with open(filename_error_64) as f:
 		lines = f.read().splitlines()
 	file_size = len(lines)
@@ -151,6 +169,8 @@ try:
 		if (curr_it < max_it):
 			it_error_64.append(int(lines[i].split()[0]))
 			error_64.append(float(lines[i].split()[1]))
+			error_1_64.append(float(lines[i].split()[2]))
+			error_inf_64.append(float(lines[i].split()[3]))
 except IOError as e:
 	print("Error opening data files.")
 	exit()
@@ -278,13 +298,105 @@ plt.grid()
 plt.yscale('log')
 
 plt.xlabel(r'Iteration')
-plt.ylabel(r'$\|x^{(k)}-\overline{x}\|$')
+plt.ylabel(r'$\|x^{(k)}-\overline{x}\|_2$')
 
 plt.legend(loc='best')
 
 plt.show()
 fig.savefig("plots/omp_sparse/pdf"+output_foler+filename_fig_error+".pdf", bbox_inches='tight')
 fig.savefig("plots/omp_sparse/png"+output_foler+filename_fig_error+".png", bbox_inches='tight')
+plt.close()
+
+fig = plt.figure(figsize=(10,7))
+
+plt.plot(it_error_1_1, error_1_1, color='grey', label=r'$q = 1$')
+plt.plot(it_error_1_2, error_1_2, color='orange', label=r'$q = 2$')
+plt.plot(it_error_1_4, error_1_4, color='red', label=r'$q = 4$')
+plt.plot(it_error_1_8, error_1_8, color='magenta', label=r'$q = 8$')
+plt.plot(it_error_1_16, error_1_16, color='purple', label=r'$q = 16$')
+plt.plot(it_error_1_32, error_1_32, color='blue', label=r'$q = 32$')
+plt.plot(it_error_1_64, error_1_64, color='black', label=r'$q = 64$')
+
+plt.scatter(it_error_1_1[error_1_1.index(min(error_1_1))], min(error_1_1), color='grey')
+plt.scatter(it_error_1_2[error_1_2.index(min(error_1_2))], min(error_1_2), color='orange')
+plt.scatter(it_error_1_4[error_1_4.index(min(error_1_4))], min(error_1_4), color='red')
+plt.scatter(it_error_1_8[error_1_8.index(min(error_1_8))], min(error_1_8), color='magenta')
+plt.scatter(it_error_1_16[error_1_16.index(min(error_1_16))], min(error_1_16), color='purple')
+plt.scatter(it_error_1_32[error_1_32.index(min(error_1_32))], min(error_1_32), color='blue')
+plt.scatter(it_error_1_64[error_1_64.index(min(error_1_64))], min(error_1_64), color='black')
+
+print(it_error_1_1[error_1_1.index(min(error_1_1))], end=' ')
+print(min(error_1_1))
+print(it_error_1_2[error_1_2.index(min(error_1_2))], end=' ')
+print(min(error_1_2))
+print(it_error_1_4[error_1_4.index(min(error_1_4))], end=' ')
+print(min(error_1_4))
+print(it_error_1_8[error_1_8.index(min(error_1_8))], end=' ')
+print(min(error_1_8))
+print(it_error_1_16[error_1_16.index(min(error_1_16))], end=' ')
+print(min(error_1_16))
+print(it_error_1_32[error_1_32.index(min(error_1_32))], end=' ')
+print(min(error_1_32))
+print(it_error_1_64[error_1_64.index(min(error_1_64))], end=' ')
+print(min(error_1_64))
+
+plt.grid()
+plt.yscale('log')
+
+plt.xlabel(r'Iteration')
+plt.ylabel(r'$\|x^{(k)}-\overline{x}\|_1$')
+
+plt.legend(loc='best')
+
+plt.show()
+fig.savefig("plots/omp_sparse/pdf"+output_foler+filename_fig_error_1+".pdf", bbox_inches='tight')
+fig.savefig("plots/omp_sparse/png"+output_foler+filename_fig_error_1+".png", bbox_inches='tight')
+plt.close()
+
+fig = plt.figure(figsize=(10,7))
+
+plt.plot(it_error_inf_1, error_inf_1, color='grey', label=r'$q = 1$')
+plt.plot(it_error_inf_2, error_inf_2, color='orange', label=r'$q = 2$')
+plt.plot(it_error_inf_4, error_inf_4, color='red', label=r'$q = 4$')
+plt.plot(it_error_inf_8, error_inf_8, color='magenta', label=r'$q = 8$')
+plt.plot(it_error_inf_16, error_inf_16, color='purple', label=r'$q = 16$')
+plt.plot(it_error_inf_32, error_inf_32, color='blue', label=r'$q = 32$')
+plt.plot(it_error_inf_64, error_inf_64, color='black', label=r'$q = 64$')
+
+plt.scatter(it_error_inf_1[error_inf_1.index(min(error_inf_1))], min(error_inf_1), color='grey')
+plt.scatter(it_error_inf_2[error_inf_2.index(min(error_inf_2))], min(error_inf_2), color='orange')
+plt.scatter(it_error_inf_4[error_inf_4.index(min(error_inf_4))], min(error_inf_4), color='red')
+plt.scatter(it_error_inf_8[error_inf_8.index(min(error_inf_8))], min(error_inf_8), color='magenta')
+plt.scatter(it_error_inf_16[error_inf_16.index(min(error_inf_16))], min(error_inf_16), color='purple')
+plt.scatter(it_error_inf_32[error_inf_32.index(min(error_inf_32))], min(error_inf_32), color='blue')
+plt.scatter(it_error_inf_64[error_inf_64.index(min(error_inf_64))], min(error_inf_64), color='black')
+
+print(it_error_inf_1[error_inf_1.index(min(error_inf_1))], end=' ')
+print(min(error_inf_1))
+print(it_error_inf_2[error_inf_2.index(min(error_inf_2))], end=' ')
+print(min(error_inf_2))
+print(it_error_inf_4[error_inf_4.index(min(error_inf_4))], end=' ')
+print(min(error_inf_4))
+print(it_error_inf_8[error_inf_8.index(min(error_inf_8))], end=' ')
+print(min(error_inf_8))
+print(it_error_inf_16[error_inf_16.index(min(error_inf_16))], end=' ')
+print(min(error_inf_16))
+print(it_error_inf_32[error_inf_32.index(min(error_inf_32))], end=' ')
+print(min(error_inf_32))
+print(it_error_inf_64[error_inf_64.index(min(error_inf_64))], end=' ')
+print(min(error_inf_64))
+
+plt.grid()
+plt.yscale('log')
+
+plt.xlabel(r'Iteration')
+plt.ylabel(r'$\|x^{(k)}-\overline{x}\|_{\infty}$')
+
+plt.legend(loc='best')
+
+plt.show()
+fig.savefig("plots/omp_sparse/pdf"+output_foler+filename_fig_error_inf+".pdf", bbox_inches='tight')
+fig.savefig("plots/omp_sparse/png"+output_foler+filename_fig_error_inf+".png", bbox_inches='tight')
 plt.close()
 
 fig = plt.figure(figsize=(10,7))

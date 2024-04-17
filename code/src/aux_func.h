@@ -6,6 +6,10 @@ double sqrNorm(double * vec, int size);
 
 double sqrNormDiff(double * vec1, double * vec2, int size);
 
+double Norm1Diff(double * vec1, double * vec2, int size);
+
+double NormInfDiff(double * vec1, double * vec2, int size);
+
 double sqrNormMatrixCol(double ** matrix, int col, int size);
 
 double dotProduct(double * vec1, double * vec2, int size);
