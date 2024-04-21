@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib
-matplotlib.use('Agg')
+# # matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import gca
 import matplotlib.font_manager
@@ -9,6 +9,30 @@ import sys
 # python3 plots/seq_sparse/RK.py ct 3112 484 500000
 # python3 plots/seq_sparse/RK.py ct_gaussian 4886 1024 10000000 1
 # python3 plots/seq_sparse/RK.py ct_poisson 4886 1024 500000 1
+
+# python3 plots/seq_sparse/RK.py ct_gaussian 117372 262144 500000000 2
+
+# 108000001 30.7916
+# 82000001 9693.69
+# 1000001 0.663783
+
+# python3 plots/seq_sparse/RK.py ct_gaussian 234664 262144 200000000 2
+
+# 30000001 11.1254
+# 20000001 4104.5
+# 197000001 0.191113
+
+# python3 plots/seq_sparse/RK.py ct_gaussian 469368 262144 500000000 2
+
+# 25000001 5.41256
+# 25000001 2175.08
+# 18000001 0.0666507
+
+# python3 plots/seq_sparse/RK.py ct_gaussian 938720 262144 100000000 2
+
+# 23000001 5.02276
+# 23000001 2019.86
+# 37000001 0.0688943
 
 if (len(sys.argv) != 5 and len(sys.argv) != 6):
 	print("Incorrect number of arguments.")
@@ -33,7 +57,7 @@ elif (data_set == "ct_gaussian"):
 	filename_error = error_folder + "RK_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_res = error_folder + "RK_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig = "RK_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
-	filename_fig_errors = "RK_errors" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
+	filename_fig_errors = "RK_errors_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
 elif (data_set == "ct_poisson"):
 	seed = int(sys.argv[5])
 	error_folder = "errors/seq_sparse/ct_poisson/"
@@ -52,6 +76,8 @@ try:
 	file_size = len(lines)
 	it_error = []
 	error = []
+	error_1 = []
+	error_inf = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
 		if (curr_it < max_it):
@@ -91,7 +117,7 @@ plt.rc('font', family='serif')
 
 fig, ax1 = plt.subplots(figsize=(10,7))
 
-ax1.plot(it_res, res, color='blue', label=r'$\|Ax^{(k)}-b\|$')
+ax1.plot(it_res, res, color='blue', label=r'$\|Ax^{(k)}-b\|_2$')
 ax1.set_ylabel("Residual", color="blue")
 
 ax1.set_xlabel(r'Iterations')
@@ -101,9 +127,9 @@ ax2.set_ylabel("Error", color="red")
 ax1.set_yscale('log')
 ax2.set_yscale('log')
 
-ax2.plot(it_error, error, color='red', label=r'$\|x^{(k)}-\overline{x}\|$')
+ax2.plot(it_error, error, color='red', label=r'$\|x^{(k)}-\overline{x}\|_2$')
 
-ax2.scatter(it_error[error.index(min(error))], min(error), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|$')
+ax2.scatter(it_error[error.index(min(error))], min(error), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|_2$')
 print(it_error[error.index(min(error))], end=' ')
 print(min(error))
 
@@ -111,14 +137,14 @@ lines, labels = ax1.get_legend_handles_labels()
 lines2, labels2 = ax2.get_legend_handles_labels()
 ax2.legend(lines + lines2, labels + labels2, loc='best')
 
-# plt.show()
+plt.show()
 fig.savefig("plots/seq_sparse/pdf"+output_foler+filename_fig+".pdf", bbox_inches='tight')
 fig.savefig("plots/seq_sparse/png"+output_foler+filename_fig+".png", bbox_inches='tight')
-plt.close()
+# # plt.close()
 
 fig, ax1 = plt.subplots(figsize=(10,7))
 
-ax1.plot(it_error, error_1, color='blue', label=r'$\|x^{(k)}-\overline{x}\|$_1')
+ax1.plot(it_error, error_1, color='blue', label=r'$\|x^{(k)}-\overline{x}\|_1$')
 ax1.set_ylabel("Residual", color="blue")
 
 ax1.set_xlabel(r'Iterations')
@@ -128,13 +154,13 @@ ax2.set_ylabel("Error", color="red")
 ax1.set_yscale('log')
 ax2.set_yscale('log')
 
-ax2.plot(it_error, error_inf, color='red', label=r'$\|x^{(k)}-\overline{x}\|$_{\infty}')
+ax2.plot(it_error, error_inf, color='red', label=r'$\|x^{(k)}-\overline{x}\|_{\infty}$')
 
-ax1.scatter(it_error[error_1.index(min(error_1))], min(error_1), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|$')
+ax1.scatter(it_error[error_1.index(min(error_1))], min(error_1), color='blue', label=r'Minimum - $\|x^{(k)}-\overline{x}\|_1$')
 print(it_error[error_1.index(min(error_1))], end=' ')
 print(min(error_1))
 
-ax2.scatter(it_error[error_inf.index(min(error_inf))], min(error_inf), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|$')
+ax2.scatter(it_error[error_inf.index(min(error_inf))], min(error_inf), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|_{\infty}$')
 print(it_error[error_inf.index(min(error_inf))], end=' ')
 print(min(error_inf))
 
@@ -145,4 +171,4 @@ ax2.legend(lines + lines2, labels + labels2, loc='best')
 plt.show()
 fig.savefig("plots/seq_sparse/pdf"+output_foler+filename_fig_errors+".pdf", bbox_inches='tight')
 fig.savefig("plots/seq_sparse/png"+output_foler+filename_fig_errors+".png", bbox_inches='tight')
-# plt.close()
+# # plt.close()

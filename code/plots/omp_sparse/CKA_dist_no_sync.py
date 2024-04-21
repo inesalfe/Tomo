@@ -91,7 +91,7 @@ plt.rc('font', family='serif')
 
 fig1, ax1 = plt.subplots(figsize=(10,7))
 
-ax1.plot(it[:200], residual[:200], color='blue', label=r'$\|Ax^{(k)}-b\|$')
+ax1.plot(it[:200], residual[:200], color='blue', label=r'$\|Ax^{(k)}-b\|_2$')
 ax1.set_ylabel("Residual", color="blue")
 
 ax1.set_xlabel(r'Iterations')
@@ -101,9 +101,9 @@ ax2.set_ylabel("Error", color="red")
 ax1.set_yscale('log')
 ax2.set_yscale('log')
 
-ax2.plot(it[:200], error[:200], color='red', label=r'$\|x^{(k)}-\overline{x}\|$')
+ax2.plot(it[:200], error[:200], color='red', label=r'$\|x^{(k)}-\overline{x}\|_2$')
 
-ax2.scatter(it[error.index(min(error[:200]))], min(error[:200]), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|$')
+ax2.scatter(it[error.index(min(error[:200]))], min(error[:200]), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|_2$')
 it_min_error_idx = error.index(min(error[:200]))
 print(it[it_min_error_idx], end=' ')
 print(error[it_min_error_idx], end=' ')
@@ -126,7 +126,7 @@ plt.close()
 
 fig2, ax3 = plt.subplots(figsize=(10,7))
 
-ax3.plot(it[200:], residual[200:], color='blue', label=r'$\|Ax^{(k)}-b\|$')
+ax3.plot(it[200:], residual[200:], color='blue', label=r'$\|Ax^{(k)}-b\|_2$')
 ax3.set_ylabel("Residual", color="blue")
 
 ax3.set_xlabel(r'Iterations')
@@ -136,9 +136,9 @@ ax4.set_ylabel("Error", color="red")
 ax3.set_yscale('log')
 ax4.set_yscale('log')
 
-ax4.plot(it[200:], error[200:], color='red', label=r'$\|x^{(k)}-\overline{x}\|$')
+ax4.plot(it[200:], error[200:], color='red', label=r'$\|x^{(k)}-\overline{x}\|_2$')
 
-ax4.scatter(it[error.index(min(error[200:]))], min(error[200:]), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|$')
+ax4.scatter(it[error.index(min(error[200:]))], min(error[200:]), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|_2$')
 it_min_error_idx = error.index(min(error[200:]))
 print(it[it_min_error_idx], end=' ')
 print(error[it_min_error_idx], end=' ')

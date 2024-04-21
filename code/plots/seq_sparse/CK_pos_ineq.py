@@ -33,7 +33,7 @@ elif (data_set == "ct_gaussian"):
 	filename_error = error_folder + "CK_pos_ineq_error_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_res = error_folder + "CK_pos_ineq_res_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed) + ".txt"
 	filename_fig = "CK_pos_ineq_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
-	filename_fig_errors = "CK_pos_ineq_errors" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
+	filename_fig_errors = "CK_pos_ineq_errors_" + str(M) + "_" + str(N) + "_" + str(max_it) + "_" + str(seed)
 elif (data_set == "ct_poisson"):
 	seed = int(sys.argv[5])
 	error_folder = "errors/seq_sparse/ct_poisson/"
@@ -52,6 +52,8 @@ try:
 	file_size = len(lines)
 	it_error = []
 	error = []
+	error_1 = []
+	error_inf = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
 		if (curr_it < max_it):
@@ -91,7 +93,7 @@ plt.rc('font', family='serif')
 
 fig, ax1 = plt.subplots(figsize=(10,7))
 
-ax1.plot(it_res, res, color='blue', label=r'$\|Ax^{(k)}-b\|$')
+ax1.plot(it_res, res, color='blue', label=r'$\|Ax^{(k)}-b\|_2$')
 ax1.set_ylabel("Residual", color="blue")
 
 ax1.set_xlabel(r'Iterations')
@@ -101,9 +103,9 @@ ax2.set_ylabel("Error", color="red")
 ax1.set_yscale('log')
 ax2.set_yscale('log')
 
-ax2.plot(it_error, error, color='red', label=r'$\|x^{(k)}-\overline{x}\|$')
+ax2.plot(it_error, error, color='red', label=r'$\|x^{(k)}-\overline{x}\|_2$')
 
-ax2.scatter(it_error[error.index(min(error))], min(error), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|$')
+ax2.scatter(it_error[error.index(min(error))], min(error), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|_2$')
 print(it_error[error.index(min(error))], end=' ')
 print(min(error))
 
@@ -118,7 +120,7 @@ plt.close()
 
 fig, ax1 = plt.subplots(figsize=(10,7))
 
-ax1.plot(it_error, error_1, color='blue', label=r'$\|x^{(k)}-\overline{x}\|$_1')
+ax1.plot(it_error, error_1, color='blue', label=r'$\|x^{(k)}-\overline{x}\|_1$')
 ax1.set_ylabel("Residual", color="blue")
 
 ax1.set_xlabel(r'Iterations')
@@ -128,13 +130,13 @@ ax2.set_ylabel("Error", color="red")
 ax1.set_yscale('log')
 ax2.set_yscale('log')
 
-ax2.plot(it_error, error_inf, color='red', label=r'$\|x^{(k)}-\overline{x}\|$_{\infty}')
+ax2.plot(it_error, error_inf, color='red', label=r'$\|x^{(k)}-\overline{x}\|_{\infty}$')
 
-ax1.scatter(it_error[error_1.index(min(error_1))], min(error_1), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|$')
+ax1.scatter(it_error[error_1.index(min(error_1))], min(error_1), color='blue', label=r'Minimum - $\|x^{(k)}-\overline{x}\|_1$')
 print(it_error[error_1.index(min(error_1))], end=' ')
 print(min(error_1))
 
-ax2.scatter(it_error[error_inf.index(min(error_inf))], min(error_inf), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|$')
+ax2.scatter(it_error[error_inf.index(min(error_inf))], min(error_inf), color='red', label=r'Minimum - $\|x^{(k)}-\overline{x}\|_{\infty}$')
 print(it_error[error_inf.index(min(error_inf))], end=' ')
 print(min(error_inf))
 

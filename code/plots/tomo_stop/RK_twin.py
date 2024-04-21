@@ -71,7 +71,9 @@ try:
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
 		curr_val = float(lines[i].split()[1])
-		if (curr_it > 1 and curr_it < max_it and curr_val > 0):
+		curr_val_1 = float(lines[i].split()[2])
+		curr_val_inf = float(lines[i].split()[3])
+		if (curr_it > 1 and curr_it < max_it and curr_val > 0 and curr_val_1 > 0 and curr_val_inf > 0):
 			it_gauge.append(int(lines[i].split()[0]))
 			gauge.append(float(lines[i].split()[1]))
 except IOError as e:

@@ -108,7 +108,7 @@ int main (int argc, char *argv[]) {
 	double stop;
 	double duration = 0;
 
-	int storage_size = ceil(max_it_stop/M/step_save);
+	int storage_size = 2*ceil(max_it_stop/M/step_save);
 	int storage_counter;
 	vector<double> error_vals(storage_size, 0);
 	vector<double> error_1_vals(storage_size, 0);
@@ -142,8 +142,8 @@ int main (int argc, char *argv[]) {
 						x_k[i] = 0.5*(x_down[i]+x_up[i]);
 					error_it[storage_counter] = it;
 					error_vals[storage_counter] += sqrt(sqrNormDiff(x_k, x, N));
-					error_vals[storage_counter] += Norm1Diff(x_k, x, N);
-					error_vals[storage_counter] += NormInfDiff(x_k, x, N);
+					error_1_vals[storage_counter] += Norm1Diff(x_k, x, N);
+					error_inf_vals[storage_counter] += NormInfDiff(x_k, x, N);
 					gauge_it[storage_counter] = it;
 					gauge_vals[storage_counter] += sqrt(sqrNormDiff(x_down, x_up, N));
 					storage_counter++;

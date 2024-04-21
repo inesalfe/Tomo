@@ -6,7 +6,29 @@ from matplotlib.pyplot import gca
 import matplotlib.font_manager
 import sys
 
-# python3 plots/omp_sparse/RKAB.py ct_gaussian 19558 16384 15000 30000 2
+# python3 plots/omp_sparse/RKAB.py ct_gaussian 19558 16384 15000 5000 2
+
+# 521 3.01973
+# 521 3.0135
+# 521 3.01044
+# 511 3.00974
+# 521 3.00932
+# 521 3.00928
+# 521 3.00919
+# 511 300.02
+# 491 299.033
+# 461 298.581
+# 461 298.444
+# 461 298.37
+# 461 298.343
+# 461 298.325
+# 1051 0.107573
+# 1061 0.107461
+# 1091 0.107624
+# 1111 0.10773
+# 1141 0.10772
+# 1141 0.107774
+# 1141 0.107927
 
 if (len(sys.argv) != 6 and len(sys.argv) != 7):
 	print("Incorrect number of arguments.")
@@ -93,9 +115,14 @@ try:
 	file_size = len(lines)
 	it_error_1 = []
 	error_1 = []
+	error_1_1 = []
+	error_inf_1 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
-		if (curr_it < max_it):
+		curr_val = float(lines[i].split()[1])
+		curr_val_1 = float(lines[i].split()[2])
+		curr_val_inf = float(lines[i].split()[3])
+		if (curr_it > 1 and curr_it < max_it and curr_val > 0 and curr_val_1 > 0 and curr_val_inf > 0):
 			it_error_1.append(int(lines[i].split()[0]))
 			error_1.append(float(lines[i].split()[1]))
 			error_1_1.append(float(lines[i].split()[2]))
@@ -105,9 +132,14 @@ try:
 	file_size = len(lines)
 	it_error_2 = []
 	error_2 = []
+	error_1_2 = []
+	error_inf_2 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
-		if (curr_it < max_it):
+		curr_val = float(lines[i].split()[1])
+		curr_val_1 = float(lines[i].split()[2])
+		curr_val_inf = float(lines[i].split()[3])
+		if (curr_it > 1 and curr_it < max_it and curr_val > 0 and curr_val_1 > 0 and curr_val_inf > 0):
 			it_error_2.append(int(lines[i].split()[0]))
 			error_2.append(float(lines[i].split()[1]))
 			error_1_2.append(float(lines[i].split()[2]))
@@ -117,9 +149,14 @@ try:
 	file_size = len(lines)
 	it_error_4 = []
 	error_4 = []
+	error_1_4 = []
+	error_inf_4 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
-		if (curr_it < max_it):
+		curr_val = float(lines[i].split()[1])
+		curr_val_1 = float(lines[i].split()[2])
+		curr_val_inf = float(lines[i].split()[3])
+		if (curr_it > 1 and curr_it < max_it and curr_val > 0 and curr_val_1 > 0 and curr_val_inf > 0):
 			it_error_4.append(int(lines[i].split()[0]))
 			error_4.append(float(lines[i].split()[1]))
 			error_1_4.append(float(lines[i].split()[2]))
@@ -129,9 +166,14 @@ try:
 	file_size = len(lines)
 	it_error_8 = []
 	error_8 = []
+	error_1_8 = []
+	error_inf_8 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
-		if (curr_it < max_it):
+		curr_val = float(lines[i].split()[1])
+		curr_val_1 = float(lines[i].split()[2])
+		curr_val_inf = float(lines[i].split()[3])
+		if (curr_it > 1 and curr_it < max_it and curr_val > 0 and curr_val_1 > 0 and curr_val_inf > 0):
 			it_error_8.append(int(lines[i].split()[0]))
 			error_8.append(float(lines[i].split()[1]))
 			error_1_8.append(float(lines[i].split()[2]))
@@ -141,9 +183,14 @@ try:
 	file_size = len(lines)
 	it_error_16 = []
 	error_16 = []
+	error_1_16 = []
+	error_inf_16 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
-		if (curr_it < max_it):
+		curr_val = float(lines[i].split()[1])
+		curr_val_1 = float(lines[i].split()[2])
+		curr_val_inf = float(lines[i].split()[3])
+		if (curr_it > 1 and curr_it < max_it and curr_val > 0 and curr_val_1 > 0 and curr_val_inf > 0):
 			it_error_16.append(int(lines[i].split()[0]))
 			error_16.append(float(lines[i].split()[1]))
 			error_1_16.append(float(lines[i].split()[2]))
@@ -153,9 +200,14 @@ try:
 	file_size = len(lines)
 	it_error_32 = []
 	error_32 = []
+	error_1_32 = []
+	error_inf_32 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
-		if (curr_it < max_it):
+		curr_val = float(lines[i].split()[1])
+		curr_val_1 = float(lines[i].split()[2])
+		curr_val_inf = float(lines[i].split()[3])
+		if (curr_it > 1 and curr_it < max_it and curr_val > 0 and curr_val_1 > 0 and curr_val_inf > 0):
 			it_error_32.append(int(lines[i].split()[0]))
 			error_32.append(float(lines[i].split()[1]))
 			error_1_32.append(float(lines[i].split()[2]))
@@ -165,9 +217,14 @@ try:
 	file_size = len(lines)
 	it_error_64 = []
 	error_64 = []
+	error_1_64 = []
+	error_inf_64 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
-		if (curr_it < max_it):
+		curr_val = float(lines[i].split()[1])
+		curr_val_1 = float(lines[i].split()[2])
+		curr_val_inf = float(lines[i].split()[3])
+		if (curr_it > 1 and curr_it < max_it and curr_val > 0 and curr_val_1 > 0 and curr_val_inf > 0):
 			it_error_64.append(int(lines[i].split()[0]))
 			error_64.append(float(lines[i].split()[1]))
 			error_1_64.append(float(lines[i].split()[2]))
@@ -184,7 +241,7 @@ try:
 	res_1 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
-		if (curr_it < max_it):
+		if (curr_it > 1 and curr_it < max_it):
 			it_res_1.append(int(lines[i].split()[0]))
 			res_1.append(float(lines[i].split()[1]))
 	with open(filename_res_2) as f:
@@ -194,7 +251,7 @@ try:
 	res_2 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
-		if (curr_it < max_it):
+		if (curr_it > 1 and curr_it < max_it):
 			it_res_2.append(int(lines[i].split()[0]))
 			res_2.append(float(lines[i].split()[1]))
 	with open(filename_res_4) as f:
@@ -204,7 +261,7 @@ try:
 	res_4 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
-		if (curr_it < max_it):
+		if (curr_it > 1 and curr_it < max_it):
 			it_res_4.append(int(lines[i].split()[0]))
 			res_4.append(float(lines[i].split()[1]))
 	with open(filename_res_8) as f:
@@ -214,7 +271,7 @@ try:
 	res_8 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
-		if (curr_it < max_it):
+		if (curr_it > 1 and curr_it < max_it):
 			it_res_8.append(int(lines[i].split()[0]))
 			res_8.append(float(lines[i].split()[1]))
 	with open(filename_res_16) as f:
@@ -224,7 +281,7 @@ try:
 	res_16 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
-		if (curr_it < max_it):
+		if (curr_it > 1 and curr_it < max_it):
 			it_res_16.append(int(lines[i].split()[0]))
 			res_16.append(float(lines[i].split()[1]))
 	with open(filename_res_32) as f:
@@ -234,7 +291,7 @@ try:
 	res_32 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
-		if (curr_it < max_it):
+		if (curr_it > 1 and curr_it < max_it):
 			it_res_32.append(int(lines[i].split()[0]))
 			res_32.append(float(lines[i].split()[1]))
 	with open(filename_res_64) as f:
@@ -244,7 +301,7 @@ try:
 	res_64 = []
 	for i in range(file_size):
 		curr_it = int(lines[i].split()[0])
-		if (curr_it < max_it):
+		if (curr_it > 1 and curr_it < max_it):
 			it_res_64.append(int(lines[i].split()[0]))
 			res_64.append(float(lines[i].split()[1]))
 except IOError as e:
@@ -310,35 +367,35 @@ plt.close()
 
 fig = plt.figure(figsize=(10,7))
 
-plt.plot(it_error_1_1, error_1_1, color='grey', label=r'$q = 1$')
-plt.plot(it_error_1_2, error_1_2, color='orange', label=r'$q = 2$')
-plt.plot(it_error_1_4, error_1_4, color='red', label=r'$q = 4$')
-plt.plot(it_error_1_8, error_1_8, color='magenta', label=r'$q = 8$')
-plt.plot(it_error_1_16, error_1_16, color='purple', label=r'$q = 16$')
-plt.plot(it_error_1_32, error_1_32, color='blue', label=r'$q = 32$')
-plt.plot(it_error_1_64, error_1_64, color='black', label=r'$q = 64$')
+plt.plot(it_error_1, error_1_1, color='grey', label=r'$q = 1$')
+plt.plot(it_error_2, error_1_2, color='orange', label=r'$q = 2$')
+plt.plot(it_error_4, error_1_4, color='red', label=r'$q = 4$')
+plt.plot(it_error_8, error_1_8, color='magenta', label=r'$q = 8$')
+plt.plot(it_error_16, error_1_16, color='purple', label=r'$q = 16$')
+plt.plot(it_error_32, error_1_32, color='blue', label=r'$q = 32$')
+plt.plot(it_error_64, error_1_64, color='black', label=r'$q = 64$')
 
-plt.scatter(it_error_1_1[error_1_1.index(min(error_1_1))], min(error_1_1), color='grey')
-plt.scatter(it_error_1_2[error_1_2.index(min(error_1_2))], min(error_1_2), color='orange')
-plt.scatter(it_error_1_4[error_1_4.index(min(error_1_4))], min(error_1_4), color='red')
-plt.scatter(it_error_1_8[error_1_8.index(min(error_1_8))], min(error_1_8), color='magenta')
-plt.scatter(it_error_1_16[error_1_16.index(min(error_1_16))], min(error_1_16), color='purple')
-plt.scatter(it_error_1_32[error_1_32.index(min(error_1_32))], min(error_1_32), color='blue')
-plt.scatter(it_error_1_64[error_1_64.index(min(error_1_64))], min(error_1_64), color='black')
+plt.scatter(it_error_1[error_1_1.index(min(error_1_1))], min(error_1_1), color='grey')
+plt.scatter(it_error_2[error_1_2.index(min(error_1_2))], min(error_1_2), color='orange')
+plt.scatter(it_error_4[error_1_4.index(min(error_1_4))], min(error_1_4), color='red')
+plt.scatter(it_error_8[error_1_8.index(min(error_1_8))], min(error_1_8), color='magenta')
+plt.scatter(it_error_16[error_1_16.index(min(error_1_16))], min(error_1_16), color='purple')
+plt.scatter(it_error_32[error_1_32.index(min(error_1_32))], min(error_1_32), color='blue')
+plt.scatter(it_error_64[error_1_64.index(min(error_1_64))], min(error_1_64), color='black')
 
-print(it_error_1_1[error_1_1.index(min(error_1_1))], end=' ')
+print(it_error_1[error_1_1.index(min(error_1_1))], end=' ')
 print(min(error_1_1))
-print(it_error_1_2[error_1_2.index(min(error_1_2))], end=' ')
+print(it_error_2[error_1_2.index(min(error_1_2))], end=' ')
 print(min(error_1_2))
-print(it_error_1_4[error_1_4.index(min(error_1_4))], end=' ')
+print(it_error_4[error_1_4.index(min(error_1_4))], end=' ')
 print(min(error_1_4))
-print(it_error_1_8[error_1_8.index(min(error_1_8))], end=' ')
+print(it_error_8[error_1_8.index(min(error_1_8))], end=' ')
 print(min(error_1_8))
-print(it_error_1_16[error_1_16.index(min(error_1_16))], end=' ')
+print(it_error_16[error_1_16.index(min(error_1_16))], end=' ')
 print(min(error_1_16))
-print(it_error_1_32[error_1_32.index(min(error_1_32))], end=' ')
+print(it_error_32[error_1_32.index(min(error_1_32))], end=' ')
 print(min(error_1_32))
-print(it_error_1_64[error_1_64.index(min(error_1_64))], end=' ')
+print(it_error_64[error_1_64.index(min(error_1_64))], end=' ')
 print(min(error_1_64))
 
 plt.grid()
@@ -356,35 +413,35 @@ plt.close()
 
 fig = plt.figure(figsize=(10,7))
 
-plt.plot(it_error_inf_1, error_inf_1, color='grey', label=r'$q = 1$')
-plt.plot(it_error_inf_2, error_inf_2, color='orange', label=r'$q = 2$')
-plt.plot(it_error_inf_4, error_inf_4, color='red', label=r'$q = 4$')
-plt.plot(it_error_inf_8, error_inf_8, color='magenta', label=r'$q = 8$')
-plt.plot(it_error_inf_16, error_inf_16, color='purple', label=r'$q = 16$')
-plt.plot(it_error_inf_32, error_inf_32, color='blue', label=r'$q = 32$')
-plt.plot(it_error_inf_64, error_inf_64, color='black', label=r'$q = 64$')
+plt.plot(it_error_1, error_inf_1, color='grey', label=r'$q = 1$')
+plt.plot(it_error_2, error_inf_2, color='orange', label=r'$q = 2$')
+plt.plot(it_error_4, error_inf_4, color='red', label=r'$q = 4$')
+plt.plot(it_error_8, error_inf_8, color='magenta', label=r'$q = 8$')
+plt.plot(it_error_16, error_inf_16, color='purple', label=r'$q = 16$')
+plt.plot(it_error_32, error_inf_32, color='blue', label=r'$q = 32$')
+plt.plot(it_error_64, error_inf_64, color='black', label=r'$q = 64$')
 
-plt.scatter(it_error_inf_1[error_inf_1.index(min(error_inf_1))], min(error_inf_1), color='grey')
-plt.scatter(it_error_inf_2[error_inf_2.index(min(error_inf_2))], min(error_inf_2), color='orange')
-plt.scatter(it_error_inf_4[error_inf_4.index(min(error_inf_4))], min(error_inf_4), color='red')
-plt.scatter(it_error_inf_8[error_inf_8.index(min(error_inf_8))], min(error_inf_8), color='magenta')
-plt.scatter(it_error_inf_16[error_inf_16.index(min(error_inf_16))], min(error_inf_16), color='purple')
-plt.scatter(it_error_inf_32[error_inf_32.index(min(error_inf_32))], min(error_inf_32), color='blue')
-plt.scatter(it_error_inf_64[error_inf_64.index(min(error_inf_64))], min(error_inf_64), color='black')
+plt.scatter(it_error_1[error_inf_1.index(min(error_inf_1))], min(error_inf_1), color='grey')
+plt.scatter(it_error_2[error_inf_2.index(min(error_inf_2))], min(error_inf_2), color='orange')
+plt.scatter(it_error_4[error_inf_4.index(min(error_inf_4))], min(error_inf_4), color='red')
+plt.scatter(it_error_8[error_inf_8.index(min(error_inf_8))], min(error_inf_8), color='magenta')
+plt.scatter(it_error_16[error_inf_16.index(min(error_inf_16))], min(error_inf_16), color='purple')
+plt.scatter(it_error_32[error_inf_32.index(min(error_inf_32))], min(error_inf_32), color='blue')
+plt.scatter(it_error_64[error_inf_64.index(min(error_inf_64))], min(error_inf_64), color='black')
 
-print(it_error_inf_1[error_inf_1.index(min(error_inf_1))], end=' ')
+print(it_error_1[error_inf_1.index(min(error_inf_1))], end=' ')
 print(min(error_inf_1))
-print(it_error_inf_2[error_inf_2.index(min(error_inf_2))], end=' ')
+print(it_error_2[error_inf_2.index(min(error_inf_2))], end=' ')
 print(min(error_inf_2))
-print(it_error_inf_4[error_inf_4.index(min(error_inf_4))], end=' ')
+print(it_error_4[error_inf_4.index(min(error_inf_4))], end=' ')
 print(min(error_inf_4))
-print(it_error_inf_8[error_inf_8.index(min(error_inf_8))], end=' ')
+print(it_error_8[error_inf_8.index(min(error_inf_8))], end=' ')
 print(min(error_inf_8))
-print(it_error_inf_16[error_inf_16.index(min(error_inf_16))], end=' ')
+print(it_error_16[error_inf_16.index(min(error_inf_16))], end=' ')
 print(min(error_inf_16))
-print(it_error_inf_32[error_inf_32.index(min(error_inf_32))], end=' ')
+print(it_error_32[error_inf_32.index(min(error_inf_32))], end=' ')
 print(min(error_inf_32))
-print(it_error_inf_64[error_inf_64.index(min(error_inf_64))], end=' ')
+print(it_error_64[error_inf_64.index(min(error_inf_64))], end=' ')
 print(min(error_inf_64))
 
 plt.grid()
