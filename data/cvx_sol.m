@@ -30,99 +30,44 @@ b = b_error;
 % Example
 
 % cvx_begin
-%     variable x_sol(n)
-%     minimize( norm( A * x_sol - b, 2 ) )
-%     subject to
-%         C * x == d
-%         norm( x, Inf ) <= e
-% cvx_end
-
-% cvx_begin
 %     variable x(n)
 %     minimize( norm(A*x-b) )
 %     subject to
 %         l <= x <= u
 % cvx_end
 
-% cvx_begin
-%     variable x(n)
-%     minimize( norm(A*x-b,1) )
-% cvx_end
+%% Find Best Alpha
 
-% Opção 1 - Least Squares (norma 2) sem restrições
+alpha = 1E-5;
+errors = [];
+while alpha < 100
+    alpha = alpha*10;
+    cvx_begin
+        variable x_sol(n)
+        minimize( 0.5*norm( A * x_sol - b, 2 ) + 0.5*alpha*norm( x_sol, 1 ) )
+        % subject to
+        %     zeros(n) <= x_sol <= ones(n)
+    cvx_end
+    norm(x_sol-x)
+    errors = [errors, norm(x_sol-x)];
+end
+
+%% Fixed Alpha
+
+% Regularização (norma 2 do resíduo e norma 1 de x) sem restrições
 
 cvx_begin
     variable x_sol(n)
-    minimize( norm( A * x_sol - b, 2 ) )
+    minimize( 0.5*norm( A * x_sol - b, 2 ) + 0.5*alpha*norm( x_sol, 1 ) )
 cvx_end
 
 norm(x_sol-x)
 
-% Opção 2 - Least Squares (norma 1) sem restrições
+% Regularização (norma 2 do resíduo e norma 1 de x) com restrições
 
 cvx_begin
     variable x_sol(n)
-    minimize( norm( A * x_sol - b, 1 ) )
-cvx_end
-
-norm(x_sol-x)
-
-% Opção 3 - Least Squares (norma 2) com restrições
-
-cvx_begin
-    variable x_sol(n)
-    minimize( norm( A * x_sol - b, 2 ) )
-    subject to
-        zeros(n) <= x_sol <= ones(n)
-cvx_end
-
-norm(x_sol-x)
-
-% Opção 4 - Least Squares (norma 1) com restrições
-
-cvx_begin
-    variable x_sol(n)
-    minimize( norm( A * x_sol - b, 1 ) )
-    subject to
-        zeros(n) <= x_sol <= ones(n)
-cvx_end
-
-norm(x_sol-x)
-
-% Opção 5 - Regularização (norma 2 do resíduo e norma 2 de x) sem restrições
-
-cvx_begin
-    variable x_sol(n)
-    minimize( norm( A * x_sol - b, 2 ) + norm( x_sol, 2 ) )
-cvx_end
-
-norm(x_sol-x)
-
-% Opção 6 - Regularização (norma 2 do resíduo e norma 1 de x) sem restrições
-
-cvx_begin
-    variable x_sol(n)
-    minimize( norm( A * x_sol - b, 2 ) + norm( x_sol, 2 ) )
-cvx_end
-
-norm(x_sol-x)
-
-% Opção 7 - Regularização (norma 2 do resíduo e norma 2 de x) sem restrições
-
-cvx_begin
-    variable x_sol(n)
-    minimize( norm( A * x_sol - b, 2 ) + norm( x_sol, 2 ) )
-    subject to
-        zeros(n) <= x_sol <= ones(n)
-cvx_end
-
-norm(x_sol-x)
-
-% Opção 8 - Regularização (norma 2 do resíduo e norma 1 de x) sem restrições
-
-cvx_begin
-    variable x_sol(n)
-    minimize( norm( A * x_sol - b, 2 ) + norm( x_sol, 2 ) )
+    minimize( 0.5*norm( A * x_sol - b, 2 ) + 0.5*alpha*norm( x_sol, 1 ) )
     subject to
         zeros(n) <= x_sol <= ones(n)
 cvx_end

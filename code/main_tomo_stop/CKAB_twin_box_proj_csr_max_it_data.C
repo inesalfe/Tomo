@@ -10,6 +10,8 @@
 #include <sstream>
 using namespace std;
 
+// ./bin/CKAB_twin_box_proj_csr_max_it_data.exe ct_gaussian 10 19558 16384 1 15000 5000 1 2
+
 int main (int argc, char *argv[]) {
 
 	if(argc != 9 && argc != 10) {
@@ -115,7 +117,9 @@ int main (int argc, char *argv[]) {
 	double duration = 0;
 
 	int end_matrix_counter;
-	int storage_size = 2*ceil(max_it_stop/M/step_save*threads*block_size);
+	int storage_size = ceil(max_it_stop/M/step_save);
+	if (storage_size < 1)
+		storage_size = max_it_stop;
 	int storage_counter;
 	vector<double> error_vals(storage_size, 0);
 	vector<double> error_1_vals(storage_size, 0);
