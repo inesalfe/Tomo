@@ -1,3 +1,5 @@
+% nohup matlab -nodisplay -nosplash -singleCompThread -batch "run('cvx_sol.m'); exit" > output4.log 2>&1 &
+
 clc;
 clear;
 
@@ -56,20 +58,20 @@ end
 
 % Regularização (norma 2 do resíduo e norma 1 de x) sem restrições
 
-cvx_begin
-    variable x_sol(n)
-    minimize( 0.5*norm( A * x_sol - b, 2 ) + 0.5*alpha*norm( x_sol, 1 ) )
-cvx_end
+% cvx_begin
+%     variable x_sol(n)
+%     minimize( 0.5*norm( A * x_sol - b, 2 ) + 0.5*alpha*norm( x_sol, 1 ) )
+% cvx_end
 
-norm(x_sol-x)
+% norm(x_sol-x)
 
 % Regularização (norma 2 do resíduo e norma 1 de x) com restrições
 
-cvx_begin
-    variable x_sol(n)
-    minimize( 0.5*norm( A * x_sol - b, 2 ) + 0.5*alpha*norm( x_sol, 1 ) )
-    subject to
-        zeros(n) <= x_sol <= ones(n)
-cvx_end
+% cvx_begin
+%     variable x_sol(n)
+%     minimize( 0.5*norm( A * x_sol - b, 2 ) + 0.5*alpha*norm( x_sol, 1 ) )
+%     subject to
+%         zeros(n) <= x_sol <= ones(n)
+% cvx_end
 
 norm(x_sol-x)
