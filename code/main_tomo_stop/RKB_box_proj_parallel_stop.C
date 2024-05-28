@@ -18,7 +18,7 @@ int main (int argc, char *argv[]) {
 
 	if(argc != 8 && argc != 9) {
 		cout << "Incorrect number of arguments: Corret usage is ";
-		cout << "'./bin/CKB_box_proj_parallel_stop.exe <data_set> <n_runs> <M> <N> <number_of_blocks> <min_it> <bucket_size>'" << endl;
+		cout << "'./bin/RKB_box_proj_parallel_stop.exe <data_set> <n_runs> <M> <N> <number_of_blocks> <min_it> <bucket_size>'" << endl;
 		exit(1);
 	}
 
@@ -69,7 +69,7 @@ int main (int argc, char *argv[]) {
 	}
 	else {
 		cout << "Incorrect number of arguments: Corret usage is ";
-		cout << "'./bin/CKB_box_proj_parallel_stop.exe <data_set> <n_runs> <M> <N> <number_of_blocks> <min_it> <bucket_size>'" << endl;
+		cout << "'./bin/RKB_box_proj_parallel_stop.exe <data_set> <n_runs> <M> <N> <number_of_blocks> <min_it> <bucket_size>'" << endl;
 		exit(1);
 	}
 
@@ -102,6 +102,8 @@ int main (int argc, char *argv[]) {
 			exit(1);
 		}
 	}
+
+	discrete_distribution<> dist(sqrNorm_line.begin(), sqrNorm_line.end());
 
 	double* x_k = new double[N];
 	double* x_down = new double[N];
@@ -144,12 +146,13 @@ int main (int argc, char *argv[]) {
 		#pragma omp parallel private(line_down, line_up, scale, t_id) firstprivate(it)
 		{
 			t_id = omp_get_thread_num();
+			mt19937 gen_down(run*num_threads+t_id+1);
+			mt19937 gen_up(n_runs*num_threads+run*num_threads+t_id+1);
 			while(!solution_found) {
 				it++;
 				for (int block_it = 0; block_it < number_of_blocks; block_it++) {
-					line_down = BLOCK_LOW(block_it*num_threads+t_id, n_blocks, M);
-					line_up = M-line_down-1;
 					for (int s = 0; s < BLOCK_SIZE(block_it*num_threads+t_id, n_blocks, M); s++) {
+						line_down = dist(gen_down);
 						scale = (b[line_down]-dotProductCSR(line_down, row_idx, cols, values, x_down))/sqrNorm_line[line_down];
 						index = row_idx[line_down];
 						while (index < row_idx[line_down+1]) {
@@ -157,7 +160,7 @@ int main (int argc, char *argv[]) {
 							x_down[col] += scale*values[index];
 							index++;
 						}
-						line_down++;
+						line_up = dist(gen_up);
 						scale = (b[line_up]-dotProductCSR(line_up, row_idx, cols, values, x_up))/sqrNorm_line[line_up];
 						index = row_idx[line_up];
 						while (index < row_idx[line_up+1]) {
@@ -165,7 +168,6 @@ int main (int argc, char *argv[]) {
 							x_up[col] += scale*values[index];
 							index++;
 						}
-						line_up--;
 					}
 					#pragma omp for nowait
 						for (int i = 0; i < N; i++) {
@@ -231,7 +233,7 @@ int main (int argc, char *argv[]) {
 
 	cout << sqrNormDiff(x_sol, x, N) << " " << duration_total << endl;
 
-	string filename_sol = "outputs/tomo_stop/" + matrix_type + "/CKB_box_proj_sol_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + to_string(number_of_blocks);
+	string filename_sol = "outputs/tomo_stop/" + matrix_type + "/RKB_box_proj_sol_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + to_string(number_of_blocks);
 
 	if (argc == 9) {
 		int seed = atoi(argv[8]);

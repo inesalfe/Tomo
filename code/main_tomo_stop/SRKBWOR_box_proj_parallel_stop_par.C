@@ -18,7 +18,7 @@ int main (int argc, char *argv[]) {
 
 	if(argc != 8 && argc != 9) {
 		cout << "Incorrect number of arguments: Corret usage is ";
-		cout << "'./bin/CKB_box_proj_parallel_stop.exe <data_set> <n_runs> <M> <N> <number_of_blocks> <min_it> <bucket_size>'" << endl;
+		cout << "'./bin/SRKBWOR_box_proj_parallel_stop_par.exe <data_set> <n_runs> <M> <N> <number_of_blocks> <min_it> <bucket_size>'" << endl;
 		exit(1);
 	}
 
@@ -69,7 +69,7 @@ int main (int argc, char *argv[]) {
 	}
 	else {
 		cout << "Incorrect number of arguments: Corret usage is ";
-		cout << "'./bin/CKB_box_proj_parallel_stop.exe <data_set> <n_runs> <M> <N> <number_of_blocks> <min_it> <bucket_size>'" << endl;
+		cout << "'./bin/SRKBWOR_box_proj_parallel_stop_par.exe <data_set> <n_runs> <M> <N> <number_of_blocks> <min_it> <bucket_size>'" << endl;
 		exit(1);
 	}
 
@@ -103,6 +103,11 @@ int main (int argc, char *argv[]) {
 		}
 	}
 
+	vector<int> samp_line(M);
+	for (int i = 0; i < M; i++)
+		samp_line[i] = i;
+	mt19937 rng(1);
+
 	double* x_k = new double[N];
 	double* x_down = new double[N];
 	double* x_up = new double[N];
@@ -113,6 +118,8 @@ int main (int argc, char *argv[]) {
 		x_sol[i] = 0;
 	}
 	double scale;
+	int line_down_idx;
+	int line_up_idx;
 	int line_down;
 	int line_up;
 	long long it;
@@ -128,6 +135,7 @@ int main (int argc, char *argv[]) {
 
 	vector<double> store_diff;
 	double curr_diff;
+	double diff_entry;
 
 	int n_blocks = number_of_blocks*num_threads;
 
@@ -138,18 +146,20 @@ int main (int argc, char *argv[]) {
 			x_up[i] = 0;
 		}
 		store_diff.clear();
+		shuffle(begin(samp_line), end(samp_line), rng);
 		solution_found = false;
 		it = 0;
 		start = omp_get_wtime();
-		#pragma omp parallel private(line_down, line_up, scale, t_id) firstprivate(it)
+		#pragma omp parallel private(line_down_idx, line_up_idx, line_down, line_up, scale, t_id) firstprivate(it)
 		{
 			t_id = omp_get_thread_num();
 			while(!solution_found) {
 				it++;
 				for (int block_it = 0; block_it < number_of_blocks; block_it++) {
-					line_down = BLOCK_LOW(block_it*num_threads+t_id, n_blocks, M);
-					line_up = M-line_down-1;
+					line_down_idx = BLOCK_LOW(block_it*num_threads+t_id, n_blocks, M);
+					line_up_idx = M-line_down_idx-1;
 					for (int s = 0; s < BLOCK_SIZE(block_it*num_threads+t_id, n_blocks, M); s++) {
+						line_down = samp_line[line_down_idx];
 						scale = (b[line_down]-dotProductCSR(line_down, row_idx, cols, values, x_down))/sqrNorm_line[line_down];
 						index = row_idx[line_down];
 						while (index < row_idx[line_down+1]) {
@@ -157,7 +167,8 @@ int main (int argc, char *argv[]) {
 							x_down[col] += scale*values[index];
 							index++;
 						}
-						line_down++;
+						line_down_idx++;
+						line_up = samp_line[line_up_idx];
 						scale = (b[line_up]-dotProductCSR(line_up, row_idx, cols, values, x_up))/sqrNorm_line[line_up];
 						index = row_idx[line_up];
 						while (index < row_idx[line_up+1]) {
@@ -165,7 +176,7 @@ int main (int argc, char *argv[]) {
 							x_up[col] += scale*values[index];
 							index++;
 						}
-						line_up--;
+						line_up_idx--;
 					}
 					#pragma omp for nowait
 						for (int i = 0; i < N; i++) {
@@ -180,8 +191,14 @@ int main (int argc, char *argv[]) {
 						}
 				}
 				#pragma omp single
+					curr_diff = 0;
+				#pragma omp for reduction(+:curr_diff)
+					for (int i = 0; i < N; i++) {
+						diff_entry = x_up[i]-x_down[i];
+						curr_diff += diff_entry*diff_entry;
+					}
+				#pragma omp single
 				{
-					curr_diff = sqrNormDiff(x_up, x_down, N);
 					if (store_diff.size() == 0) {
 						if (it > min_it) {
 							store_diff.push_back(curr_diff);
@@ -231,7 +248,7 @@ int main (int argc, char *argv[]) {
 
 	cout << sqrNormDiff(x_sol, x, N) << " " << duration_total << endl;
 
-	string filename_sol = "outputs/tomo_stop/" + matrix_type + "/CKB_box_proj_sol_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + to_string(number_of_blocks);
+	string filename_sol = "outputs/tomo_stop/" + matrix_type + "/SRKBWOR_box_proj_sol_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + to_string(number_of_blocks);
 
 	if (argc == 9) {
 		int seed = atoi(argv[8]);

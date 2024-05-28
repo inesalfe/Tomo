@@ -18,7 +18,7 @@ int main (int argc, char *argv[]) {
 
 	if(argc != 8 && argc != 9) {
 		cout << "Incorrect number of arguments: Corret usage is ";
-		cout << "'./bin/CKB_box_proj_parallel_stop.exe <data_set> <n_runs> <M> <N> <number_of_blocks> <min_it> <bucket_size>'" << endl;
+		cout << "'./bin/CKB_box_proj_parallel_stop_par.exe <data_set> <n_runs> <M> <N> <number_of_blocks> <min_it> <bucket_size>'" << endl;
 		exit(1);
 	}
 
@@ -69,7 +69,7 @@ int main (int argc, char *argv[]) {
 	}
 	else {
 		cout << "Incorrect number of arguments: Corret usage is ";
-		cout << "'./bin/CKB_box_proj_parallel_stop.exe <data_set> <n_runs> <M> <N> <number_of_blocks> <min_it> <bucket_size>'" << endl;
+		cout << "'./bin/CKB_box_proj_parallel_stop_par.exe <data_set> <n_runs> <M> <N> <number_of_blocks> <min_it> <bucket_size>'" << endl;
 		exit(1);
 	}
 
@@ -128,6 +128,7 @@ int main (int argc, char *argv[]) {
 
 	vector<double> store_diff;
 	double curr_diff;
+	double diff_entry;
 
 	int n_blocks = number_of_blocks*num_threads;
 
@@ -180,8 +181,14 @@ int main (int argc, char *argv[]) {
 						}
 				}
 				#pragma omp single
+					curr_diff = 0;
+				#pragma omp for reduction(+:curr_diff)
+					for (int i = 0; i < N; i++) {
+						diff_entry = x_up[i]-x_down[i];
+						curr_diff += diff_entry*diff_entry;
+					}
+				#pragma omp single
 				{
-					curr_diff = sqrNormDiff(x_up, x_down, N);
 					if (store_diff.size() == 0) {
 						if (it > min_it) {
 							store_diff.push_back(curr_diff);

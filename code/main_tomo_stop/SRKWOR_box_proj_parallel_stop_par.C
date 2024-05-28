@@ -10,15 +10,11 @@
 #include <sstream>
 using namespace std;
 
-#define BLOCK_LOW(id, p, np) ((id) * (np) / (p))
-#define BLOCK_HIGH(id, p, np) (BLOCK_LOW((id) + 1, p, np) - 1)
-#define BLOCK_SIZE(id, p, np) (BLOCK_HIGH(id, p, np) - BLOCK_LOW(id, p, np) + 1)
-
 int main (int argc, char *argv[]) {
 
-	if(argc != 8 && argc != 9) {
+	if(argc != 7 && argc != 8) {
 		cout << "Incorrect number of arguments: Corret usage is ";
-		cout << "'./bin/CKB_box_proj_parallel_stop.exe <data_set> <n_runs> <M> <N> <number_of_blocks> <min_it> <bucket_size>'" << endl;
+		cout << "'./bin/SRKWOR_box_proj_parallel_stop_par.exe <data_set> <n_runs> <M> <N> <min_it> <bucket_size>'" << endl;
 		exit(1);
 	}
 
@@ -34,9 +30,8 @@ int main (int argc, char *argv[]) {
 
 	int M = atoi(argv[3]);
 	int N = atoi(argv[4]);
-	double number_of_blocks = atoi(argv[5]);
-	int min_it = atoi(argv[6]);
-	int bucket_size = atoi(argv[7]);
+	int min_it = atoi(argv[5]);
+	int bucket_size = atoi(argv[6]);
 
 	string matrix_type = argv[1];
 	string filename_row_idx;
@@ -44,23 +39,23 @@ int main (int argc, char *argv[]) {
 	string filename_values;
 	string filename_b;
 	string filename_x;
-	if (argc == 8 && matrix_type.compare("ct") == 0) {
+	if (argc == 7 && matrix_type.compare("ct") == 0) {
 		filename_row_idx = "../data/ct/row_idx_" + to_string(M) + "_" + to_string(N) + ".bin";
 		filename_cols = "../data/ct/cols_" + to_string(M) + "_" + to_string(N) + ".bin";
 		filename_values = "../data/ct/values_" + to_string(M) + "_" + to_string(N) + ".bin";
 		filename_b = "../data/ct/b_" + to_string(M) + "_" + to_string(N) + ".bin";
 		filename_x = "../data/ct/x_" + to_string(M) + "_" + to_string(N) + ".bin";
 	}
-	else if (argc == 9 && matrix_type.compare("ct_gaussian") == 0) {
-		int seed = atoi(argv[8]);
+	else if (argc == 8 && matrix_type.compare("ct_gaussian") == 0) {
+		int seed = atoi(argv[7]);
 		filename_row_idx = "../data/ct_gaussian/row_idx_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_cols = "../data/ct_gaussian/cols_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_values = "../data/ct_gaussian/values_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_b = "../data/ct_gaussian/b_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_x = "../data/ct_gaussian/x_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 	}
-	else if (argc == 9 && matrix_type.compare("ct_poisson") == 0) {
-		int seed = atoi(argv[8]);
+	else if (argc == 8 && matrix_type.compare("ct_poisson") == 0) {
+		int seed = atoi(argv[7]);
 		filename_row_idx = "../data/ct_poisson/row_idx_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_cols = "../data/ct_poisson/cols_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_values = "../data/ct_poisson/values_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
@@ -69,7 +64,7 @@ int main (int argc, char *argv[]) {
 	}
 	else {
 		cout << "Incorrect number of arguments: Corret usage is ";
-		cout << "'./bin/CKB_box_proj_parallel_stop.exe <data_set> <n_runs> <M> <N> <number_of_blocks> <min_it> <bucket_size>'" << endl;
+		cout << "'./bin/SRKWOR_box_proj_parallel_stop_par.exe <data_set> <n_runs> <M> <N> <min_it> <bucket_size>'" << endl;
 		exit(1);
 	}
 
@@ -103,6 +98,11 @@ int main (int argc, char *argv[]) {
 		}
 	}
 
+	vector<int> samp_line(M);
+	for (int i = 0; i < M; i++)
+		samp_line[i] = i;
+	mt19937 rng(1);
+
 	double* x_k = new double[N];
 	double* x_down = new double[N];
 	double* x_up = new double[N];
@@ -113,9 +113,12 @@ int main (int argc, char *argv[]) {
 		x_sol[i] = 0;
 	}
 	double scale;
+	int line_down_idx;
+	int line_up_idx;
 	int line_down;
 	int line_up;
 	long long it;
+	long long iner_it;
 	long long avg_it = 0;
 	int it_final;
 
@@ -128,8 +131,7 @@ int main (int argc, char *argv[]) {
 
 	vector<double> store_diff;
 	double curr_diff;
-
-	int n_blocks = number_of_blocks*num_threads;
+	double diff_entry;
 
 	for(int run = 0; run < n_runs; run++) {
 		for (int i = 0; i < N; i++) {
@@ -138,50 +140,56 @@ int main (int argc, char *argv[]) {
 			x_up[i] = 0;
 		}
 		store_diff.clear();
+		shuffle(begin(samp_line), end(samp_line), rng);
 		solution_found = false;
 		it = 0;
 		start = omp_get_wtime();
-		#pragma omp parallel private(line_down, line_up, scale, t_id) firstprivate(it)
+		#pragma omp parallel private(line_down_idx, line_up_idx, line_down, line_up, scale, t_id, iner_it) firstprivate(it)
 		{
 			t_id = omp_get_thread_num();
+			iner_it = t_id;
 			while(!solution_found) {
 				it++;
-				for (int block_it = 0; block_it < number_of_blocks; block_it++) {
-					line_down = BLOCK_LOW(block_it*num_threads+t_id, n_blocks, M);
-					line_up = M-line_down-1;
-					for (int s = 0; s < BLOCK_SIZE(block_it*num_threads+t_id, n_blocks, M); s++) {
-						scale = (b[line_down]-dotProductCSR(line_down, row_idx, cols, values, x_down))/sqrNorm_line[line_down];
-						index = row_idx[line_down];
-						while (index < row_idx[line_down+1]) {
-							col = cols[index];
-							x_down[col] += scale*values[index];
-							index++;
-						}
-						line_down++;
-						scale = (b[line_up]-dotProductCSR(line_up, row_idx, cols, values, x_up))/sqrNorm_line[line_up];
-						index = row_idx[line_up];
-						while (index < row_idx[line_up+1]) {
-							col = cols[index];
-							x_up[col] += scale*values[index];
-							index++;
-						}
-						line_up--;
+				line_down_idx = iner_it%M;
+				line_up_idx = M-line_down_idx-1;
+				while (line_down_idx < M) {
+					line_down = samp_line[line_down_idx];
+					scale = (b[line_down]-dotProductCSR(line_down, row_idx, cols, values, x_down))/sqrNorm_line[line_down];
+					index = row_idx[line_down];
+					while (index < row_idx[line_down+1]) {
+						col = cols[index];
+						x_down[col] += scale*values[index];
+						index++;
 					}
-					#pragma omp for nowait
-						for (int i = 0; i < N; i++) {
-							if (x_down[i] < 0)
-								x_down[i] = 0;
-							else if (x_down[i] > 1)
-								x_down[i] = 1;
-							if (x_up[i] < 0)
-								x_up[i] = 0;
-							else if (x_up[i] > 1)
-								x_up[i] = 1;
-						}
+					line_down_idx += num_threads;
+					line_up = samp_line[line_up_idx];
+					scale = (b[line_up]-dotProductCSR(line_up, row_idx, cols, values, x_up))/sqrNorm_line[line_up];
+					index = row_idx[line_up];
+					while (index < row_idx[line_up+1]) {
+						col = cols[index];
+						x_up[col] += scale*values[index];
+						index++;
+					}
+					line_up_idx -= num_threads;
+					iner_it += num_threads;
 				}
 				#pragma omp single
+					curr_diff = 0;
+				#pragma omp for reduction(+:curr_diff)
+					for (int i = 0; i < N; i++) {
+						if (x_down[i] < 0)
+							x_down[i] = 0;
+						else if (x_down[i] > 1)
+							x_down[i] = 1;
+						if (x_up[i] < 0)
+							x_up[i] = 0;
+						else if (x_up[i] > 1)
+							x_up[i] = 1;
+						diff_entry = x_up[i]-x_down[i];
+						curr_diff += diff_entry*diff_entry;
+					}
+				#pragma omp single
 				{
-					curr_diff = sqrNormDiff(x_up, x_down, N);
 					if (store_diff.size() == 0) {
 						if (it > min_it) {
 							store_diff.push_back(curr_diff);
@@ -213,7 +221,6 @@ int main (int argc, char *argv[]) {
 			x_sol[i] += x_k[i];
 		}
 	}
-	// cout << sc_duration << " " << matrix_calc_duration << endl;
 	cout << M << " " << N << " " << duration << " " << avg_it/n_runs << " ";
 
 	for (int i = 0; i < N; i++) {
@@ -231,10 +238,10 @@ int main (int argc, char *argv[]) {
 
 	cout << sqrNormDiff(x_sol, x, N) << " " << duration_total << endl;
 
-	string filename_sol = "outputs/tomo_stop/" + matrix_type + "/CKB_box_proj_sol_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads) + "_" + to_string(number_of_blocks);
+	string filename_sol = "outputs/tomo_stop/" + matrix_type + "/SRKWOR_box_proj_sol_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads);
 
-	if (argc == 9) {
-		int seed = atoi(argv[8]);
+	if (argc == 8) {
+		int seed = atoi(argv[7]);
 		filename_sol += "_" + to_string(seed) + ".txt";
 	}
 	else {
