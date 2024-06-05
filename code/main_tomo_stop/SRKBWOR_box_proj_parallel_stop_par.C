@@ -150,7 +150,7 @@ int main (int argc, char *argv[]) {
 		solution_found = false;
 		it = 0;
 		start = omp_get_wtime();
-		#pragma omp parallel private(line_down_idx, line_up_idx, line_down, line_up, scale, t_id) firstprivate(it)
+		#pragma omp parallel private(line_down_idx, line_up_idx, line_down, line_up, scale, t_id, diff_entry) firstprivate(it)
 		{
 			t_id = omp_get_thread_num();
 			while(!solution_found) {

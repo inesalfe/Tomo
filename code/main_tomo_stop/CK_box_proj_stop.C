@@ -9,7 +9,9 @@
 #include <algorithm>
 using namespace std;
 
-// ./bin/CK_box_proj_stop.exe ct_gaussian 10 19558 16384 7 2
+// ./bin/CK_box_proj_stop.exe ct_gaussian 10 19558 16384 7 7 2
+
+// 19558 16384 12.4568 61 19.315 0.405211 12.6022
 
 int main (int argc, char *argv[]) {
 
@@ -132,6 +134,7 @@ int main (int argc, char *argv[]) {
 				scaleVecLineBoxProj(line, row_idx, cols, values, scale, x_up);			
 			}
 			curr_diff = sqrNormDiff(x_up, x_down, N);
+			// cout << it << " " << sqrt(curr_diff) << " " << sqrt(sqrNormDiff(x_k, x, N)) << endl;
 			if (store_diff.size() == 0) {
 				if (it > min_it) {
 					store_diff.push_back(curr_diff);
