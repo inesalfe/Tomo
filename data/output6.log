@@ -1,0 +1,72 @@
+
+ans =
+
+   6.4064e+04
+
+
+M =
+
+      521280
+
+
+N =
+
+     1048576
+
+Elapsed time is 77.297504 seconds.
+
+ans =
+
+   1.7236e+03
+
+[Warning: Colon operands must be real scalars. This warning will become an error
+in a future release.] 
+[> In fbp_time_hd (line 33)
+In run (line 112)
+] 
+
+ans =
+
+   1.1044e+03
+
+{Error using zeros
+Requested 4270325760x1 (31.8GB) array exceeds maximum array size preference
+(8.0GB). This might cause MATLAB to become unresponsive.
+
+Error in paralleltomo>get_or_apply_system_matrix (line 139)
+    rows = zeros(2*N*nA*p,1);
+
+Error in paralleltomo (line 93)
+    A = get_or_apply_system_matrix(N,theta,p,d,isDisp);
+
+Error in fbp_time_hd (line 54)
+[A,b,x] = paralleltomo(N_pixels,theta,p,d);
+
+Error in run (line 112)
+evalin('caller', strcat(scriptStem, ';'));
+} 
+
+ans =
+
+   2.5647e+05
+
+
+M =
+
+     1042560
+
+
+N =
+
+     4194304
+
+Elapsed time is 1.829393 seconds.
+
+ans =
+
+   1.1108e+04
+
+
+ans =
+
+   6.7077e+03

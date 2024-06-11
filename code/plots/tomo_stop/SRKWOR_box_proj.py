@@ -25,9 +25,24 @@ import sys
 # 15 1.71555
 # 10 1.71369
 
+# python3 plots/tomo_stop/SRKWOR_box_proj.py ct_gaussian 117372 262144 10000 2
+# python3 plots/tomo_stop/SRKWOR_box_proj.py ct_gaussian 234664 262144 500 2
+# python3 plots/tomo_stop/SRKWOR_box_proj.py ct_gaussian 469368 262144 200 2
+# python3 plots/tomo_stop/SRKWOR_box_proj.py ct_gaussian 938720 262144 100 2
+
 # Resultados para 1 corrida
 
 
+
+
+# 287 3.99511
+# 58 3.03582
+
+# 99 1.71733
+# 23 1.68332
+
+# 31 1.71178
+# 11 1.70005
 
 if (len(sys.argv) != 5 and len(sys.argv) != 6):
 	print("Incorrect number of arguments.")

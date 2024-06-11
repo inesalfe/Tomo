@@ -13,8 +13,8 @@ import sys
 
 # Resultados para 3 corridas
 
-
-
+# 6946 9.17138
+# 1027 8.93158
 
 # 28 3.63235
 # 54 3.52757
@@ -25,9 +25,24 @@ import sys
 # 47 2.32277
 # 40 2.32239
 
+# python3 plots/tomo_stop/CK_box_proj.py ct_gaussian 117372 262144 15000 2
+# python3 plots/tomo_stop/CK_box_proj.py ct_gaussian 234664 262144 100 2
+# python3 plots/tomo_stop/CK_box_proj.py ct_gaussian 469368 262144 100 2
+# python3 plots/tomo_stop/CK_box_proj.py ct_gaussian 938720 262144 100 2
+
 # Resultados para 1 corrida
 
 
+
+
+# 41 3.44954
+# 76 3.2424
+
+# 58 1.94183
+# 41 1.93906
+
+# 54 2.3131
+# 42 2.31215
 
 if (len(sys.argv) != 5 and len(sys.argv) != 6):
 	print("Incorrect number of arguments.")
