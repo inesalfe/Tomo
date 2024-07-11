@@ -15,7 +15,7 @@ function x_fbp = fbp_sol(N_pixels,theta,p,d,seed,eta,filter)
     
     rng(seed);
     sigma = sqrt(eta*eta*norm(b)*norm(b)/M);
-    error = normrnd(0,sigma,M,1);
+    error = nrmrnd(0,sigma,M,1);
     b_error = b + error;
     
     tic

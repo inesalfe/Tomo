@@ -12,9 +12,9 @@ using namespace std;
 
 int main (int argc, char *argv[]) {
 
-	if(argc != 6 && argc != 7) {
+	if(argc != 7 && argc != 8) {
 		cout << "Incorrect number of arguments: Corret usage is ";
-		cout << "'./bin/CKA_box_proj_parallel_stop_4.exe <data_set> <n_runs> <M> <N> <bucket_size>'" << endl;
+		cout << "'./bin/CKA_box_proj_parallel_stop_4.exe <data_set> <n_runs> <M> <N> <min_it> <bucket_size>'" << endl;
 		exit(1);
 	}
 
@@ -30,7 +30,8 @@ int main (int argc, char *argv[]) {
 
 	int M = atoi(argv[3]);
 	int N = atoi(argv[4]);
-	int bucket_size = atoi(argv[5]);
+	int min_it = atoi(argv[5]);
+	int bucket_size = atoi(argv[6]);
 
 	string matrix_type = argv[1];
 	string filename_row_idx;
@@ -38,23 +39,23 @@ int main (int argc, char *argv[]) {
 	string filename_values;
 	string filename_b;
 	string filename_x;
-	if (argc == 6 && matrix_type.compare("ct") == 0) {
+	if (argc == 7 && matrix_type.compare("ct") == 0) {
 		filename_row_idx = "../data/ct/row_idx_" + to_string(M) + "_" + to_string(N) + ".bin";
 		filename_cols = "../data/ct/cols_" + to_string(M) + "_" + to_string(N) + ".bin";
 		filename_values = "../data/ct/values_" + to_string(M) + "_" + to_string(N) + ".bin";
 		filename_b = "../data/ct/b_" + to_string(M) + "_" + to_string(N) + ".bin";
 		filename_x = "../data/ct/x_" + to_string(M) + "_" + to_string(N) + ".bin";
 	}
-	else if (argc == 7 && matrix_type.compare("ct_gaussian") == 0) {
-		int seed = atoi(argv[6]);
+	else if (argc == 8 && matrix_type.compare("ct_gaussian") == 0) {
+		int seed = atoi(argv[7]);
 		filename_row_idx = "../data/ct_gaussian/row_idx_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_cols = "../data/ct_gaussian/cols_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_values = "../data/ct_gaussian/values_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_b = "../data/ct_gaussian/b_error_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_x = "../data/ct_gaussian/x_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 	}
-	else if (argc == 7 && matrix_type.compare("ct_poisson") == 0) {
-		int seed = atoi(argv[6]);
+	else if (argc == 8 && matrix_type.compare("ct_poisson") == 0) {
+		int seed = atoi(argv[7]);
 		filename_row_idx = "../data/ct_poisson/row_idx_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_cols = "../data/ct_poisson/cols_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
 		filename_values = "../data/ct_poisson/values_" + to_string(M) + "_" + to_string(N) + "_" + to_string(seed) + ".bin";
@@ -63,7 +64,7 @@ int main (int argc, char *argv[]) {
 	}
 	else {
 		cout << "Incorrect number of arguments: Corret usage is ";
-		cout << "'./bin/CKA_box_proj_parallel_stop_4.exe <data_set> <n_runs> <M> <N> <bucket_size>'" << endl;
+		cout << "'./bin/CKA_box_proj_parallel_stop_4.exe <data_set> <n_runs> <M> <N> <min_it> <bucket_size>'" << endl;
 		exit(1);
 	}
 
@@ -127,11 +128,6 @@ int main (int argc, char *argv[]) {
 	vector<double> store_diff;
 	double curr_diff;
 
-	double sc_duration = 0;
-	double start_sc, stop_sc;
-	double matrix_calc_duration = 0;
-	double start_matrix_calc_duration, stop_matrix_calc_duration;
-
 	for(int run = 0; run < n_runs; run++) {
 		for (int i = 0; i < N; i++) {
 			x_k[i] = 0;
@@ -143,7 +139,7 @@ int main (int argc, char *argv[]) {
 		signal = false;
 		it = 0;
 		start = omp_get_wtime();
-		#pragma omp parallel private(line_down, line_up, scale, t_id, iner_it) firstprivate(it)
+		#pragma omp parallel private(line_down, line_up, scale, t_id, iner_it, col, index) firstprivate(it)
 		{
 			t_id = omp_get_thread_num();
 			t_id--;
@@ -166,7 +162,6 @@ int main (int argc, char *argv[]) {
 							else {
 								store_diff.push_back(curr_diff);
 								if (store_diff.size() == bucket_size+1) {
-									it_final = it;
 									solution_found = true;
 								}
 							}
@@ -174,7 +169,6 @@ int main (int argc, char *argv[]) {
 						signal = false;
 					}
 				}
-				// cout << t_id << " " << it << endl;
 			}
 			else if (t_id == 0) {
 				while(!solution_found) {
@@ -212,7 +206,6 @@ int main (int argc, char *argv[]) {
 					}
 					signal = true;
 				}
-				// cout << t_id << " " << it << endl;
 			}
 			else {
 				while(!solution_found) {
@@ -249,7 +242,6 @@ int main (int argc, char *argv[]) {
 							x_up[i] = 1;
 					}
 				}
-				// cout << t_id << " " << it << endl;		
 			}
 		}
 		stop = omp_get_wtime();
@@ -259,7 +251,6 @@ int main (int argc, char *argv[]) {
 			x_sol[i] += x_k[i];
 		}
 	}
-	// cout << sc_duration << " " << matrix_calc_duration << endl;
 	cout << M << " " << N << " " << duration << " " << avg_it/n_runs << " ";
 
 	for (int i = 0; i < N; i++) {
@@ -279,8 +270,8 @@ int main (int argc, char *argv[]) {
 
 	string filename_sol = "outputs/tomo_stop/" + matrix_type + "/CKA_box_proj_sol_" + to_string(M) + "_" + to_string(N) + "_" + to_string(num_threads_total);
 
-	if (argc == 7) {
-		int seed = atoi(argv[6]);
+	if (argc == 8) {
+		int seed = atoi(argv[7]);
 		filename_sol += "_" + to_string(seed) + ".txt";
 	}
 	else {
